@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Gmet Blog</title>
   
-  
+  <subtitle>Eureka!</subtitle>
   <link href="https://gmet233.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gmet233.gitee.io/"/>
@@ -10,7 +10,7 @@
   <id>https://gmet233.gitee.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>Met Guo</name>
     
   </author>
   
