@@ -6,7 +6,7 @@
   <link href="https://gmet233.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gmet233.gitee.io/"/>
-  <updated>2021-12-16T13:48:11.500Z</updated>
+  <updated>2021-12-19T09:06:39.869Z</updated>
   <id>https://gmet233.gitee.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PriorityQueue 概述</title>
+    <link href="https://gmet233.gitee.io/2021/12/19/PriorityQueue-%E6%A6%82%E8%BF%B0/"/>
+    <id>https://gmet233.gitee.io/2021/12/19/PriorityQueue-%E6%A6%82%E8%BF%B0/</id>
+    <published>2021-12-19T08:58:37.000Z</published>
+    <updated>2021-12-19T09:06:39.869Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><p><code>Queue</code>是一个严格的先进先出（FIFO）的队列。</p><p>但有时候这并不能满足我们的需求。当我们需要对队列中的元素重排，按照重排后的元素顺序出队时，这时候就需要<code>PriorityQueue</code>。</p><p><code>PriorityQueue</code>和<code>Queue</code>的区别在于，它的出队顺序与元素的优先级有关，对<code>PriorityQueue</code>调用<code>remove()</code>或<code>poll()</code>方法，返回的总是优先级最高的元素。</p><p>要使用<code>PriorityQueue</code>，我们就必须给每个元素定义“优先级”。请看下面的例子：</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyPriorityQueue</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Queue&lt;User&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(</span><br><span class="line">                (User user1, User user2) -&gt; &#123;</span><br><span class="line">                    <span class="keyword">return</span> user2.getLevel() - user1.getLevel();</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line">        queue.offer(<span class="keyword">new</span> User(<span class="string">&quot;sb_1&quot;</span>, <span class="number">1</span>)); <span class="comment">//优先级低</span></span><br><span class="line">        queue.offer(<span class="keyword">new</span> User(<span class="string">&quot;vip_1&quot;</span>, <span class="number">2</span>)); <span class="comment">//优先级高</span></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">            User user = queue.poll();</span><br><span class="line">            System.out.println(user.getName());</span><br><span class="line">        &#125; <span class="comment">//出队的顺序是vip_1, sb_1</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> level;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name, <span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.level = level;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//getter、setter</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>上面的例子使用lambda表达式实现了排序。你也可以自定义排序器（实现Comparable接口），然后将排序器对象传递给<code>PriorityQueue</code>构造器。构造函数签名如下：</p><p><code>public PriorityQueue(Comparator&lt;? super E&gt; comparator)</code></p><h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>通过堆实现，具体说是通过完全二叉树（<em>complete binary tree</em>）实现的<strong>小顶堆</strong>（任意一个非叶子节点的权值，都不大于其左右子节点的权值）。</p><p>具体请参考<strong>堆排序</strong>。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1265120632401152">https://www.liaoxuefeng.com/wiki/1252599548343744/1265120632401152</a></li><li><a href="https://www.cnblogs.com/CarpenterLee/p/5488070.html">https://www.cnblogs.com/CarpenterLee/p/5488070.html</a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;快速入门&quot;&gt;&lt;a href=&quot;#快速入门&quot; class=&quot;headerlink&quot; title=&quot;快速入门&quot;&gt;&lt;/a&gt;快速入门&lt;/h1&gt;&lt;p&gt;&lt;code&gt;Queue&lt;/code&gt;是一个严格的先进先出（FIFO）的队列。&lt;/p&gt;
+&lt;p&gt;但有时候这并不能满足我们的需求。</summary>
+      
+    
+    
+    
+    <category term="Java" scheme="https://gmet233.gitee.io/categories/Java/"/>
+    
+    <category term="集合" scheme="https://gmet233.gitee.io/categories/Java/%E9%9B%86%E5%90%88/"/>
+    
+    
+    <category term="Java" scheme="https://gmet233.gitee.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>单例设计模式</title>
