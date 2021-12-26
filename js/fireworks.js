@@ -124,5 +124,6 @@ function animateParticules (x, y) {
       duration: anime.random(1200, 1800),
       easing: 'easeOutExpo',
       update: renderParticule,
-    }, 0)
+      offset: 0
+    })
 }
