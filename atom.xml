@@ -6,7 +6,7 @@
   <link href="https://gmet233.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gmet233.gitee.io/"/>
-  <updated>2021-12-25T13:39:27.993Z</updated>
+  <updated>2021-12-26T03:09:25.529Z</updated>
   <id>https://gmet233.gitee.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tmux 简介</title>
+    <link href="https://gmet233.gitee.io/2021/12/26/Tmux-%E7%AE%80%E4%BB%8B/"/>
+    <id>https://gmet233.gitee.io/2021/12/26/Tmux-%E7%AE%80%E4%BB%8B/</id>
+    <published>2021-12-26T03:07:45.000Z</published>
+    <updated>2021-12-26T03:09:25.529Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是Tmux"><a href="#什么是Tmux" class="headerlink" title="什么是Tmux"></a>什么是Tmux</h1><p>打开一个终端窗口（terminal window，以下简称”窗口”），在里面输入命令。</p><p>用户与计算机的这种临时的交互，称为一次”会话”（session） 。</p><p>会话的一个重要特点是，窗口与其中启动的进程是<a href="https://www.ruanyifeng.com/blog/2016/02/linux-daemon.html">连在一起</a>的。打开窗口，会话开始；关闭窗口，会话结束。</p><p>一个典型的例子，打开一个远程窗口执行命令，这时关闭窗口，那么会话也就终止，里面的进程也随之终止。</p><p>为了解决这个问题，会话与窗口可以”解绑”：窗口关闭时，会话并不终止，而是继续运行，等到以后需要的时候，再让会话”绑定”其他窗口。</p><p><strong>Tmux 就是会话与窗口的”解绑”工具</strong>。</p><h1 id="使用Tmux"><a href="#使用Tmux" class="headerlink" title="使用Tmux"></a>使用Tmux</h1><h2 id="安装Tmux"><a href="#安装Tmux" class="headerlink" title="安装Tmux"></a>安装Tmux</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Ubuntu 或 Debian</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get install tmux</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS 或 Fedora</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo yum install tmux</span></span><br></pre></td></tr></table></figure><h2 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h2><p>直接给出最常用的操作流程如下：</p><ul><li>新建会话<code>tmux new -s &lt;session_name&gt;</code>。（第一个启动的 Tmux 窗口，编号是0，第二个窗口的编号是1，以此类推。）</li><li>在 Tmux 窗口运行所需的程序。</li><li>按下快捷键<code>Ctrl+b d</code>将会话分离。</li><li>下次使用时，重新连接到会话<code>tmux a -t &lt;session_name&gt;</code>。</li></ul><h2 id="其他Tricks"><a href="#其他Tricks" class="headerlink" title="其他Tricks"></a>其他Tricks</h2><ul><li><code>Ctrl+b s</code>：列出所有会话。</li><li><code>tmux rename-session -t 0 &lt;new-name&gt;</code>：重命名会话。</li><li><code>tmux kill-session -t &lt;session-name&gt;</code>：杀死会话。</li></ul><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://www.ruanyifeng.com/blog/2019/10/tmux.html">Tmux 使用教程</a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;什么是Tmux&quot;&gt;&lt;a href=&quot;#什么是Tmux&quot; class=&quot;headerlink&quot; title=&quot;什么是Tmux&quot;&gt;&lt;/a&gt;什么是Tmux&lt;/h1&gt;&lt;p&gt;打开一个终端窗口（terminal window，以下简称”窗口”），在里面输入命令。&lt;/p&gt;
+&lt;p</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://gmet233.gitee.io/categories/Linux/"/>
+    
+    <category term="开发工具" scheme="https://gmet233.gitee.io/categories/Linux/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="Linux" scheme="https://gmet233.gitee.io/tags/Linux/"/>
+    
+    <category term="开发工具" scheme="https://gmet233.gitee.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>火车站台数量问题</title>
