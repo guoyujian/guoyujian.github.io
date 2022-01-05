@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="详解HTTP协议"><meta name="keywords" content="计算机网络,HTTP"><meta name="author" content="Met Guo"><meta name="copyright" content="Met Guo"><title>详解HTTP协议 | Gmet's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.4.0'
+} </script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Gmet's Blog" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E4%BD%9C%E7%94%A8%E5%8F%8A%E7%89%B9%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">HTTP协议的作用及特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E5%8A%9F%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">协议功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%89%88%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">HTTP协议的版本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">HTTP协议的组成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="toc-number">6.</span> <span class="toc-text">HTTP请求报文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E8%A1%8C"><span class="toc-number">6.1.</span> <span class="toc-text">请求行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-number">6.2.</span> <span class="toc-text">请求头</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%B1%9E%E6%80%A7"><span class="toc-number">6.2.1.</span> <span class="toc-text">常见的请求头属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Content-Type%E8%AF%A6%E8%A7%A3"><span class="toc-number">6.2.1.1.</span> <span class="toc-text">Content-Type详解</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E4%BD%93"><span class="toc-number">6.3.</span> <span class="toc-text">请求体</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="toc-number">7.</span> <span class="toc-text">HTTP响应报文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E8%A1%8C"><span class="toc-number">7.1.</span> <span class="toc-text">响应行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">7.1.1.</span> <span class="toc-text">常见的状态码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="toc-number">7.2.</span> <span class="toc-text">响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E4%BD%93"><span class="toc-number">7.3.</span> <span class="toc-text">响应体</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E6%89%A9%E5%B1%95"><span class="toc-number">8.</span> <span class="toc-text">HTTP协议扩展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E2%80%A6"><span class="toc-number">9.</span> <span class="toc-text">更多…</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">10.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Met Guo</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">12</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">13</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">13</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Gmet's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">详解HTTP协议</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-01-05</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p><strong>超文本传输协议</strong>（HTTP，HyperText Transfer Protocol）是互联网上应用最为广泛的一种网络协议。所有的WWW文件都必须遵守这个标准。设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。1960年美国人Ted Nelson构思了一种通过计算机处理文本信息的方法，并称之为超文本（hypertext）,这成为了HTTP超文本传输协议标准架构的发展根基。Ted Nelson组织协调万维网协会（World Wide Web Consortium）和互联网工程工作小组（Internet Engineering Task Force ）共同合作研究，最终发布了一系列的RFC，其中著名的RFC 2616定义了HTTP 1.1。</p>
+<h1 id="HTTP协议的作用及特点"><a href="#HTTP协议的作用及特点" class="headerlink" title="HTTP协议的作用及特点"></a>HTTP协议的作用及特点</h1><p>HTTP是一个客户端和服务器端请求和应答的标准（TCP）。客户端是终端用户，服务器端是网站。</p>
+<p>通过使用Web浏览器、网络爬虫或者其它的工具，客户端发起一个到服务器上指定端口（<strong>默认端口为80</strong>）的HTTP请求。（我们称这个客户端）叫<strong>用户代理（user agent）</strong>。应答的服务器上存储着（一些）资源，比如HTML文件和图像。（我们称）这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在多个中间层，比如代理，网关，或者隧道（tunnels）。尽管TCP/IP协议是互联网上最流行的应用，HTTP协议并没有规定必须使用它和（基于）它支持的层。 事实上，HTTP可以在任何其他互联网协议上，或者在其他网络上实现。HTTP只假定（其下层协议提供）可靠的传输，任何能够提供这种保证的协议都可以被其使用。</p>
+<p>通常，由HTTP客户端发起一个请求，建立一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端发送过来的请求。一旦收到请求，服务器（向客户端）发回一个状态行，比如”HTTP/1.1 200 OK”，和（响应的）消息，消息的消息体可能是请求的文件、错误消息、或者其它一些信息。<strong>HTTP使用TCP而不是UDP的原因在于（打开）一个网页必须传送很多数据，而TCP协议提供传输控制，按顺序组织数据，和错误纠正。</strong></p>
+<p>通过HTTP或者HTTPS协议请求的资源由<strong>统一资源标示符</strong>（Uniform Resource Identifiers）（或者，更准确一些，URLs）来标识。</p>
+<ol>
+<li>基于请求/响应模型的协议。请求和响应必须成对，先有请求后有响应</li>
+<li>HTTP协议默认端口:80</li>
+<li>简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST等。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</li>
+<li>灵活：<strong>HTTP允许传输任意类型的数据对象。</strong>正在传输的类型由Content-Type加以标记。</li>
+<li><strong>无连接</strong>：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</li>
+<li><strong>无状态</strong>：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</li>
+</ol>
+<h1 id="协议功能"><a href="#协议功能" class="headerlink" title="协议功能"></a>协议功能</h1><p>HTTP协议是用于从WWW服务器传输超文本到本地浏览器的传输协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。</p>
+<p>HTTP是客户端浏览器或其他程序与Web服务器之间的<strong>应用层通信协议</strong>。在Internet上的Web服务器上存放的都是超文本信息，客户机需要通过HTTP协议传输所要访问的超文本信息。HTTP包含命令和传输信息，不仅可用于Web访问，也可以用于其他因特网/内联网应用系统之间的通信，从而实现各类应用资源超媒体访问的集成。</p>
+<p>我们在浏览器的地址栏里输入的网站地址叫做URL (Uniform Resource Locator，统一资源定位符)。就像每家每户都有一个门牌地址一样，每个网页也都有一个Internet地址。当你在浏览器的地址框中输入一个URL或是单击一个超级链接时，URL就确定了要浏览的地址。浏览器通过超文本传输协议(HTTP)，将Web服务器上站点的网页代码提取出来，并翻译成漂亮的网页。</p>
+<h1 id="HTTP协议的版本"><a href="#HTTP协议的版本" class="headerlink" title="HTTP协议的版本"></a>HTTP协议的版本</h1><p>HTTP/1.0，发送请求，创建一次连接，获得<strong>一个</strong>web资源，连接断开</p>
+<p>HTTP/1.1，发送请求，创建一次连接，获得<strong>多个</strong>web资源，连接断开</p>
+<p>HTTP/2.0</p>
+<h1 id="HTTP协议的组成"><a href="#HTTP协议的组成" class="headerlink" title="HTTP协议的组成"></a>HTTP协议的组成</h1><p>HTTP协议由<strong>HTTP请求</strong>和<strong>HTTP响应</strong>组成，当在浏览器中输入网址访问某个网站时， 你的浏览器会将你的请求封装成一个HTTP请求发送给服务器站点，服务器接收到请  求后会组织响应数据封装成一个HTTP响应返回给浏览器。即没有请求就没有响应。</p>
+<p><strong>HTTP请求包括：请求行、请求头、请求体</strong></p>
+<p><strong>HTTP响应包括：响应行、响应头、响应体</strong></p>
+<h1 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h1><p>HTTP请求报文由3部分组成（请求行+请求头+请求体）：</p>
+<p><img src="HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png" alt="HTTP请求报文"></p>
+<h2 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h2><p>例如：<code>POST /chapter17/user.html HTTP/1.1</code></p>
+<p>格式：<code>请求方式 资源路径 协议/版本</code></p>
+<p>请求行必须在HTTP请求格式的第一行。</p>
+<blockquote>
+<p>GET请求</p>
+</blockquote>
+<ul>
+<li>将请求参数追加在URL后面，不安全</li>
+<li>URL长度限制GET请求方式数据的大小</li>
+<li>没有请求体</li>
+<li>一般的HTTP请求大多都是GET。</li>
+<li>常见GET请求：地址栏直接访问、&lt;a href=””&gt;、&lt;img src=””&gt;等</li>
+</ul>
+<blockquote>
+<p>POST请求</p>
+</blockquote>
+<p>请求参数在请求体处，较安全。</p>
+<p>请求数据大小没有限制</p>
+<p>只有表单设置为method=“post”才是POST请求，其他都是GET请求</p>
+<blockquote>
+<p>HEAD请求</p>
+</blockquote>
+<p>HEAD跟GET相似，不过服务端接收到HEAD请求时<strong>只返回响应头</strong>，不发送响应内容。所以，如果只需要查看某个页面的状态时，用HEAD更高效，因为省去了传输页面内容的时间。</p>
+<blockquote>
+<p>DELETE请求</p>
+</blockquote>
+<p>删除某一个资源。</p>
+<blockquote>
+<p>OPTIONS请求</p>
+</blockquote>
+<p>用于获取当前URL所支持的方法。若请求成功，会在HTTP头中包含一个名为“Allow”的头，值是所支持的方法，如”GET, POST”。</p>
+<blockquote>
+<p>PUT请求</p>
+</blockquote>
+<p>把一个资源存放在指定的位置上。</p>
+<p>本质上来讲， PUT和POST极为相似，都是向服务器发送数据，但它们之间有一个重要区别，PUT通常指定了资源的存放位置，而POST则没有，POST的数据存放位置由服务器自己决定。</p>
+<blockquote>
+<p>TRACE请求</p>
+</blockquote>
+<p>回显服务器收到的请求，主要用于测试或诊断。</p>
+<blockquote>
+<p>CONNECT请求</p>
+</blockquote>
+<p>CONNECT方法是HTTP/1.1协议预留的，能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接与非加密的HTTP代理服务器的通信。</p>
+<p><strong>在 REST 架构风格中，有严格规定对于不同的请求类型要设置合适的请求方法。</strong></p>
+<p>也是避免出现因为乱用导致混乱的问题。这里提到了REST架构，现在很多同学都在写REST，有没有人能够明白为什么要定义REST这个架构风格？（使用REST）</p>
+<ol>
+<li>随着服务化架构的普及，HTTP协议的使用频率越来越高</li>
+<li>很多人在错误的使用HTTP协议定义接口，比如各种各样的命名，什么 getUserInfoById， deleteById 之类的、<strong>有状态和无状态请求混用。</strong></li>
+<li>对于 http 协议本身提供的规则并没有很好的利用</li>
+</ol>
+<p>所以，为了更好的解决这些问题，干脆就定义一套规则，这套规则并没有引入新的东西，无非就是对 http 协议本身的使用做了一些约束，比如说</p>
+<ol>
+<li><strong>REST是面向资源</strong>，每一个 URI 代表一个资源</li>
+<li>强调<strong>无状态化</strong>，服务器端不能存储来自某个客户的某个请求中的信息，并在该客户的其他 请求中使用</li>
+<li>强调 URL 暴露资源时，<strong>不要在 URI 中出现动词</strong></li>
+<li>合理的利用 http 状态码、请求方法。</li>
+</ol>
+<p>因此大家在参照这种标准去使用 REST 风格时，要明白你遵循的是什么以及要解决什么问题。</p>
+<h2 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h2><p>例如：Host: 39.108.107.149:8080</p>
+<p>请求头从第二行开始，到第一个空格结束。请求头和请求体之间存在一个空格(如下)</p>
+<p>例如：Host: 39.108.107.149:8080</p>
+<p>请求头从第二行开始，到第一个空格结束。请求头和请求体之间存在一个空格(如下)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST http://39.108.107.149:8080/vk/app/rest/ddp/iModelServiceImpl/findModelByType HTTP/1.1</span><br><span class="line">User-Agent: Fiddler</span><br><span class="line">Host: 39.108.107.149:8080</span><br><span class="line">Content-Length: 11</span><br><span class="line"> </span><br><span class="line">name=城市</span><br></pre></td></tr></table></figure>
+
+
+<p>请求头通常以键值对{key:value}方式传递数据。</p>
+<p>key为规范的固定值</p>
+<p>value为key对应的取值，通常是一个值，可能是一组。</p>
+<h3 id="常见的请求头属性"><a href="#常见的请求头属性" class="headerlink" title="常见的请求头属性"></a>常见的请求头属性</h3><p><strong>Referer:</strong> 表示这个请求是从哪个url跳过来的，通过百度来搜索淘宝网,那么在进入淘宝网的请求报文中，Referer的值就是:<a target="_blank" rel="noopener" href="http://www.baidu.com.如果是直接访问就不会有这个头./">www.baidu.com。如果是直接访问就不会有这个头。</a></p>
+<p>常用于：防盗链。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Referer: no-referrer-when-downgrade</span><br></pre></td></tr></table></figure>
+
+<p><strong>Accept:</strong> 告诉服务端，该请求所能支持的响应数据类型，专业术语称为MIME 类型(文件类型的一种描述方式)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</span><br></pre></td></tr></table></figure>
+
+
+<p>MIME格式：大类型/小类型[;参数]</p>
+<p>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<em>/</em>;q=0.8</p>
+<p>例如:</p>
+<p>text/html,html文件</p>
+<p>text/css,css文件</p>
+<p>text/javascript,js文件</p>
+<p>image/*，所有图片文件</p>
+<p><strong>Cookie:</strong> 客户端的Cookie就是通过这个报文头属性传给服务端的哦！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Cookie: JSESSIONID=15982C27F7507C7FDAF0F97161F634B5</span><br></pre></td></tr></table></figure>
+
+<p>这里就出了一个问题,网站A怎么保证自己请求体中保存的cookie就是网站A的cookie而不是网站B的cookie呢,这就和cookie里面的jsessionid有关系了，关于cookie,session,sessionid,jsessionid的区别联系，可以参考这个博文:</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/fnng/archive/2012/08/14/2637279.html">http://www.cnblogs.com/fnng/archive/2012/08/14/2637279.html</a></p>
+<p><strong>User-Agent:</strong> 浏览器通知服务器，客户端浏览器与操作系统相关信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36</span><br></pre></td></tr></table></figure>
+
+<p><strong>Connection:</strong> 表示客户端与服务连接类型；Keep-Alive表示持久连接，close已关闭</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure>
+
+<p><strong>Host:</strong> 请求的服务器主机名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host: sczpkj.f3322.net:3000</span><br></pre></td></tr></table></figure>
+
+<p><strong>Content-Length:</strong> 请求体的长度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST http://39.108.107.149:8080/vk/app/rest/ddp/iModelServiceImpl/findModelByType HTTP/1.1</span><br><span class="line">User-Agent: Fiddler</span><br><span class="line">Host: 39.108.107.149:8080</span><br><span class="line">Content-Length: 11</span><br><span class="line"> </span><br><span class="line">name=城市</span><br></pre></td></tr></table></figure>
+
+<p><strong>Content-Type:</strong> 请求的与实体对应的MIME信息。如果是POST请求,会有这个头,默认值为application/x-www-form-urlencoded，表示请求体内容使用url编码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Content-Type: application/x-www-form-urlencoded</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="Content-Type详解"><a href="#Content-Type详解" class="headerlink" title="Content-Type详解"></a>Content-Type详解</h4><p>常见的Content-Type：</p>
+<table>
+<thead>
+<tr>
+<th>Content-Type</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>text/html</td>
+<td>html格式</td>
+</tr>
+<tr>
+<td>text/plain</td>
+<td>纯文本格式</td>
+</tr>
+<tr>
+<td>text/css</td>
+<td>CSS格式</td>
+</tr>
+<tr>
+<td>text/javascript</td>
+<td>js格式</td>
+</tr>
+<tr>
+<td>image/gif</td>
+<td>gif图片格式</td>
+</tr>
+<tr>
+<td>image/jpeg</td>
+<td>jpg图片格式</td>
+</tr>
+<tr>
+<td>image/png</td>
+<td>png图片格式</td>
+</tr>
+<tr>
+<td>application/x-www-form-urlencoded</td>
+<td>POST专用：普通的表单提交默认是通过这种方式。form表单数据被编码为key/value格式发送到服务器。</td>
+</tr>
+<tr>
+<td>application/json</td>
+<td>POST专用：用来告诉服务端消息主体是序列化后的 JSON 字符串</td>
+</tr>
+<tr>
+<td>text/xml</td>
+<td>POST专用：发送xml数据</td>
+</tr>
+<tr>
+<td>multipart/form-data</td>
+<td>POST专用：下面讲解</td>
+</tr>
+</tbody></table>
+<p><strong>application/x-www-form-urlencoded</strong> </p>
+<p>最常见的post提交数据的方式。浏览器原生的form表单，如果不设置<strong>enctype属性</strong>，那么最终就会以application/x-www-form-urlencoded 方式提交数据</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST http://39.108.107.149:8080/vk/app/rest/ddp/iModelServiceImpl/findModelByType HTTP/1.1</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">cache-control: no-cache</span><br><span class="line">Postman-Token: 8e602802-b4f5-4d05-96d7-e1c7a1951719</span><br><span class="line">User-Agent: PostmanRuntime/7.1.1</span><br><span class="line">Accept: */*</span><br><span class="line">Host: 39.108.107.149:8080</span><br><span class="line">cookie: JSESSIONID=6CD80B7028062D9190717CEE001C3194</span><br><span class="line">accept-encoding: gzip, deflate</span><br><span class="line">content-length: 32</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">name=%E5%9F%8E%E5%B8%82&amp;status=1</span><br></pre></td></tr></table></figure>
+
+
+<p>首先，Content-Type 被指定为 application/x-www-form-urlencoded；其次，提交的数据按照 key1=val1&amp;key2=val2 的方式进行编码，key 和 val 都进行了 URL 转码。大部分服务端语言都对这种方式有很好的支持。</p>
+<p>很多时候，我们用 Ajax 提交数据时，也是使用这种方式。例如 JQuery 和 QWrap 的 Ajax，Content-Type 默认「application/x-www-form-urlencoded;charset=utf-8」。 </p>
+<p><strong>multipart/form-data</strong> </p>
+<p>这又是一个常见的 POST 数据提交的方式。我们<strong>使用表单上传文件</strong>时，必须让 form 的 enctyped 等于这个值。</p>
+<p>此时（当使用表单上传文件时），HTTP请求报文格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST http://39.108.107.149:8080/vk/app/rest/ddp/iDataSourcesBaseService/file HTTP/1.1</span><br><span class="line">Content-Type: multipart/form-data; boundary=--------------------------629236571647111133881449</span><br><span class="line">cache-control: no-cache</span><br><span class="line">Postman-Token: 2146b4b3-2d30-469c-bbcd-fbc4693934d9</span><br><span class="line">User-Agent: PostmanRuntime/7.1.1</span><br><span class="line">Accept: */*</span><br><span class="line">Host: 39.108.107.149:8080</span><br><span class="line">cookie: JSESSIONID=6CD80B7028062D9190717CEE001C3194</span><br><span class="line">accept-encoding: gzip, deflate</span><br><span class="line">content-length: 435</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">----------------------------629236571647111133881449</span><br><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;test.txt&quot;</span><br><span class="line">Content-Type: text/plain</span><br><span class="line"></span><br><span class="line">test upload</span><br><span class="line">----------------------------629236571647111133881449</span><br><span class="line">Content-Disposition: form-data; name=&quot;extCode&quot;</span><br><span class="line"></span><br><span class="line">test</span><br><span class="line">----------------------------629236571647111133881449</span><br><span class="line">Content-Disposition: form-data; name=&quot;extId&quot;</span><br><span class="line"></span><br><span class="line">3306</span><br><span class="line">----------------------------629236571647111133881449--  //结束标识</span><br></pre></td></tr></table></figure>
+
+
+<p>首先生成了一个 boundary 用于分割不同的字段，为了避免与正文内容重复，boundary 很长很复杂。然后 Content-Type 里指明了数据是以 mutipart/form-data 来编码，本次请求的 boundary 是什么内容。</p>
+<p>消息主体里按照字段个数又分为多个结构类似的部分，每部分都是<strong>以–boundary开始</strong>，紧接着内容描述信息，然后是回车，最后是最后是字段具体内容（文本或二进制），如果传输的是文件，还要包含文件名和文件类型信息。消息主体最后<strong>以–boundary–标示结束</strong>。</p>
+<p>上面提到的这两种 POST 数据的方式，都是浏览器原生支持的，而且现阶段原生 form 表单也只支持这两种方式。但是随着越来越多的 Web 站点，尤其是 WebApp，全部使用 Ajax 进行数据交互之后，我们完全可以定义新的数据提交方式，给开发带来更多便利。 </p>
+<p><strong>application/json</strong></p>
+<p>application/json 这个 Content-Type 作为响应头大家肯定不陌生。实际上，现在越来越多的人把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。由于 JSON 规范的流行，除了低版本 IE 之外的各大浏览器都原生支持 JSON.stringify，服务端语言也都有处理 JSON 的函数，使用 JSON 不会遇上什么麻烦。 <strong>JSON 格式支持比键值对复杂得多的结构化数据，这一点也很有用。</strong></p>
+<p>当<code>Content-Type: application/json</code>时请求报文如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST http://39.108.107.149:8080/vk/app/rest/ddp/vkIndexsService/queryVkIndxs HTTP/1.1</span><br><span class="line">Content-Type: application/json</span><br><span class="line">cache-control: no-cache</span><br><span class="line">Postman-Token: 5014bc39-0777-49d5-bb8a-73db9a981e49</span><br><span class="line">User-Agent: PostmanRuntime/7.1.1</span><br><span class="line">Accept: */*</span><br><span class="line">Host: 39.108.107.149:8080</span><br><span class="line">cookie: JSESSIONID=6CD80B7028062D9190717CEE001C3194</span><br><span class="line">accept-encoding: gzip, deflate</span><br><span class="line">content-length: 132</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> &quot;name&quot;:&quot;828验证继承&quot;,</span><br><span class="line"> &quot;getresultType&quot;:&quot;2&quot;,</span><br><span class="line"> &quot;createTime&quot;:&quot;Tue Sep 11 2018 00:00:00 GMT+0800 (中国标准时间)&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方案，可以方便的提交复杂的结构化数据，特别适合 RESTful 的接口。各大抓包工具如 Chrome 自带的开发者工具、Firebug、Fiddler，都会以树形结构展示 JSON 数据，非常友好。</p>
+</blockquote>
+<p><strong>Accept-Encoding:</strong> 浏览器通知服务器，浏览器支持的数据压缩格式。如GZIP压缩</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Accept-Encoding: gzip, deflate</span><br></pre></td></tr></table></figure>
+
+<p><strong>Accept-Language:</strong> 浏览器通知服务器，浏览器支持的语言。各国语言(国际化i18n)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br></pre></td></tr></table></figure>
+
+<p><strong>Cache-Control:</strong> 指定请求和响应遵循的缓存机制</p>
+<p>对缓存进行控制，如一个请求希望响应返回的内容在客户端要被缓存一年，或不希望被缓存就可以通过这个报文头达到目的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Cache-Control: no-cache</span><br></pre></td></tr></table></figure>
+
+<p>更多请求头属性可以参考这篇文章:<a href = "http://tools.jb51.net/table/http_header">HTTP响应头和请求头信息对照表</a></p>
+<h2 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h2><p>当请求方式是post的时，请求体会有请求的参数，格式如下：</p>
+<p>username=zhangsan&amp;password=123</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST http://39.108.107.149:8080/vk/app/rest/ddp/iModelServiceImpl/findModelByType HTTP/1.1</span><br><span class="line">User-Agent: Fiddler</span><br><span class="line">Host: 39.108.107.149:8080</span><br><span class="line">Content-Length: 20</span><br><span class="line"> </span><br><span class="line">name=城市&amp;status=1</span><br></pre></td></tr></table></figure>
+
+<h1 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h1><p>HTTP的响应报文也由三部分组成（响应行+响应头+响应体）</p>
+<p><img src="HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87.png" alt="HTTP响应报文"></p>
+<h2 id="响应行"><a href="#响应行" class="headerlink" title="响应行"></a>响应行</h2><p>例如：<code>HTTP/1.1 200 OK</code></p>
+<p>格式：<code>报文协议及版本 状态码及状态描述</code></p>
+<h3 id="常见的状态码"><a href="#常见的状态码" class="headerlink" title="常见的状态码"></a>常见的状态码</h3><p>状态码：由3位数字组成，第一个数字定义了响应的类别</p>
+<p>1xx：指示信息，表示请求已接收，继续处理</p>
+<p>2xx：成功，表示请求已被成功接受，处理。</p>
+<ul>
+<li>200 OK：客户端请求成功</li>
+<li>204 No Content：无内容。服务器成功处理，但未返回内容。一般用在只是客户端向服务器发送信息，而服务器不用向客户端返回什么信息的情况。不会刷新页面。</li>
+<li>206 Partial Content：服务器已经完成了部分GET请求（客户端进行了范围请求）。响应报文中包含Content-Range指定范围的实体内容</li>
+</ul>
+<p>3xx：重定向</p>
+<ul>
+<li>301 Moved Permanently：永久重定向，表示请求的资源已经永久的搬到了其他位置。</li>
+<li>302 Found：临时重定向，表示请求的资源临时搬到了其他位置</li>
+<li>303 See Other：临时重定向，应使用GET定向获取请求资源。303功能与302一样，区别只是303明确客户端应该使用GET访问</li>
+<li>307 Temporary Redirect：临时重定向，和302有着相同含义。POST不会变成GET</li>
+<li>304 Not Modified：表示客户端发送附带条件的请求（GET方法请求报文中的IF…）时，条件不满足。返回304时，不包含任何响应主体。虽然304被划分在3XX，但和重定向一毛钱关系都没有</li>
+</ul>
+<p>4xx：客户端错误</p>
+<ul>
+<li>400 Bad Request：客户端请求有语法错误，服务器无法理解。</li>
+<li>401 Unauthorized：请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用。</li>
+<li>403 Forbidden：服务器收到请求，但是拒绝提供服务</li>
+<li>404 Not Found：请求资源不存在。比如，输入了错误的url</li>
+<li>415 Unsupported media type：不支持的媒体类型</li>
+</ul>
+<p>5xx：服务器端错误，服务器未能实现合法的请求。</p>
+<ul>
+<li>500 Internal Server Error：服务器发生不可预期的错误。</li>
+<li>503 Server Unavailable：服务器当前不能处理客户端的请求，一段时间后可能恢复正常，</li>
+</ul>
+<h2 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h2><p>响应报文头，也是由多个属性组成；</p>
+<p>响应头也是用键值对；</p>
+<p>服务器通过响应头来控制浏览器的行为，不同的头浏览器操作不同</p>
+<table>
+<thead>
+<tr>
+<th>常见请求头</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Location</td>
+<td>指定响应的路径，需要与状态码302配合使用，完成跳转。</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>响应正文的类型（MIME类型）；取值：text/html;charset=UTF-8</td>
+</tr>
+<tr>
+<td>Content-Disposition</td>
+<td>通过浏览器以下载方式解析正文；  取值：attachment;filename=xx.zip</td>
+</tr>
+<tr>
+<td>Set-Cookie</td>
+<td>与会话相关技术。服务器向浏览器写入Cookie</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>服务器使用的压缩格式；取值：gzip</td>
+</tr>
+<tr>
+<td>Content-length</td>
+<td>响应正文的长度</td>
+</tr>
+<tr>
+<td>Refresh</td>
+<td>定时刷新，格式：秒数;url=路径。url可省略，默认值为当前页。取值：3;url=<a target="_blank" rel="noopener" href="http://www.itcast.cn/">www.itcast.cn</a>    //三秒刷新页面到<a target="_blank" rel="noopener" href="http://www.itcast.cn/">www.itcast.cn</a></td>
+</tr>
+<tr>
+<td>Server</td>
+<td>指的是服务器名称，默认值：Apache-Coyote/1.1。可以通过conf/server.xml配置进行修改。&lt;Connector port=”8080” … server=”itcast”/&gt;</td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>服务器通知浏览器，文件的最后修改时间。与If-Modified-Since一起使用。</td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td>响应输出到客户端后，服务端通过该报文头属告诉客户端如何控制响应内容的缓存。常见的取值有常见的取值有private、public、no-cache、max-age，no-store，默认为private。缓存时间为31536000秒（365天）</td>
+</tr>
+</tbody></table>
+<p>更多请求头属性可以参考这篇文章：<a target="_blank" rel="noopener" href="http://tools.jb51.net/table/http_header">HTTP响应头和请求头信息对照表</a></p>
+<h2 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h2><p>响应报文体，服务器发送给浏览器的正文，即我们真正要的“干货” ；</p>
+<p>响应体，响应体是服务器回写给客户端的页面正文，浏览器将正文加载到内存，然后解析渲染，显示页面内容。</p>
+<h1 id="HTTP协议扩展"><a href="#HTTP协议扩展" class="headerlink" title="HTTP协议扩展"></a>HTTP协议扩展</h1><blockquote>
+<p><strong>如果传输的文件过大怎么办</strong></p>
+</blockquote>
+<p>服务器上返回的资源文件比较大，比如有些 js 文件大小可能就有几兆。文件过大就会影响传 输的效率，同时也会带来带宽的消耗。怎么办呢？</p>
+<ol>
+<li>常见的手段是，对文件进行<strong>压缩</strong>，减少文件大小。那压缩和解压缩的流程怎么实现呢？ 首先服务端需要能支持文件的压缩功能，其次浏览器能够针对被压缩的文件进行解压缩。浏览器可以指定 Accept-Encoding 来高速服务器我当前支持的编码类型 Accept-Encoding:gzip,deflate 那服务端会根据支持的编码类型，选择合适的类型进行压缩。常见的编码方式有：gzip/deflate</li>
+<li><strong>分割</strong>传输 在传输大容量数据时，通过把数据分割成多块，能够让浏览器逐步显示页面。这种把实体主体分块的功能称为分块传输编码（Chunked Transfer Coding）。</li>
+</ol>
+<blockquote>
+<p><strong>每次请求都要建立连接吗？</strong></p>
+</blockquote>
+<p>在最早的 HTTP 协议中，每进行一次 HTTP 通信，就需要做一次 TCP 的连接。而一次连接需要进行 3 次握手，这种通信方式会增加通信量的开销。</p>
+<p><img src="HTTP%E4%B8%80%E6%AC%A1%E9%80%9A%E4%BF%A1.png" alt="HTTP一次通信"></p>
+<p>所以在 <strong>HTTP/1.1 中改用了持久连接</strong>，就是在一次连接建立之后，只要客户端或者服务端没有 明确提出断开连接，那么这个 tcp 连接会一直保持连接状态 持久连接的一个最大的好处是：大大减少了连接的建立以及关闭时延。 HTTP1.1 中有一个 Transport 段。会携带一个 <strong>Connection:Keep-Alive</strong>，表示希望将此条连接 作为持久连接。</p>
+<p>HTTP/1.1 持久连接在默认情况下是激活的，除非特别指明，否则 HTTP/1.1 假定所有的连接都 是持久的，要在事务处理结束之后将连接关闭，HTTP/1.1 应用程序必须向报文中显示地添加 一个 Connection：close 首部。</p>
+<p>HTTP1.1 客户端加载在收到响应后，除非响应中包含了 Connection：close 首部，不然 HTTP/1.1 连接就仍然维持在打开状态。但是，客户端和服务器仍然可以随时关闭空闲的连接。不发送 Connection：close 并不意味这服务器承诺永远将连接保持在打开状态。</p>
+<p><strong>管道化连接</strong>：http/1.1 允许在持久连接上使用请求管道。以前发送请求后需等待并收到响应， 才能发送下一个请求。管线化技术出现后，不用等待响应亦可直接发送下一个请求。这样就 能够做到同时并行发送多个请求，而不需要一个接一个地等待响应了。</p>
+<p><img src="%E7%AE%A1%E9%81%93%E5%8C%96%E8%BF%9E%E6%8E%A5.png" alt="管道化连接"></p>
+<blockquote>
+<p><strong>HTTP协议如何解决无状态问题</strong></p>
+</blockquote>
+<p>HTTP 协议是无状态的，什么是无状态呢？就是说 HTTP 协议本身不会对请求和响应之间的 通信状态做保存。 但是现在的应用都是有状态的，如果是无状态，那这些应用基本没人用，你想想，访问一个电商网站，先登录，然后去选购商品，当点击一个商品加入购物车以后又提示你登录。这种用户体验根本不会有人去使用。那我们是如何实现带状态的协议呢？</p>
+<ol>
+<li><strong>客户端支持的 cookie</strong></li>
+</ol>
+<p>HTTP 协议中引入了 Cookie 技术，用来解决HTTP协议无状态的问题。通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态；Cookie 会根据从服务器端发送的响应报文内的一个叫做 Set-Cookie 的首部字段信息，通知客户端保存 Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后发送出去。</p>
+<ol start="2">
+<li><strong>服务端支持的 session</strong></li>
+</ol>
+<p>服务端是通过什么方式来保存状态的呢？ 在基于 tomcat 这类的 jsp/servlet 容器中，会提供 session 这样的机制来保存服务端的对象状态，服务器使用一种类似于散列表的结构来保存信息，当程序需要为某个客户端的请求创建一个 session 的时候，服务器首先检查这个客户端 的请求是否包含了一个 session 标识- session id； 如果已包含一个 session id 则说明以前已经为客户端创建过 session，服务器就按照 session id 把这个 session 检索出来使用（如果检索不到，会新建一个）； 如果客户端请求不包含 sessionid，则为此客户端创建一个 session 并且生成一个与此 session 相关联的 session id， session id 的值是一个既不会重复，又不容易被找到规律的仿造字符 串，这个 session id 将会返回给客户端保存</p>
+<p><img src="Session%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png" alt="Session实现原理"></p>
+<h1 id="更多…"><a href="#更多…" class="headerlink" title="更多…"></a>更多…</h1><ul>
+<li><input disabled="" type="checkbox"> HTTP1.0/HTTP1.1/HTTP2.0的异同</li>
+<li><input disabled="" type="checkbox"> HTTP与HTTPS的不同；HTTPS的原理</li>
+<li><input disabled="" type="checkbox"> HTTP长连接与短连接</li>
+<li><input disabled="" type="checkbox"> GET/POST区别详解</li>
+<li><input disabled="" type="checkbox"> Cookie、Session详解</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38087538/article/details/82838762">Http协议详解(深入理解)</a></li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Met Guo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://gmet233.gitee.io/2022/01/05/详解HTTP协议/">https://gmet233.gitee.io/2022/01/05/详解HTTP协议/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://gmet233.gitee.io">Gmet's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a></div><nav id="pagination"><div class="next-post pull-right"><a href="/2021/12/29/%E4%BB%8E%E5%A0%86%E6%8E%92%E5%BA%8F%E5%88%B0%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97/"><span>从堆排序到优先级队列</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2022 By Met Guo</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
