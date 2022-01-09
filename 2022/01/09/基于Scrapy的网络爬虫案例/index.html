@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="基于Scrapy的网络爬虫案例"><meta name="keywords" content="网络爬虫,Scrapy"><meta name="author" content="Met Guo"><meta name="copyright" content="Met Guo"><title>基于Scrapy的网络爬虫案例 | Gmet's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.4.0'
+} </script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Gmet's Blog" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E6%9C%AC%E6%96%87%E9%9C%80%E8%A6%81%E7%9A%84%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">2.</span> <span class="toc-text">阅读本文需要的前置知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83"><span class="toc-number">3.</span> <span class="toc-text">工作环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">需求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">4.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%87%E9%9B%86%E7%AD%96%E7%95%A5"><span class="toc-number">4.3.</span> <span class="toc-text">采集策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%87%E9%9B%86%E5%88%86%E7%B1%BB"><span class="toc-number">5.1.</span> <span class="toc-text">采集分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E9%A1%B5%E7%BF%BB%E9%A1%B5%E9%87%87%E9%9B%86%E8%AF%A6%E6%83%85%E9%A1%B5URL"><span class="toc-number">5.2.</span> <span class="toc-text">列表页翻页采集详情页URL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BAScrapy%E9%A1%B9%E7%9B%AE"><span class="toc-number">5.2.1.</span> <span class="toc-text">新建Scrapy项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-number">5.2.2.</span> <span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E7%88%AC%E8%99%AB"><span class="toc-number">5.2.3.</span> <span class="toc-text">制作爬虫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%88%AC%E8%99%AB"><span class="toc-number">5.2.4.</span> <span class="toc-text">启动爬虫</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E8%AF%A6%E6%83%85%E7%BD%91%E9%A1%B5%E6%BA%90%E7%A0%81"><span class="toc-number">5.3.</span> <span class="toc-text">下载详情网页源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E7%88%AC%E8%99%AB-1"><span class="toc-number">5.3.1.</span> <span class="toc-text">制作爬虫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%88%AC%E8%99%AB-1"><span class="toc-number">5.3.2.</span> <span class="toc-text">启动爬虫</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E8%AF%A6%E6%83%85%E9%A1%B5"><span class="toc-number">5.4.</span> <span class="toc-text">解析详情页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90-1"><span class="toc-number">5.4.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">5.4.2.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="toc-number">5.4.3.</span> <span class="toc-text">运行脚本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">源码下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A4%E5%A4%96%E2%80%A6"><span class="toc-number">7.</span> <span class="toc-text">此外…</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scrapy-Shell%E5%BF%AB%E9%80%9F%E6%B5%8B%E8%AF%95"><span class="toc-number">7.1.</span> <span class="toc-text">Scrapy Shell快速测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E8%A1%8C"><span class="toc-number">7.2.</span> <span class="toc-text">在服务器运行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Met Guo</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">13</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">15</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">14</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Gmet's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">基于Scrapy的网络爬虫案例</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-01-09</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/">网络爬虫</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是在公司实习时，领导给出的一个数据爬取需求。（所以涉及法律问题请找公司的麻烦，不要联系我😂）</p>
+<p>虽然我之前也干过网络爬虫，但都是在比较完整的框架下进行实现：以前只需要实现URL解析和网页源码抽取接口，其他像网络爬虫配置，数据存储，数据抽取，数据导出，任务启动和停止等模块只需要鼠标click一下或者根本就是“黑盒”的，不需要我操心。。</p>
+<p>这一次，我基本是从“0”开始。所以在完成任务的过程中学到了很多。（当然也还不够多）</p>
+<p>由于爬取的网站是一个经典的“列表-详情”结构，且爬取难度不难（网站没有设置反爬），作为爬虫初学者很合适，所以我把该任务的实现过程记录下来，方便自己学习。</p>
+<p>本篇博客将记录我在实现该任务时，学到的知识、遇到的困难、对应的解决方案。</p>
+<p>通过阅读本篇博客你将获得</p>
+<ul>
+<li>使用Scrapy进行简单的网页数据爬取</li>
+<li>使用BeautifulSoup解析HTML</li>
+<li>使用Pandas做简单的数据读取、去重、分析操作</li>
+</ul>
+<p>不能获得：</p>
+<ul>
+<li>Scrapy高级使用、框架结构、底层原理</li>
+<li>破解数据采集时遇到的反爬</li>
+</ul>
+<p>废话比较多。先来看一下阅读本文需要的前置知识。</p>
+<h1 id="阅读本文需要的前置知识"><a href="#阅读本文需要的前置知识" class="headerlink" title="阅读本文需要的前置知识"></a>阅读本文需要的前置知识</h1><p>阅读本篇博客需要一定的前置知识。我将列举一些，可能不全。</p>
+<ul>
+<li>网络爬虫：什么是网络爬虫</li>
+<li>//Conda：什么是Conda，Conda安装、环境创建等</li>
+<li>Python 基础：基础数据结构及操作、文件I/O操作</li>
+<li>PyCharm使用：如何配置开发环境，连接远程环境进行开发等</li>
+<li>//Linux 服务器基本命令</li>
+<li>HTML基础、CSS选择器等前端基础知识。</li>
+<li>XPath数据定位、正则表达式匹配等知识。</li>
+</ul>
+<p>如果你有以上基础，那么阅读本篇博客基本没有障碍。</p>
+<p>下面介绍我的工作环境。</p>
+<h1 id="工作环境"><a href="#工作环境" class="headerlink" title="工作环境"></a>工作环境</h1><table>
+<thead>
+<tr>
+<th>软件名称</th>
+<th>备注</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows</td>
+<td>操作系统</td>
+<td>10</td>
+</tr>
+<tr>
+<td>PyCharm</td>
+<td>开发IDE</td>
+<td>2019.3.5</td>
+</tr>
+<tr>
+<td>Ananconda</td>
+<td>Python环境管理和包管理工具</td>
+<td>懒得写了</td>
+</tr>
+<tr>
+<td>Scrapy</td>
+<td>Python开源模块，爬虫框架</td>
+<td>懒得写了</td>
+</tr>
+<tr>
+<td>BeautifulSoup</td>
+<td>Python开源模块，解析HTML</td>
+<td>懒得写了</td>
+</tr>
+<tr>
+<td>Pandas</td>
+<td>Python开源模块，这里用它做简单的数据提取</td>
+<td>懒得写了</td>
+</tr>
+</tbody></table>
+<p>下面介绍具体需求。</p>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>爬取网站 <a target="_blank" rel="noopener" href="https://www.yunyubaike.com/">孕育百科</a> 各分类下的孕育问答。结果以CSV格式给出。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>打开 <a target="_blank" rel="noopener" href="https://www.yunyubaike.com/">孕育百科</a> 可以看到有很多孕育百科的分类，选择一个分类，比如，这里我们选择【准备怀孕】。</p>
+<p><img src="image-20220107161453957.png" alt="分类"></p>
+<p>新打开的网页为<a target="_blank" rel="noopener" href="https://www.yunyubaike.com/beiyun/">https://www.yunyubaike.com/beiyun/</a></p>
+<p>可以看到这里有一些子分类：</p>
+<p><img src="image-20220107162138428.png" alt="分类和子分类"></p>
+<p>这些分类和子分类下有很多孕育百科问答，我们点击一个问题的超链接，在弹出的详情页中给出问题的答案，如图：</p>
+<p><img src="image-20220107162808046.png" alt="孕育百科-详情页"></p>
+<p>把这些问题和答案“抽取”到到CSV文件中，作为最终结果。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先我们需要分析该网站，例如网站数据量大小，网站网页结构，网站跳转方式，数据传输方式，数据是否加密，网站反爬严不严重等等。</p>
+<p>可以抓包、写网页下载代码测试一下。</p>
+<p>据此指定网站采集策略，是使用本地IP就可以采集还是需要设置一批代理IP，数据文件是存放到本地还是需要存放到Hadoop，是否需要可视化（Selenium）采集等等。</p>
+<h2 id="采集策略"><a href="#采集策略" class="headerlink" title="采集策略"></a>采集策略</h2><ol>
+<li>先采集分类（首页）URL；</li>
+<li>根据分类（首页）URL不断循环生成分页（列表页）；</li>
+<li>爬取每个列表页中的详情URL；</li>
+<li>下载详情URL的HTML文件，保存到本地；</li>
+<li>解析本地HTML，生成CSV文件。</li>
+</ol>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="采集分类"><a href="#采集分类" class="headerlink" title="采集分类"></a>采集分类</h2><p>仔细分析网站可以发现，在采集分类存在两个坑。</p>
+<ul>
+<li>不是所有分类都是孕育百科：对于不是分类的URL可以直接丢弃。</li>
+<li>子分类下和分类存在重复：去重。</li>
+</ul>
+<p>由于子分类和分类不是很多，这里使用的手工采集。</p>
+<p>虽说手工采集，但还是需要一点小小的技巧。这里不是挨个复制网页源码中的分类连接，而是通过Chrome的一个插件<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?utm_source=chrome-ntp-icon">XPath Helper</a>。</p>
+<p>该插件支持通过写XPath的方式批量获得信息。</p>
+<p>例如我们要获取上图【分类和子分类】中的子分类。先查看这部分的网页源码</p>
+<p><img src="image-20220107165203546.png" alt="子分类网页源码"></p>
+<p>打开XPath Helper，写入XPath获得结果。</p>
+<p><img src="image-20220107165324295.png" alt="XPath Helper截图"></p>
+<p>最终获得大小分类共72个。</p>
+<h2 id="列表页翻页采集详情页URL"><a href="#列表页翻页采集详情页URL" class="headerlink" title="列表页翻页采集详情页URL"></a>列表页翻页采集详情页URL</h2><p>每个分类下有很多翻页，通过不断的翻页采集所有的详情URL。</p>
+<p><img src="image-20220107165646544.png" alt="翻页"></p>
+<p>这里我一开始偷懒，用的“八爪鱼采集器”。后来发现这软件虽然不需要写代码，但是对于大于1W的数据需要收费，就放弃了。</p>
+<p>后续我基于Scrapy爬虫框架完成采集。</p>
+<h3 id="新建Scrapy项目"><a href="#新建Scrapy项目" class="headerlink" title="新建Scrapy项目"></a>新建Scrapy项目</h3><p>首先我们需要新建一个Scrapy项目（前提是已经安装了Scrapy）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scrapy startproject yybkSpider</span><br></pre></td></tr></table></figure>
+
+<p>其中， yybkSpider为项目名称，可以看到将会创建一个yybkSpider文件夹，目录结构大致如下：</p>
+<p>下面来简单介绍一下各个主要文件的作用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yybkSpider/</span><br><span class="line">    scrapy.cfg</span><br><span class="line">    yybkSpider/</span><br><span class="line">        __init__.py</span><br><span class="line">        items.py</span><br><span class="line">        pipelines.py</span><br><span class="line">        settings.py</span><br><span class="line">        spiders/</span><br><span class="line">            __init__.py</span><br></pre></td></tr></table></figure>
+
+<p>这里介绍我认为比较重要的文件：</p>
+<ul>
+<li>settings.py: 项目的配置文件，默认下载的网页是Unicode，需要在这里配置为UTF-8编码。</li>
+<li>yybkSpider/: 项目的Python模块，将会从这里引用代码。</li>
+<li>yybkSpider/items.py: 保存数据的实体，有点像Java Bean。</li>
+<li>yybkSpider/yybkSpider/: 存储爬虫代码目录。</li>
+</ul>
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>这里默认下载的网页为UTF-8，所以需要在<code>settings.py</code>中增加配置<code>FEED_EXPORT_ENCODING = &#39;utf-8&#39;</code></p>
+<p>还可以修改下载的线程数。但是我查阅了网上的相关资料，好像作用并不大。由于对Python和Scrapy不是很了解，这里直接给出连接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23474039">为什么有人说 Python 的多线程是鸡肋呢？</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/26062225">scrapy在爬网页的时候是自动采用多线程的吗？</a></li>
+</ul>
+<h3 id="制作爬虫"><a href="#制作爬虫" class="headerlink" title="制作爬虫"></a>制作爬虫</h3><p>紧接着，制作一个爬虫：</p>
+<ul>
+<li>Input：所有分类首页</li>
+<li>Output：<ul>
+<li>所有列表页</li>
+<li>每个列表页的详情URL和其他信息。</li>
+</ul>
+</li>
+</ul>
+<p>进入<code>yybkSpider/</code>目录下，输入命令创建爬虫：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scrapy genspider yybk_list &quot;yunyubaike.com&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>yybk_list</code>是爬虫的名称</li>
+<li><code>&quot;yunyubaike.com&quot;</code>指出该爬虫爬取的域名，超出域名的不会爬取。</li>
+</ul>
+<p>之后可以看到在<code>yybkSpider/yybkSpider/</code>生成了一个文件<code>yybk_list.py</code>，它默认增加了下列代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YybkListSpider</span>(<span class="params">scrapy.Spider</span>):</span></span><br><span class="line">    name = <span class="string">&#x27;yybk_list&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;yunyubaike.com&#x27;</span>]</span><br><span class="line">    start_urls = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span>(<span class="params">self, response</span>):</span></span><br><span class="line">		<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>name = “” ：这个爬虫的识别名称，必须是唯一的，在不同的爬虫必须定义不同的名字。</p>
+<p>allow_domains = [] 是搜索的域名范围，也就是爬虫的约束区域，规定爬虫只爬取这个域名下的网页，不存在的URL会被忽略。</p>
+<p>start_urls = [] ：爬取的URL列表。爬虫从这里开始抓取数据，所以，第一次下载的数据将会从这些urls开始。其他子URL将会从这些起始URL中继承性生成。</p>
+<p>parse(self, response) ：解析的方法，每个初始URL完成下载后将被调用，调用的时候传入从每一个URL传回的Response对象来作为唯一参数，主要作用如下：</p>
+<ul>
+<li>负责解析返回的网页数据(response.body)，提取结构化数据(生成item)</li>
+<li>生成需要下一页的URL请求。</li>
+</ul>
+<p>接下来我们完成该爬虫。首先start_urls不是一个而是72个分类首页URL。再者我们要在parse方法中完成两件事：</p>
+<ol>
+<li>不断生成下一页</li>
+<li>对于每个列表页解析其中的数据。</li>
+</ol>
+<p>下面是完整代码，这部分参考了官方文档：<a target="_blank" rel="noopener" href="https://docs.scrapy.org/en/latest/intro/overview.html%E3%80%82">https://docs.scrapy.org/en/latest/intro/overview.html。</a></p>
+<p>这里有几个地方值得注意：</p>
+<ol>
+<li>通过<code>response.url</code>获得当前采集的URL</li>
+<li><code>response.xpath(&#39;&#39;)</code>返回的是一组元素</li>
+<li>我把<code>response.xpath(&#39;&#39;)[0].get()</code>都改写了，原因是如果<code>response.xpath(&#39;&#39;)</code>为空在执行<code>[0]</code>操作就会报错，导致爬取失败</li>
+<li>使用<code>get()</code>而不是<code>exract()</code>。原因如下： </li>
+</ol>
+<blockquote>
+<p>get() 、getall() 是新版本的方法，extract() 、extract_first()是旧版本的方法。</p>
+<p>前者更好用，取不到就返回None，后者取不到就raise一个错误。</p>
+</blockquote>
+<ol start="5">
+<li>想要在当前元素下继续通过XPath选取元素，需要在XPath开头加一个<code>.</code></li>
+<li>注意<code>yield</code>的使用</li>
+<li>这里采集了很多“多余”的字段，例如页码，总数，当前url。这是为了后续验证采集的数据是否完整正确而增加的冗余字段。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YybkListSpider</span>(<span class="params">scrapy.Spider</span>):</span></span><br><span class="line">    name = <span class="string">&#x27;yybk_list&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;yunyubaike.com&#x27;</span>]</span><br><span class="line">    <span class="comment"># 一共是72个URL，这里没有列全</span></span><br><span class="line">    start_urls = [<span class="string">&#x27;https://www.yunyubaike.com/yunqi/&#x27;</span>,</span><br><span class="line">                  <span class="string">&#x27;https://www.yunyubaike.com/yichuanyousheng/&#x27;</span>,</span><br><span class="line">                  <span class="string">&#x27;https://www.yunyubaike.com/beiyun/&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span>(<span class="params">self, response</span>):</span></span><br><span class="line">        domain_url = <span class="string">&quot;https://www.yunyubaike.com&quot;</span></span><br><span class="line">        <span class="comment"># items = []</span></span><br><span class="line">        this_url = response.url</span><br><span class="line">        page_nums = response.xpath(<span class="string">&quot;//div[@class=&#x27;pagebar&#x27;]/b/text()&quot;</span>)</span><br><span class="line">        page_num = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> page_nums:</span><br><span class="line">            page_num = page_nums[<span class="number">0</span>].get()</span><br><span class="line">        <span class="comment"># page_num = response.xpath(&quot;//div[@class=&#x27;pagebar&#x27;]/b/text()&quot;)[0].get()</span></span><br><span class="line">        counts = response.xpath(<span class="string">&quot;//div[@class=&#x27;pagebar&#x27;]/a[@title]/b/text()&quot;</span>)</span><br><span class="line">        count=<span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> counts:</span><br><span class="line">            count = counts[<span class="number">0</span>].get()</span><br><span class="line">        <span class="comment"># count = response.xpath(&quot;//div[@class=&#x27;pagebar&#x27;]/a[@title]/b/text()&quot;)[0].get()</span></span><br><span class="line">        <span class="keyword">for</span> li <span class="keyword">in</span> response.xpath(<span class="string">&quot;//div[@class=&#x27;list&#x27;]/ul/li&quot;</span>):</span><br><span class="line">            titles = li.xpath(<span class="string">&#x27;.//h2/a/text()&#x27;</span>)</span><br><span class="line">            title = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">if</span> titles:</span><br><span class="line">                title = titles[<span class="number">0</span>].get()</span><br><span class="line">            detail_urls = li.xpath(<span class="string">&#x27;.//h2/a/@href&#x27;</span>)</span><br><span class="line">            detail_url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">if</span> detail_urls:</span><br><span class="line">                detail_url = detail_urls[<span class="number">0</span>].get()</span><br><span class="line">            <span class="comment"># detail_url = li.xpath(&#x27;.//h2/a/@href&#x27;)[0].get()</span></span><br><span class="line">            <span class="keyword">yield</span> &#123;</span><br><span class="line">                <span class="string">&#x27;this_url&#x27;</span>: this_url,  <span class="comment"># 当前采集的URL</span></span><br><span class="line">                <span class="string">&#x27;page_num&#x27;</span>: page_num,  <span class="comment"># 第几页</span></span><br><span class="line">                <span class="string">&#x27;count&#x27;</span>: count,  <span class="comment"># 该分类下的问答总数</span></span><br><span class="line">                <span class="string">&#x27;title&#x27;</span>: title,  <span class="comment"># 问答标题</span></span><br><span class="line">                <span class="string">&#x27;detail_url&#x27;</span>: domain_url + detail_url  <span class="comment"># 详情URL</span></span><br><span class="line">            &#125;</span><br><span class="line">		<span class="comment"># 生成下一页</span></span><br><span class="line">        next_pages = response.xpath(<span class="string">&quot;//a[text()=&#x27;下一页&#x27;]/@href&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> next_pages:</span><br><span class="line">            next_page = next_pages[<span class="number">0</span>].get()</span><br><span class="line">            <span class="comment"># next_page = response.xpath(&quot;//a[text()=&#x27;下一页&#x27;]/@href&quot;)[0].get()</span></span><br><span class="line">            <span class="keyword">if</span> next_page <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">yield</span> response.follow(domain_url + next_page, self.parse)  <span class="comment"># 将下一页的连接传递给爬虫继续解析。</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动爬虫"><a href="#启动爬虫" class="headerlink" title="启动爬虫"></a>启动爬虫</h3><p>最后启动爬虫，保存数据。在项目根目录下运行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scrapy crawl yybk_list -o urls.json</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，在项目根目录多出了urls.json文件，里面是我们保存的所有列表数据。</p>
+<p>我们也可以保存为其他格式。这里不再赘述。</p>
+<p>这样我们就得到了大约27W的详情连接。下面我们把这些连接对应的HTML保存到本地。</p>
+<h2 id="下载详情网页源码"><a href="#下载详情网页源码" class="headerlink" title="下载详情网页源码"></a>下载详情网页源码</h2><h3 id="制作爬虫-1"><a href="#制作爬虫-1" class="headerlink" title="制作爬虫"></a>制作爬虫</h3><p>进入<code>yybkSpider/</code>目录下，输入命令创建爬虫：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scrapy genspider yybk_detail_down &quot;yunyubaike.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>和上面类似，在<code>yybkSpider/yybkSpider/yybk_detail_down.py</code>写入代码：</p>
+<p>这里需要注意：</p>
+<ol>
+<li>start_urls是需要从文件中读取的</li>
+<li>为了读数据、取数据方便，我使用了pands</li>
+<li>获得网页源码，使用<code>response.text</code></li>
+<li>这里没有对网页源码直接解析，而是先保存，再在后续解析。提高容错。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YybkDetailDownSpider</span>(<span class="params">scrapy.Spider</span>):</span></span><br><span class="line">    name = <span class="string">&#x27;yybk_detail_down&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;yunyubaike.com&#x27;</span>]</span><br><span class="line">    df = pd.read_json(<span class="string">&quot;yybkSpider/urls.json&quot;</span>)</span><br><span class="line">    <span class="comment"># 273179条数据</span></span><br><span class="line">    <span class="comment"># 取detail_url列，去重，转换成list</span></span><br><span class="line">    start_urls = df[<span class="string">&#x27;detail_url&#x27;</span>].drop_duplicates().tolist()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span>(<span class="params">self, response</span>):</span></span><br><span class="line">        url = response.url</span><br><span class="line">        <span class="comment"># 获得网页源码</span></span><br><span class="line">        content = response.text</span><br><span class="line"></span><br><span class="line">        file_name = url.replace(<span class="string">&quot;https://www.yunyubaike.com/&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">        file_name = <span class="string">&#x27;html/&#x27;</span> + file_name.replace(<span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;_&#x27;</span>)   <span class="comment"># html/huaiyun_wiki_270163.html</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;保存文件：&quot;</span> + file_name)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(file_name, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(content)</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>此外，我担心detail_url格式是否一致，所以在Python Shell中执行了如下代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.read_json(<span class="string">&quot;yybkSpider/urls.json&quot;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df[df[<span class="string">&#x27;detail_url&#x27;</span>].<span class="built_in">str</span>.match(<span class="string">r&#x27;https://www.yunyubaike.com/\w+/\d+\.html&#x27;</span>) == <span class="literal">False</span>]</span><br></pre></td></tr></table></figure>
+
+<p>执行结果为空，这证明detail_url格式一致。</p>
+<h3 id="启动爬虫-1"><a href="#启动爬虫-1" class="headerlink" title="启动爬虫"></a>启动爬虫</h3><p>紧接着启动爬虫，和上面类似：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scrapy crawl yybk_detail_down</span><br></pre></td></tr></table></figure>
+
+<p>由于这里不需要生成文件，所以没有<code>-o</code></p>
+<p>等待代码执行完毕后，可以发现在项目根目录产生了一个<code>html/</code>文件夹，下面保存了所有详情页的网页源码。</p>
+<h2 id="解析详情页"><a href="#解析详情页" class="headerlink" title="解析详情页"></a>解析详情页</h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>打开一个详情页：</p>
+<p><img src="image-20220109124722467.png" alt="详情页"></p>
+<p>可以定位到：在<code>&lt;div class=&#39;article_content&#39; /&gt;</code>标签下，所有的带文字的p标签是我们需要的。每个p标签是一个段落，在保存的时候，段落信息是不能丢失的。也就是说换行符是需要的。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>这一步是脱离于Scrapy框架的。</p>
+<p>自定义一个Python脚本：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">input_dir = <span class="string">&#x27;html/&#x27;</span>  <span class="comment"># 上一步保存源码的文件夹路径</span></span><br><span class="line">output_file_base_name = <span class="string">&#x27;yybkSpider/output/yybk_&#123;&#125;.csv&#x27;</span>  <span class="comment"># 生成的CSV文件的保存路径</span></span><br><span class="line">MAX_ROWS = <span class="number">50000</span>    <span class="comment"># 单个csv文件写入的最大行数</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">解析方法，传入文件名</span></span><br><span class="line"><span class="string">返回需要的字段</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span>(<span class="params">file_name</span>):</span></span><br><span class="line">    soup = BeautifulSoup(<span class="built_in">open</span>(file_name, encoding=<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    <span class="comment"># title解析</span></span><br><span class="line">    title = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    h1 = soup.find_all(<span class="string">&quot;h1&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> h1:</span><br><span class="line">        title = h1[<span class="number">0</span>].get_text()</span><br><span class="line">    <span class="comment"># content解析</span></span><br><span class="line">    p_list = soup.select(<span class="string">&quot;div.article_content &gt; p&quot;</span>)</span><br><span class="line">    content = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> p_list:</span><br><span class="line">        p_text = p.get_text()</span><br><span class="line">        <span class="keyword">if</span> p_text != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            <span class="comment"># 为了避免csv解析失败</span></span><br><span class="line">            p_text = p_text.replace(<span class="string">&quot;,&quot;</span>, <span class="string">&quot;，&quot;</span>).replace(<span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            content += p_text + <span class="string">&quot;\n&quot;</span></span><br><span class="line">    content = content.rstrip().lstrip()</span><br><span class="line">    <span class="keyword">return</span> title, content</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    htmls = os.listdir(input_dir)</span><br><span class="line">    <span class="comment"># 计算最终生成的文件个数</span></span><br><span class="line">    file_num = (<span class="built_in">len</span>(htmls) + MAX_ROWS - <span class="number">1</span>) // MAX_ROWS</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(file_num):</span><br><span class="line">        <span class="comment"># i从0开始</span></span><br><span class="line">        <span class="comment"># 第i个文件保存 i*MAX_ROWS[下标] 到 (i+1)*MAX_ROWS - 1</span></span><br><span class="line">        start_index = i*MAX_ROWS</span><br><span class="line">        end_index = (i+<span class="number">1</span>)*MAX_ROWS - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> end_index &gt; <span class="built_in">len</span>(htmls):</span><br><span class="line">            end_index = <span class="built_in">len</span>(htmls)</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(output_file_base_name.<span class="built_in">format</span>(i), <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;parsing :start_index:&#123;&#125;, end_index:&#123;&#125;; saving as &#123;&#125;&quot;</span></span><br><span class="line">                  .<span class="built_in">format</span>(start_index, end_index, output_file_base_name.<span class="built_in">format</span>(i)))</span><br><span class="line">            f.write(<span class="string">&quot;article_id,content,title\n&quot;</span>)</span><br><span class="line">            <span class="keyword">for</span> html_name <span class="keyword">in</span> htmls[start_index: end_index]:</span><br><span class="line">                title, content = parse(os.path.join(input_dir, html_name))</span><br><span class="line">                f.write(html_name + <span class="string">&#x27;,&quot;&#x27;</span> + content + <span class="string">&#x27;&quot;,&#x27;</span> + title + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在<code>parse</code>方法中需要注意以下几点：</p>
+<ol>
+<li><code>soup.select(&quot;div.article_content &gt; p&quot;)</code>这里使用了CSS选择器，制定了div下的直接子标签；</li>
+<li><code>p.get_text()</code>获得p标签下的所有文字；</li>
+<li>为了避免CSV解析失败，这里把英文逗号换成中文逗号，把英文的引号全部去掉。（CSV文件用英文逗号做字段分割；当我们需要把多行数据保存在一个字段中时，需要把多行数据用英文引号包起来）；</li>
+<li>使用BeautifulSoup解析HTML。</li>
+</ol>
+<p>在<code>main</code>方法中需要注意：</p>
+<ol>
+<li>27W行保存到一个CSV文件中，我担心不好把控，所以我将27W行数据每5W行保存为一个CSV</li>
+<li>当需要对除法结果四舍五入时，这样做比较简单：<code>(被除数+除数-1)/除数</code></li>
+</ol>
+<h3 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python xxx.py</span><br></pre></td></tr></table></figure>
+
+<p>最终导出6个CSV文件。任务完成。</p>
+<h1 id="源码下载"><a href="#源码下载" class="headerlink" title="源码下载"></a>源码下载</h1><p>//TODO: 稍后上传到git</p>
+<h1 id="此外…"><a href="#此外…" class="headerlink" title="此外…"></a>此外…</h1><h2 id="Scrapy-Shell快速测试"><a href="#Scrapy-Shell快速测试" class="headerlink" title="Scrapy Shell快速测试"></a>Scrapy Shell快速测试</h2><p>在使用Scrapy的过程中，我想先传入一条URL测试返回的resonpse。经过查阅使用如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scrapy shell &lt;url&gt;</span><br></pre></td></tr></table></figure>
+
+<p>执行后，进入Python Console，内置的response对象即是&lt;url&gt;的response</p>
+<h2 id="在服务器运行"><a href="#在服务器运行" class="headerlink" title="在服务器运行"></a>在服务器运行</h2><p>如果在本机执行爬虫代码，会占用较多的资源，也不方便。此时可以把爬虫代码同步到服务器运行。我使用PyChram连接远程服务器，在本机编写爬虫代码，然后同步到服务器中执行。（具体请自行百度）</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>scrapy官方文档</li>
+<li>scrapy菜鸟教程</li>
+<li>CSS选择器 菜苗教程</li>
+<li><a target="_blank" rel="noopener" href="https://scrapy-chs.readthedocs.io/zh_CN/1.0/topics/shell.html">https://scrapy-chs.readthedocs.io/zh_CN/1.0/topics/shell.html</a></li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Met Guo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://gmet233.gitee.io/2022/01/09/基于Scrapy的网络爬虫案例/">https://gmet233.gitee.io/2022/01/09/基于Scrapy的网络爬虫案例/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://gmet233.gitee.io">Gmet's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/">网络爬虫</a><a class="post-meta__tags" href="/tags/Scrapy/">Scrapy</a></div><nav id="pagination"><div class="next-post pull-right"><a href="/2022/01/05/%E8%AF%A6%E8%A7%A3HTTP%E5%8D%8F%E8%AE%AE/"><span>详解HTTP协议</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2022 By Met Guo</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
