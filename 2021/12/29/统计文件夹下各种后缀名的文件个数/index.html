@@ -17,7 +17,6 @@
 <p>下面通过两种方案解决。</p>
 <h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>shell一行命令搞定，<strong>但对于带点号的目录，这种方法会出Bug</strong>。应该可以对此改进，但后面找到了Python的方式。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">find -type f -name &quot;*.*&quot; | cut -f3 -d&#x27;.&#x27; | sort | uniq -c -i  (递归查找当前文件夹下的所有子文件夹)</span><br></pre></td></tr></table></figure>
-
 <p>下面对该命令进行分解解释。</p>
 <h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>find命令参数说明</p>
 <blockquote>
@@ -25,11 +24,11 @@
 </blockquote>
 <ul>
 <li>只查找文件，而不需要关心文件夹，所以使用-type f参数(注意，在linux上会有链接文件、块文件等其它格式的文件类型，而且Window系统上的快捷方式其格式也是一般文件)</li>
-<li>只过滤出有后缀名的文件，所以使用-name “<em>.</em>“参数(注意，使用-name “<em>.</em>“参数也会过滤出.name和name.这样的文件，因此要严格过滤出*.*且”.”前后都有字符的文件，可以使用-regex “./.+..+”参数，具体作用请百度“find正则表达式”)</li>
+<li>只过滤出有后缀名的文件，所以使用-name “<em>.</em>“参数(注意，使用-name “<em>.</em>“参数也会过滤出.name和name.这样的文件，因此要严格过滤出<em>.</em>且”.”前后都有字符的文件，可以使用-regex “./.+..+”参数，具体作用请百度“find正则表达式”)</li>
 </ul>
 <h2 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h2><p>cut命令参数说明</p>
 <blockquote>
-<p>   -f, –fields=LIST<br>          select  only  these fields;  also print any line that contains no delimiter character, unless the -s option is specified<br>   -d, –delimiter=DELIM<br>          use DELIM instead of TAB for field delimiter</p>
+<p>   -f, —fields=LIST<br>          select  only  these fields;  also print any line that contains no delimiter character, unless the -s option is specified<br>   -d, —delimiter=DELIM<br>          use DELIM instead of TAB for field delimiter</p>
 </blockquote>
 <ul>
 <li>-f3表示截取第三部分</li>
@@ -38,7 +37,7 @@
 <p>uniq命令说明</p>
 <blockquote>
 <p>uniq - report or omit repeated lines</p>
-<p>-c, –count<br>   prefix lines by the number of occurrences<br>-i, –ignore-case<br>   ignore differences in case when comparing</p>
+<p>-c, —count<br>   prefix lines by the number of occurrences<br>-i, —ignore-case<br>   ignore differences in case when comparing</p>
 </blockquote>
 <ul>
 <li>uniq的作用就是找到<strong>连续重复的行</strong></li>
@@ -46,7 +45,6 @@
 <li>-i 忽略大小写</li>
 </ul>
 <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser(description=<span class="string">&quot;count suffix from dir&quot;</span>)</span><br><span class="line"><span class="comment"># 设置脚本传参，传入需要统计后缀名的文件夹</span></span><br><span class="line">parser.add_argument(<span class="string">&#x27;-d&#x27;</span>, <span class="string">&#x27;--directory&#x27;</span>, required=<span class="literal">True</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&#x27;need a full path&#x27;</span>)</span><br><span class="line">args = parser.parse_args()</span><br><span class="line">directory = args.directory</span><br><span class="line"><span class="comment"># 结果dict</span></span><br><span class="line">res = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;suffix : count&quot;</span>)</span><br><span class="line"><span class="comment"># print(directory)</span></span><br><span class="line"><span class="comment"># 如果目录不存在则退出</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(directory):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;dir does not exist&quot;</span>)</span><br><span class="line">    exit(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 如果传递的不是目录则退出</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(directory):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;need a dir not a file&quot;</span>)</span><br><span class="line">    exit(<span class="number">1</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">os.walk得到的三元组列表：分别指出了目录，目录下目录列表，目录下的文件列表</span></span><br><span class="line"><span class="string">(&#x27;.&#x27;, [&#x27;dd&#x27;, &#x27;ll.dir&#x27;], [&#x27;1.jpg&#x27;])</span></span><br><span class="line"><span class="string">(&#x27;./dd&#x27;, [&#x27;e&#x27;], [&#x27;2.jpg&#x27;])</span></span><br><span class="line"><span class="string">(&#x27;./dd/e&#x27;, [], [&#x27;3.jpg&#x27;, &#x27;4.jpg&#x27;, &#x27;5.txt&#x27;])</span></span><br><span class="line"><span class="string">(&#x27;./ll.dir&#x27;, [], [&#x27;5.rar&#x27;])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> path, dirs, files <span class="keyword">in</span> os.walk(directory):</span><br><span class="line">    <span class="comment"># print(str(files))</span></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">        file = file.lower()  <span class="comment"># 都统一转换成小写</span></span><br><span class="line">        <span class="comment"># 如果没有后缀名则不纳入统计范围</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> re.match(<span class="string">r&#x27;[\s\S]*\.[\s\S]*&#x27;</span>, file):</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="comment"># 得到后缀字符串</span></span><br><span class="line">        suffix = file.split(<span class="string">&quot;.&quot;</span>)[-<span class="number">1</span>]</span><br><span class="line">        <span class="comment"># 从字典中取出后缀对应的count，如果没有则默认为0</span></span><br><span class="line">        count = res.setdefault(suffix, <span class="number">0</span>)</span><br><span class="line">        <span class="comment"># count ++</span></span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 将更新的count放回字典</span></span><br><span class="line">        res[suffix] = count</span><br><span class="line"></span><br><span class="line"><span class="comment"># print</span></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> res.keys():</span><br><span class="line">    <span class="built_in">print</span>(key + <span class="string">&quot; : &quot;</span> + <span class="built_in">str</span>(res[key]))</span><br></pre></td></tr></table></figure>
-
 <p>将上述代码保存为<code>.py</code>文件，然后命令行执行<code>python xxx.py -d &lt;目录&gt;</code></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文涉及到的知识点：</p>
 <ul>
