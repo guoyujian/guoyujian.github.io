@@ -6,7 +6,7 @@
   <link href="https://gmet233.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gmet233.gitee.io/"/>
-  <updated>2022-02-15T15:20:18.519Z</updated>
+  <updated>2022-02-22T13:16:04.092Z</updated>
   <id>https://gmet233.gitee.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>_Python 抛出异常后程序继续执行</title>
+    <link href="https://gmet233.gitee.io/2022/02/22/Python-%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%E5%90%8E%E7%A8%8B%E5%BA%8F%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C/"/>
+    <id>https://gmet233.gitee.io/2022/02/22/Python-%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%E5%90%8E%E7%A8%8B%E5%BA%8F%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C/</id>
+    <published>2022-02-22T13:09:15.000Z</published>
+    <updated>2022-02-22T13:16:04.092Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文是一个知识碎片</p></blockquote><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>当遇到异常时，为了让程序继续执行而不中断，代码如下：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 可能抛出异常的代码块</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><p>注：<strong>这样做需要谨慎</strong>，原因如下：</p><ol><li>这样做抛出异常的类型不明确。可能抛出了你并不想忽略的异常；</li><li>这样做过于敷衍（除非你是有目的的这么做）</li></ol><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://blog.csdn.net/weixin_43307577/article/details/87710251">Python异常处理 -跳过异常继续执行</a></li><li><a href="https://developer.aliyun.com/article/803360">问题：为什么“except:pass”是一个不好的编程习惯？</a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文是一个知识碎片&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h1&gt;&lt;p&gt;当遇到异常时，为了让程序继续执行而不中断，代码如下：</summary>
+      
+    
+    
+    
+    <category term="Python" scheme="https://gmet233.gitee.io/categories/Python/"/>
+    
+    <category term="异常" scheme="https://gmet233.gitee.io/categories/Python/%E5%BC%82%E5%B8%B8/"/>
+    
+    
+    <category term="Python" scheme="https://gmet233.gitee.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>《动手学深度学习》读书笔记（三）CNN的填充、步幅、通道、池化</title>
@@ -561,36 +590,6 @@
     <category term="Python" scheme="https://gmet233.gitee.io/tags/Python/"/>
     
     <category term="Linux Bash" scheme="https://gmet233.gitee.io/tags/Linux-Bash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>田忌赛马与贪心法则</title>
-    <link href="https://gmet233.gitee.io/2021/12/20/%E7%94%B0%E5%BF%8C%E8%B5%9B%E9%A9%AC%E4%B8%8E%E8%B4%AA%E5%BF%83%E6%B3%95%E5%88%99/"/>
-    <id>https://gmet233.gitee.io/2021/12/20/%E7%94%B0%E5%BF%8C%E8%B5%9B%E9%A9%AC%E4%B8%8E%E8%B4%AA%E5%BF%83%E6%B3%95%E5%88%99/</id>
-    <published>2021-12-20T13:59:45.000Z</published>
-    <updated>2021-12-20T14:01:55.082Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文涉及<em><a href="https://leetcode-cn.com/problems/advantage-shuffle/">LeetCode 870. 优势洗牌</a></em></p><blockquote><p>给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] &gt; B[i] 的索引 i 的数目来描述。返回 A 的任意排列，使其相对于 B 的优势最大化。</p><p>示例 1：</p><p>输入：A = [2,7,11,15], B = [1,10,4,11]<br>输出：[2,11,7,15]<br>示例 2：</p><p>输入：A = [12,24,8,32], B = [13,25,32,11]<br>输出：[24,32,8,12]</p></blockquote><p>这就像⽥忌赛⻢的情景，nums1 就是⽥忌的⻢，nums2 就是⻬王的⻢，数组中的元素就是⻢的战⽃⼒：</p><p>算法策略是：<strong>将⻬王和⽥忌的⻢按照战⽃⼒排序，然后按照排名⼀⼀对⽐。如果⽥忌的⻢能赢，那就⽐赛，如果赢不了，那就换个垫底的来送⼈头，保存实⼒。</strong></p><p>这里要注意一个问题：是否需要保存实力，即如果⽥忌的⼆号选⼿也能⼲得过⻬王的⼀号选⼿，此时让⼆号选⼿去对决⻬王的⼀号选⼿，不是更节约？</p><p>这种节约的策略是没问题的，但是<strong>没有必要</strong>。</p><p>我们暂且把⽥忌的⼀号选⼿称为 T1，⼆号选⼿称为 T2，⻬王的⼀号选⼿称为 Q1。如果 T2 能赢 Q1，你试图保存⼰⽅实⼒，让 T2 去战 Q1，把 T1 留着是为了对付谁？显然，你担⼼⻬王还有战⼒⼤于 T2 的⻢，可以让 T1 去对付。但是你仔细想想，现在 T2 已经是可以战胜 Q1 的，Q1 可是⻬王的最快的⻢，⻬王剩下的那些⻢⾥，怎么可能还有⽐ T2 更强的⻢？</p><p>所以没必要节约。</p><p>根据上述思路得到的代码逻辑如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对两个数组nums1和nums2排序</span><br><span class="line">对两个数组的元素挨个比较，如果nums1[i]&gt;nums2[i]那就比，否则就换上nums1最小的元素进行比较。</span><br></pre></td></tr></table></figure><p>由于需要对两个数组排序，但是返回结果依赖nums2的顺序，所以不能直接对nums2进行排序，而是利用优先级队列。（将(index, nums2[index]放入优先级队列，出队优先级按照nums2[index]大小，index记录索引值）</p><p>此外，解法还是用到双指针技巧。完整代码如下。</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[] advantageCount(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums1.length;</span><br><span class="line">    <span class="comment">// 给 nums2 降序排序</span></span><br><span class="line">    PriorityQueue&lt;<span class="keyword">int</span>[]&gt; maxpq = <span class="keyword">new</span> PriorityQueue&lt;&gt;(</span><br><span class="line">        (<span class="keyword">int</span>[] pair1, <span class="keyword">int</span>[] pair2) -&gt; &#123; </span><br><span class="line">            <span class="keyword">return</span> pair2[<span class="number">1</span>] - pair1[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        maxpq.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, nums2[i]&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 给 nums1 升序排序</span></span><br><span class="line">    Arrays.sort(nums1);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// nums1[left] 是最小值，nums1[right] 是最大值</span></span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!maxpq.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] pair = maxpq.poll();</span><br><span class="line">        <span class="comment">// maxval 是 nums2 中的最大值，i 是对应索引</span></span><br><span class="line">        <span class="keyword">int</span> i = pair[<span class="number">0</span>], maxval = pair[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (maxval &lt; nums1[right]) &#123;</span><br><span class="line">            <span class="comment">// 如果 nums1[right] 能胜过 maxval，那就自己上</span></span><br><span class="line">            res[i] = nums1[right];</span><br><span class="line">            right--;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 否则用最小值去换nums2的最大值</span></span><br><span class="line">            res[i] = nums1[left];</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&amp;mid=2247491139&amp;idx=1&amp;sn=10cb35e0056ac8f8c540fccd0156f333&amp;scene=21&amp;ascene=7&amp;devicetype=iOS15.2&amp;version=1800103a&amp;nettype=WIFI&amp;abtest_cookie=AAACAA%3D%3D&amp;lang=zh_CN&amp;fontScale=100&amp;exportkey=A2t5E2fVKmwEJxWEKsScbfU%3D&amp;pass_ticket=n3zshxiiR8IMf1IfoZgzB%2BPSm6RatluaPa8vtuS3bDtR2ttHhdhxmZkQCXMUyC9L&amp;wx_header=1">labuladong: 算法大师——孙膑</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;本文涉及&lt;em&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/advantage-shuffle/&quot;&gt;LeetCode 870. 优势洗牌&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;给定两个大小相等的数组 A 和 B，A</summary>
-      
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://gmet233.gitee.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数组/链表" scheme="https://gmet233.gitee.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84-%E9%93%BE%E8%A1%A8/"/>
-    
-    
-    <category term="数据结构与算法" scheme="https://gmet233.gitee.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="贪心" scheme="https://gmet233.gitee.io/tags/%E8%B4%AA%E5%BF%83/"/>
     
   </entry>
   
