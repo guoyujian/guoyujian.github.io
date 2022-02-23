@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>找到数组中比左边元素都大同时比右边元素都小的元素</title>
+      <link href="/2022/02/23/%E6%89%BE%E5%88%B0%E6%95%B0%E7%BB%84%E4%B8%AD%E6%AF%94%E5%B7%A6%E8%BE%B9%E5%85%83%E7%B4%A0%E9%83%BD%E5%A4%A7%E5%90%8C%E6%97%B6%E6%AF%94%E5%8F%B3%E8%BE%B9%E5%85%83%E7%B4%A0%E9%83%BD%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/"/>
+      <url>/2022/02/23/%E6%89%BE%E5%88%B0%E6%95%B0%E7%BB%84%E4%B8%AD%E6%AF%94%E5%B7%A6%E8%BE%B9%E5%85%83%E7%B4%A0%E9%83%BD%E5%A4%A7%E5%90%8C%E6%97%B6%E6%AF%94%E5%8F%B3%E8%BE%B9%E5%85%83%E7%B4%A0%E9%83%BD%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>求数组中比左边元素都大同时比右边元素都小的元素，返回这些元素的索引。要求时间复杂度$O(N)$</p><blockquote><p>输入：[2, 3, 1, 8, 9, 20, 12]<br>输出：3, 4<br>解释：数组中 8, 9 满足题目要求，他们的索引分别是 3、4</p></blockquote><h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最简单最暴力的就是没从头到尾遍历元素，对于每个元素分别往前、往后遍历一下，看看是否它是否满足条件。</p><p>这种解法的时间复杂度为$O(N^2)$，不符合题目要求。</p><p>通过分析可以得到，对于每个元素，如果它比<strong>左侧最大的值</strong>要大，同时比<strong>右侧最小的值</strong>要小，就满足条件。</p><p>那如果有这样两个数组，</p><p><code>left_max[i]</code> 表示原数组 [0, i) 的最大值</p><p><code>right_min[i]</code> 表示原数组 (i, n) 的最小值</p><p>内循环就可以通过 <code>left_max[i] &lt; nums[i] &amp;&amp; nums[i] &lt; right_min[i]</code> 来判断了。</p><p>对于 left_max 和 right_min 这两数组，提前先算好，每个数组都能$O(N)$得到。</p><p>left_max 和 right_min 递推式如下：</p><blockquote><p>left_max[i] = max(left_max[i-1], nums[i])</p><p>right_min[i] = min(right_min[i-1], nums[i])</p></blockquote><p>总时间复杂度为 $O(N)$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> ...</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">find</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] left_max = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">int</span>[] right_min = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        Arrays.fill(left_max, Integer.MIN_VALUE);</span><br><span class="line">        Arrays.fill(right_min, Integer.MAX_VALUE);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            left_max[i] = Math.max(left_max[i-<span class="number">1</span>], nums[i-<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n-<span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            right_min[i] = Math.min(right_min[i+<span class="number">1</span>], nums[i+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n-<span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; left_max[i] &amp;&amp; nums[i] &lt; right_min[i]) &#123;</span><br><span class="line">                res.add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://mp.weixin.qq.com/s/ilOdw4qdu_EJZNXvybqdag">一道热乎的字节三面原创题</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构与算法 </category>
+          
+          <category> 数组/链表 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 数组 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何读论文</title>
       <link href="/2022/02/22/%E5%A6%82%E4%BD%95%E8%AF%BB%E8%AE%BA%E6%96%87/"/>
       <url>/2022/02/22/%E5%A6%82%E4%BD%95%E8%AF%BB%E8%AE%BA%E6%96%87/</url>
