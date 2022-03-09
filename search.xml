@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>【笔记】BFS 算法解题套路框架</title>
+      <link href="/2022/03/09/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91BFS-%E7%AE%97%E6%B3%95%E8%A7%A3%E9%A2%98%E5%A5%97%E8%B7%AF%E6%A1%86%E6%9E%B6/"/>
+      <url>/2022/03/09/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91BFS-%E7%AE%97%E6%B3%95%E8%A7%A3%E9%A2%98%E5%A5%97%E8%B7%AF%E6%A1%86%E6%9E%B6/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文FROM《labuladong 算法秘籍》</p></blockquote><h1 id="什么是-BFS"><a href="#什么是-BFS" class="headerlink" title="什么是 BFS"></a>什么是 BFS</h1><p>BFS(Breadth First Search)，广度优先搜索，起源于<strong>树的层次遍历</strong>。其核心是利用<strong>队列</strong>这种数据结构。</p><p>BFS 的核心思想应该不难理解的，就是把⼀些问题抽象成图，从⼀个点开始，向四周开始扩散。 </p><h1 id="BFS-的应用场景"><a href="#BFS-的应用场景" class="headerlink" title="BFS 的应用场景"></a>BFS 的应用场景</h1><p>BFS 算法常见于求最值的场景，因为 BFS 的算法逻辑保证了算法第⼀次到达目标时的代价是最小的（？）。</p><p>举例⼀下 BFS 出现的常见场景好吧，问题的本质就是让你在⼀幅「图」中找到从起点 start 到终点 target 的最近距离。</p><p>这个广义的描述可以有各种变体，比如走迷宫，有的格子是围墙不能走，从起点到终点的最短距离是多少？如果这个迷宫带「传送门」可以瞬间传送呢？再比如说两个单词，要求你通过某些替换，把其中一个变成另一个，每次只能替换一个字符，最少要替换几次？再比如说连连看游戏，两个方块消除的条件不仅仅是图案相同，还得保证两个方块之间的最短连线不能多于两个拐点。你玩连连看，点击两个坐标，游戏是如何判断它俩的最短连线有几个拐点的？</p><h1 id="BFS-框架代码"><a href="#BFS-框架代码" class="headerlink" title="BFS 框架代码"></a>BFS 框架代码</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 计算从起点 start 到终点 target 的最近距离</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BFS</span><span class="params">(Node start, Node target)</span> </span>&#123;</span><br><span class="line">    Queue&lt;Node&gt; q; <span class="comment">// 核心数据结构</span></span><br><span class="line">    Set&lt;Node&gt; visited; <span class="comment">// 避免走回头路</span></span><br><span class="line">    </span><br><span class="line">    q.offer(start); <span class="comment">// 将起点加入队列</span></span><br><span class="line">    visited.add(start);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">0</span>; <span class="comment">// 记录扩散的步数</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (q not empty) &#123;</span><br><span class="line">        <span class="keyword">int</span> sz = q.size();</span><br><span class="line">        <span class="comment">/* 将当前队列中的所有节点向四周扩散 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">            Node cur = q.poll();</span><br><span class="line">            <span class="comment">/* 划重点：这里判断是否到达终点 */</span></span><br><span class="line">            <span class="keyword">if</span> (cur is target)</span><br><span class="line">                <span class="keyword">return</span> step;</span><br><span class="line">            <span class="comment">/* 将 cur 的相邻节点加入队列 */</span></span><br><span class="line">            <span class="keyword">for</span> (Node x : cur.adj()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (x not in visited) &#123;</span><br><span class="line">                    q.offer(x);</span><br><span class="line">                    visited.add(x);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 划重点：更新步数在这里 */</span></span><br><span class="line">        step++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>队列 <code>q</code> 就不说了，BFS 的核心数据结构；<code>cur.adj()</code> 泛指 <code>cur</code> 相邻的节点，比如说二维数组中，<code>cur</code> 上下左右四面的位置就是相邻节点；<code>visited</code> 的主要作用是防止走回头路，大部分时候都是必须的，但是像一般的二叉树结构，没有子节点到父节点的指针，不会走回头路就不需要 <code>visited</code>。</p><h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>LeetCode 111、752</p><h1 id="双向BFS（了解）"><a href="#双向BFS（了解）" class="headerlink" title="双向BFS（了解）"></a>双向BFS（了解）</h1><p>传统的 BFS 框架就是从起点开始向四周扩散，遇到终点时停止；而双向 BFS 则是从起点和终点同时开始扩散，当两边有交集的时候停止。</p><h1 id="BFS-与-DFS"><a href="#BFS-与-DFS" class="headerlink" title="BFS 与 DFS"></a>BFS 与 DFS</h1><blockquote><p>这部分不是很懂，后面再看</p></blockquote><p>BFS 相对 DFS 的最主要的区别是：BFS 找到的路径⼀定是最短的，但代价就是空间复杂度可能比 DFS 大很多。</p><p><strong>1、为什么 BFS 可以找到最短距离，DFS 不行吗</strong>？</p><p>首先，你看 BFS 的逻辑，<code>depth</code> 每增加一次，队列中的所有节点都向前迈一步，这保证了第一次到达终点的时候，走的步数是最少的。</p><p>DFS 不能找最短路径吗？其实也是可以的，但是时间复杂度相对高很多。你想啊，DFS 实际上是靠递归的堆栈记录走过的路径，你要找到最短路径，肯定得把二叉树中所有树杈都探索完才能对比出最短的路径有多长对不对？而 BFS 借助队列做到一次一步「齐头并进」，是可以在不遍历完整棵树的条件下找到最短距离的。</p><p>形象点说，DFS 是线，BFS 是面；DFS 是单打独斗，BFS 是集体行动。这个应该比较容易理解吧。</p><p><strong>2、既然 BFS 那么好，为啥 DFS 还要存在</strong>？</p><p>BFS 可以找到最短距离，但是空间复杂度高，而 DFS 的空间复杂度较低。</p><p>还是拿刚才我们处理二叉树问题的例子，假设给你的这个二叉树是满二叉树，节点数为 <code>N</code>，对于 DFS 算法来说，空间复杂度无非就是递归堆栈，最坏情况下顶多就是树的高度，也就是 <code>O(logN)</code>。</p><p>但是你想想 BFS 算法，队列中每次都会储存着二叉树一层的节点，这样的话最坏情况下空间复杂度应该是树的最底层节点的数量，也就是 <code>N/2</code>，用 Big O 表示的话也就是 <code>O(N)</code>。</p><p>由此观之，BFS 还是有代价的，一般来说在找最短路径的时候使用 BFS，其他时候还是 DFS 使用得多一些（主要是递归代码好写）。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://labuladong.gitee.io/algo/4/30/113/">BFS 算法解题套路框架</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构与算法 </category>
+          
+          <category> BFS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> BFS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>什么是端到端（end-to-end）的学习模型</title>
+      <link href="/2022/03/07/%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%AF%E5%88%B0%E7%AB%AF%EF%BC%88end-to-end%EF%BC%89%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
+      <url>/2022/03/07/%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%AF%E5%88%B0%E7%AB%AF%EF%BC%88end-to-end%EF%BC%89%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><strong>端到端的学习模型</strong>是指将原始数据不做任何的预处理直接将原始数据输入到模型当中，最后得到的输出结果与期望结果有误差，这误差在反向传播模型的各层中，将参数进行优化，一直到期望结果结束。<strong>非端到端</strong>是将原始数据进行标注，得到具有特征的处理后的数据，然后在作为输入，这样的弊端是如果提取数据特征时出现错误，将无法调整。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://www.its203.com/article/qq_42514225/108835224?2022-03-07">什么是端到端的学习模型</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 机器学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>最大M对齐子集</title>
       <link href="/2022/03/01/%E6%9C%80%E5%A4%A7M%E5%AF%B9%E9%BD%90%E5%AD%90%E9%9B%86/"/>
       <url>/2022/03/01/%E6%9C%80%E5%A4%A7M%E5%AF%B9%E9%BD%90%E5%AD%90%E9%9B%86/</url>
@@ -96,14 +150,14 @@
       
       <categories>
           
+          <category> 方法论 </category>
+          
           <category> 健身 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> 方法论 </tag>
             
             <tag> 健身 </tag>
             
