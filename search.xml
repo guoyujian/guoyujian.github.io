@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>test_slides</title>
+      <link href="/2022/04/11/test-slides/"/>
+      <url>/2022/04/11/test-slides/</url>
+      
+        <content type="html"><![CDATA[<h1 id="这是一个slides测试博客"><a href="#这是一个slides测试博客" class="headerlink" title="这是一个slides测试博客"></a>这是一个slides测试博客</h1><p>===</p><p>它可以把markdown渲染的像幻灯片一样</p><p>==</p><p>还有垂直切换</p><p>==</p><p>还可以切换背景等。</p><p>===</p><p>Have Fun~</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基于ResNet的树叶分类任务</title>
       <link href="/2022/04/04/%E5%9F%BA%E4%BA%8EResNet%E7%9A%84%E6%A0%91%E5%8F%B6%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/"/>
       <url>/2022/04/04/%E5%9F%BA%E4%BA%8EResNet%E7%9A%84%E6%A0%91%E5%8F%B6%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/</url>
