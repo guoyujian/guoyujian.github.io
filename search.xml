@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>完美解决ChromeDriver与Chrome版本匹配问题</title>
+      <link href="/2022/04/11/%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3ChromeDriver%E4%B8%8EChrome%E7%89%88%E6%9C%AC%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/04/11/%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3ChromeDriver%E4%B8%8EChrome%E7%89%88%E6%9C%AC%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>在使用Selenium调用Chrome浏览器爬取互联网数据时，会遇到Chrome和ChromeDriver版本不兼容的问题，导致爬取失败。</p><p>一种解决方案是，进行版本匹配。但是随着本机Chrome的更新，每次都需要随之更新ChromeDriver版本。</p><p>更好的方案是，通过使用<code>webdriver-manager</code>来自动匹配ChromeDriver，安装：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install webdriver-manager</span><br></pre></td></tr></table></figure><p>Usage：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> webdriver_manager.chrome <span class="keyword">import</span> ChromeDriverManager</span><br><span class="line"></span><br><span class="line">driver = webdriver.Chrome(ChromeDriverManager().install())</span><br></pre></td></tr></table></figure><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://stackoverflow.com/questions/60296873/sessionnotcreatedexception-message-session-not-created-this-version-of-chrome">SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 81</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络爬虫 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络爬虫 </tag>
+            
+            <tag> Selenium </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>test_slides</title>
       <link href="/2022/04/11/test-slides/"/>
       <url>/2022/04/11/test-slides/</url>

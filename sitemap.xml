@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gmet233.gitee.io/2022/04/11/%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3ChromeDriver%E4%B8%8EChrome%E7%89%88%E6%9C%AC%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2022-04-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://gmet233.gitee.io/2022/04/11/test-slides/</loc>
     
     <lastmod>2022-04-11</lastmod>
@@ -584,6 +593,13 @@
   
   <url>
     <loc>https://gmet233.gitee.io/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2022-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmet233.gitee.io/tags/Selenium/</loc>
     <lastmod>2022-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
