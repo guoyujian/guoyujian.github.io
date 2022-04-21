@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gmet233.gitee.io/2022/04/21/HashMap%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/</loc>
+    
+    <lastmod>2022-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://gmet233.gitee.io/2022/04/12/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%B0%86NII%E6%A0%BC%E5%BC%8F%E7%9A%84CT%E5%9B%BE%E8%BD%AC%E6%8D%A2%E4%B8%BAPNG/</loc>
     
     <lastmod>2022-04-12</lastmod>
@@ -625,6 +634,13 @@
   
   <url>
     <loc>https://gmet233.gitee.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2022-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmet233.gitee.io/tags/HashMap/</loc>
     <lastmod>2022-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
