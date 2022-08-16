@@ -6,7 +6,7 @@
   <link href="https://gmet233.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gmet233.gitee.io/"/>
-  <updated>2022-07-11T13:40:10.607Z</updated>
+  <updated>2022-08-16T15:11:48.095Z</updated>
   <id>https://gmet233.gitee.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深度学习中图像分类问题的总结</title>
+    <link href="https://gmet233.gitee.io/2022/08/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/"/>
+    <id>https://gmet233.gitee.io/2022/08/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/</id>
+    <published>2022-08-16T12:25:28.000Z</published>
+    <updated>2022-08-16T15:11:48.095Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><blockquote><p>企业实习中遇到的场景。</p><p>输入是ICU中病人的一段视频，输出是基于判断该病人是否贫血。</p><p>甲方给出了300多个的视频，每个视频对应一个病人。其中重度贫血样本最少，轻度贫血的样本量最多。</p><p>（说实在的，这个任务实在是有点玄学，查了一些资料，也没有理论依据。但是甲方说有经验的医生看几眼就能看出来<strong>病人</strong>是否是贫血，所以只能硬着头皮做。）</p><p>在实践过程中，得到了专家的指点，故把专家给出的技巧和实践中遇到的若干问题和解决思路记录下来。</p></blockquote><h1 id="数据处理和算法流程"><a href="#数据处理和算法流程" class="headerlink" title="数据处理和算法流程"></a>数据处理和算法流程</h1><p>如图。圆角矩形是数据，矩形是处理流程</p><p><img src="image-20220816222412537.png" alt="数据处理和算法流程"></p><h1 id="指导纪要"><a href="#指导纪要" class="headerlink" title="指导纪要"></a>指导纪要</h1><p>本节记录专家给出的一些指导要点。</p><h2 id="明确需求"><a href="#明确需求" class="headerlink" title="明确需求"></a>明确需求</h2><p>在开始之前，需要明确需求，针对本次任务主要是明确一下几点：</p><ol><li>目标是什么？最终的算法模型是科研，还是落地应用。如果是落地应用，那么可能更看重重度贫血的召回。</li><li>明确输入：是一段视频，还是一张照片，如果是一段视频还要考虑时序信息。</li><li>预测样本是已知的还是未知的：未知。</li><li>是否能有更多的数据？能，但比较慢，毕竟实际情况就是ICU的病床数量比较少。总样本量就那些。</li></ol><h2 id="分析bad-case"><a href="#分析bad-case" class="headerlink" title="分析bad case"></a>分析bad case</h2><p>找一个模型快速实现，（我们这里使用的是Efficient Net），基于这个baseline，分析bad case。</p><p>所谓bad case 就是模型经过训练后，预测错的case。分析bad case非常重要。（这一点在我实践的过程中没有重视，原因是ICU的病人的视频和照片容易引起不适）</p><p>分析bad case的目的有如下几个：</p><ol><li>确定算法上限：<strong>数据决定算法上限，模型只是在逼近这个上限。</strong>我们的模型做到什么样才算可以交差了，不是拍脑袋决定的，而是由本步骤得到的算法上限决定的。</li><li>如果人眼分辨起来都比较困难，那该任务可能是不可实现的。</li><li>纠正数据（标注）问题。在分析bad case的时候我发现有一些视频帧非常模糊，后面通过计算清晰度，将视频帧中比较模糊的图像去除掉了。</li></ol><h2 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h2><p>在明确了算法上限之后，再进行调参。</p><ol><li>train阶段：<ol><li>针对数据不均衡的问题，主要有三种方式：对每一个类别进行加权；把占比大的分类样本量调低；数据增强。（前两种在以前的实践中提升不大，最后一种PyTorch有现成的code）</li><li>针对模型，一般来说<strong>模型的分类力度要比需求的粒度更细</strong>，在该场景下，需求要求二分类，而模型取四分类。方便后续的调整。</li><li>测试后，画出<strong>混淆矩阵</strong>，看哪几个子类容易混淆，再对混淆的子类单独训练模型。（多个模型级联）</li><li>更换loss：我们尝试了把交叉熵损失换成center loss、focal loss，但效果也没有好到哪去。</li></ol></li><li>val阶段：<ol><li>loss：在该场景下，模型会给出四个分数，分别对应四个类别的可能性。一般是取四个分数中max对应的分类，作为最后的分类结果。<strong>修改阈值</strong>以改变最后的分类结果（比如，当重度贫血的概率大于人为设定的X时，就认为分类结果为重度贫血）。</li><li>X怎么定？X的值取决于指标。比如我想要重度贫血的Recall达到99%，那我把预测的重度贫血的分数由高到低排序，画一个最低线，在该线之上都被预测为重度贫血，那么该线就是我们想要的X。</li><li>loss：也可以给四个分数分别乘上四个权重。这条与上条的区别是，上一条可以轻易的确保Precision或Recall。</li></ol></li></ol><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="手工提取特征V-S-自动提取特征"><a href="#手工提取特征V-S-自动提取特征" class="headerlink" title="手工提取特征V.S.自动提取特征"></a>手工提取特征V.S.自动提取特征</h3><p>上面的<em>数据处理流程图</em>中可见，为了避免背景（病床等）干扰，我们先用网上一个训练好的模型提取人脸。再把提取的人脸拿去训练。</p><p>由于提取的效果有限，后来又使用K-means算法对颜色进行聚类，设置一个阈值，把大部分图像中病人的插管，口罩等去掉，用黑色背景代替。（当然效果依然有限）</p><p>一开始我们认为通过手工提取特征后，再丢到网络里训练，这样的效果会更好。</p><p>但专家认为并非如此，实际效果也确实如专家所料。</p><p>专家说，手工提取特征的缺点是，提取特征的同时会损害图像本身（图像出现一小块一小块的黑色背景）；其次，手工提取特征需要手工设定一个阈值，而这个阈值的最佳情形在训练集和测试集可能是不同的。</p><p>专家又说，<strong>在以往的实践中，深度学习的自动提取特征效果更好、更稳定。</strong></p><h3 id="三百个样本够不够用"><a href="#三百个样本够不够用" class="headerlink" title="三百个样本够不够用"></a>三百个样本够不够用</h3><p><strong>样本够不够取决于问题的难度。</strong>没有绝对意义上的够不够。</p><h3 id="预训练OR没有预训练"><a href="#预训练OR没有预训练" class="headerlink" title="预训练OR没有预训练"></a>预训练OR没有预训练</h3><p><strong>使用预训练的网络模型要比没有预训练的模型更好。</strong>（具体原因忘了。）</p><h3 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h3><p>虽然数据都是随机的分到train或者val，但是为了防止，分到train的数据太简单、val的数据太难和分到train的数据太难、val的数据太简单，会导致模型最后的效果不一样。<strong>为了提高模型的鲁棒性，需要K-Fold交叉验证。</strong></p><h3 id="多次迭代训练"><a href="#多次迭代训练" class="headerlink" title="多次迭代训练"></a>多次迭代训练</h3><p>由易到难多轮迭代。</p><p>先人工筛选出一些<strong>简单</strong>样本，按照一定比例组织数据进行训练，得到一个可以分类简单样本的模型。</p><p>再筛选出比简单样本稍难一点的样本，按照一定比例组织数据进行训练，得到一个可以分类比简单样本稍难样本的模型。</p><p>……</p><p>依次类推，直到所有样本都丢进去训练。</p><blockquote><p>这里所说的简单是人容易分辨的。</p><p>如果所有样本人都不容易看出来怎么办？</p><p>那就先进行一次整体的训练。找到本次训练中模型预测正确的样本，这样的样本即为模型认为的简单样本</p></blockquote><p>这种方法的优点是，效果会更好。（专家的原话是，屡试不爽）</p><p>我想可能是因为它比较符合人由易到难的学习思路。</p><p>缺点就是耗时长，人干预的时间长。（毕竟需要挑样本，挺累的。。）</p><h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>如果希望模型集中到某些局部特征可以使用attention机制。</p><h3 id="对于不清楚的代码或者参数"><a href="#对于不清楚的代码或者参数" class="headerlink" title="对于不清楚的代码或者参数"></a>对于不清楚的代码或者参数</h3><p>细究论文、源码。</p><h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;企业实习中遇到的场景。&lt;/p&gt;
+&lt;p&gt;输入是ICU中病人的一段视频，输出是基于判断该病人是否贫血。&lt;/p&gt;
+&lt;p&gt;</summary>
+      
+    
+    
+    
+    <category term="深度学习" scheme="https://gmet233.gitee.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="深度学习" scheme="https://gmet233.gitee.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="计算机视觉" scheme="https://gmet233.gitee.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+  </entry>
   
   <entry>
     <title>力扣-前K个高频元素-用流来做</title>
@@ -514,35 +543,6 @@
     <category term="算法" scheme="https://gmet233.gitee.io/tags/%E7%AE%97%E6%B3%95/"/>
     
     <category term="回溯" scheme="https://gmet233.gitee.io/tags/%E5%9B%9E%E6%BA%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>个人比较喜欢的健身动作</title>
-    <link href="https://gmet233.gitee.io/2022/02/28/%E4%B8%AA%E4%BA%BA%E6%AF%94%E8%BE%83%E5%96%9C%E6%AC%A2%E7%9A%84%E5%81%A5%E8%BA%AB%E5%8A%A8%E4%BD%9C/"/>
-    <id>https://gmet233.gitee.io/2022/02/28/%E4%B8%AA%E4%BA%BA%E6%AF%94%E8%BE%83%E5%96%9C%E6%AC%A2%E7%9A%84%E5%81%A5%E8%BA%AB%E5%8A%A8%E4%BD%9C/</id>
-    <published>2022-02-28T15:31:17.000Z</published>
-    <updated>2022-03-03T12:52:44.478Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>本文整理一下个人比较喜欢健身动作。并备注动作要点</p></blockquote><h1 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h1><h2 id="平板支撑"><a href="#平板支撑" class="headerlink" title="平板支撑"></a>平板支撑</h2><p>改善的平板支撑：</p><ol><li>身体后移</li><li>骨盆后倾：收紧臀部，感觉上向后顶</li><li>纠正身体位置。肩膀用力向前推，上肢离地更远。</li></ol><p>新手先做到第二点延长到60秒，再两点一起做。</p><p>禁忌：</p><ol><li>手臂后缩</li><li>提臀或者臀太低。相反要用力收紧骨盆</li></ol><h1 id="臀腿"><a href="#臀腿" class="headerlink" title="臀腿"></a>臀腿</h1><h2 id="深蹲"><a href="#深蹲" class="headerlink" title="深蹲"></a>深蹲</h2><p>使用弹力带加大深蹲的阻力。</p><h2 id="单腿罗马尼亚硬拉"><a href="#单腿罗马尼亚硬拉" class="headerlink" title="单腿罗马尼亚硬拉"></a>单腿罗马尼亚硬拉</h2><p>锻炼臀肌、腘绳肌，锻炼单腿站立的稳定性，膝关节得稳定性。</p><p>视频：<a href="https://www.bilibili.com/video/BV1Ci4y1R72o?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1Ci4y1R72o?spm_id_from=333.999.0.0</a></p><h1 id="背部"><a href="#背部" class="headerlink" title="背部"></a>背部</h1><h2 id="引体向上"><a href="#引体向上" class="headerlink" title="引体向上"></a>引体向上</h2><p>如果做不来可以使用弹力绳辅助。</p><h1 id="前锯肌"><a href="#前锯肌" class="headerlink" title="前锯肌"></a>前锯肌</h1><p>待整理：<a href="https://www.bilibili.com/video/BV1qq4y1k7oP?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1qq4y1k7oP?spm_id_from=333.999.0.0</a></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://www.bilibili.com/video/BV1SP4y1j71R?spm_id_from=333.999.0.0">核心太弱，肚子肯定大（3个技巧快速改善）</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本文整理一下个人比较喜欢健身动作。并备注动作要点&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;核心&quot;&gt;&lt;a href=&quot;#核心&quot; class=&quot;headerlink&quot; title=&quot;核心&quot;&gt;&lt;/a&gt;核心&lt;/h1&gt;&lt;h2 id=&quot;平板支撑&quot;&gt;</summary>
-      
-    
-    
-    
-    <category term="方法论" scheme="https://gmet233.gitee.io/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
-    
-    <category term="健身" scheme="https://gmet233.gitee.io/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/%E5%81%A5%E8%BA%AB/"/>
-    
-    
-    <category term="健身" scheme="https://gmet233.gitee.io/tags/%E5%81%A5%E8%BA%AB/"/>
     
   </entry>
   
