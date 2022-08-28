@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="RSA加密算法"><meta name="keywords" content="加密算法"><meta name="author" content="Met Guo"><meta name="copyright" content="Met Guo"><title>RSA加密算法 | Gmet's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.8.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.8.2"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.4.2'
+} </script><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Gmet's Blog" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E4%B8%8E%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">对称加密与非对称加密</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA%E7%AE%97%E6%B3%95%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-number">2.</span> <span class="toc-text">RSA算法的数学基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%92%E8%B4%A8%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.</span> <span class="toc-text">互质关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">欧拉函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="toc-number">2.3.</span> <span class="toc-text">欧拉定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0"><span class="toc-number">2.4.</span> <span class="toc-text">模反元素</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">RSA算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.1.</span> <span class="toc-text">密钥生成的步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA%E7%AE%97%E6%B3%95%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="toc-number">3.2.</span> <span class="toc-text">RSA算法的可靠性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86"><span class="toc-number">3.3.</span> <span class="toc-text">加密和解密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%81%E9%92%A5%E8%A7%A3%E5%AF%86%E7%9A%84%E8%AF%81%E6%98%8E"><span class="toc-number">3.4.</span> <span class="toc-text">私钥解密的证明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Refs"><span class="toc-number">4.</span> <span class="toc-text">Refs</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Met Guo</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">49</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">38</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">36</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Gmet's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/slides">Slides</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">RSA加密算法</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-08-28</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">加密算法</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">3.5k</span><span class="post-meta__separator">|</span><span>阅读时长: 12 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="对称加密与非对称加密"><a href="#对称加密与非对称加密" class="headerlink" title="对称加密与非对称加密"></a>对称加密与非对称加密</h1><p>使用相同的规则（秘钥）进行加密解密的算法成为“<strong>对称加密算法</strong>”，这种加密模式有一个最大弱点：甲方必须把加密规则告诉乙方，否则无法解密。保存和传递密钥，就成了最头疼的问题。</p>
+<p>1976年，两位美国计算机学家Whitfield Diffie 和 Martin Hellman，提出了一种崭新构思，可以在不直接传递密钥的情况下，完成解密。这被称为<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange">“Diffie-Hellman密钥交换算法”</a>。这个算法启发了其他科学家。人们认识到，加密和解密可以使用不同的规则，只要这两种规则之间存在某种对应关系即可，这样就避免了直接传递密钥。</p>
+<p>这种新的加密模式被称为”非对称加密算法”。</p>
+<blockquote>
+<p>（1）乙方生成两把密钥（公钥和私钥）。公钥是公开的，任何人都可以获得，私钥则是保密的。</p>
+<p>（2）甲方获取乙方的公钥，然后用它对信息加密。</p>
+<p>（3）乙方得到加密后的信息，用私钥解密。</p>
+</blockquote>
+<p>如果公钥加密的信息只有私钥解得开，那么只要私钥不泄漏，通信就是安全的。</p>
+<blockquote>
+<p> 我的理解：RSA加密算法就是一种非对称加密算法。甲向乙发送消息，乙先生成私钥和公钥，乙把公钥给甲，甲用公钥将信息加密，将加密信息发给乙，乙拿私钥解密。</p>
+</blockquote>
+<p>在介绍RSA算法之前需要先介绍一点数学知识。</p>
+<h1 id="RSA算法的数学基础"><a href="#RSA算法的数学基础" class="headerlink" title="RSA算法的数学基础"></a>RSA算法的数学基础</h1><h2 id="互质关系"><a href="#互质关系" class="headerlink" title="互质关系"></a>互质关系</h2><p>如果两个正整数，除了1以外，没有其他公因子，我们就称这两个数是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/互素">互质关系</a>（coprime）。比如，15和32没有公因子，所以它们是互质关系。这说明，不是质数也可以构成互质关系。</p>
+<p>关于互质关系，不难得到以下结论：</p>
+<blockquote>
+<ol>
+<li>任意两个质数构成互质关系，比如13和61。☆</li>
+<li>一个数是质数，另一个数只要不是前者的倍数，两者就构成互质关系，比如3和10。</li>
+<li>如果两个数之中，较大的那个数是质数，则两者构成互质关系，比如97和57。</li>
+<li>1和任意一个自然数是都是互质关系，比如1和99。</li>
+<li>p是大于1的整数，则p和p-1构成互质关系，比如57和56。</li>
+<li>p是大于1的奇数，则p和p-2构成互质关系，比如17和15。</li>
+</ol>
+</blockquote>
+<h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><p>对于任意给定的正整数n，计算在小于等于n的正整数之中，有多少个与n构成互质关系的方法就叫做<strong>欧拉函数</strong>。以φ(n)表示。在1到8之中，与8形成互质关系的是1、3、5、7，所以 φ(n) = 4。</p>
+<p><strong>第一种情况</strong></p>
+<p>如果n=1，则 φ(1) = 1 。因为1与任何数（包括自身）都构成互质关系。</p>
+<p><strong>第二种情况</strong></p>
+<p>如果n是质数，则 φ(n)=n-1。因为质数与小于它的每一个数，都构成互质关系。比如5与1、2、3、4都构成互质关系。</p>
+<p><strong>第三种情况</strong></p>
+<p>如果n是质数的某一个次方，即$ n = p^k $ （p为质数，k为大于等于1的整数），则</p>
+<script type="math/tex; mode=display">
+φ(p^k) = p^k - p^{k-1}</script><p>比如 $φ(8) = φ(2^3) = 2^3 - 2^2 = 4$。</p>
+<p>这是因为只有当一个数不包含质数p，才可能与n互质。而包含质数p的数一共有$p^{k-1}$个，即$1×p$、$2×p$、$3×p$、…、$p^{k-1}×p$，把它们去除，剩下的就是与n互质的数。</p>
+<p>上面的式子还可以写成下面的形式：</p>
+<script type="math/tex; mode=display">
+φ(p^k) = p^k - p^{k-1} = p^k(1-\frac{1}{p})</script><p>可以看出，上面的第二种情况是 k=1 时的特例。</p>
+<p><strong>第四种情况</strong></p>
+<p>如果n可以分解成两个互质的整数之积，$n = p_1 <em> p_2$，则$φ(n) = φ(p_1</em>p_2) = φ(p_1) * φ(p_2)$</p>
+<p>即积的欧拉函数等于欧拉函数的积。比如，$φ(56)=φ(8×7)=φ(8)×φ(7)=4×6=24$。</p>
+<p>这一条的证明要用到<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Chinese_remainder_theorem">“中国剩余定理”</a>，这里就不展开了。</p>
+<p><strong>第五种情况</strong></p>
+<p>因为任意一个大于1的正整数，都可以写成一系列质数的积。</p>
+<script type="math/tex; mode=display">
+n = p_1^{k_1}p_2^{k_2}…p_r^{k_r}</script><p>根据第4条的结论，得到</p>
+<script type="math/tex; mode=display">
+φ(n)=φ(p_1^{k_1})φ(p_2^{k_2})…φ(p_r^{k_r})</script><p>再根据第3条的结论，得到</p>
+<script type="math/tex; mode=display">
+φ(n)=p_1^{k_1}p_2^{k_2}…p_r^{k_r}(1-\frac{1}{p_1})(1-\frac{1}{p_2})…(1-\frac{1}{p_r})</script><p>也就等于</p>
+<script type="math/tex; mode=display">
+φ(n)=n(1-\frac{1}{p_1})(1-\frac{1}{p_2})…(1-\frac{1}{p_r})</script><p>这就是欧拉函数的通用计算公式。比如，1323的欧拉函数，计算过程如下：</p>
+<script type="math/tex; mode=display">
+φ(1323)=φ(3^3*7^2)=1323(1-\frac{1}{3})(1-\frac{1}{7})=756</script><h2 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h2><p>欧拉函数的用处，在于<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/欧拉定理_(数论">欧拉定理</a>)。”欧拉定理”指的是：</p>
+<blockquote>
+<p>如果两个正整数a和n互质，则n的欧拉函数 φ(n) 可以让下面的等式成立：</p>
+<script type="math/tex; mode=display">
+a^{φ(n)}\equiv1 \pmod n</script></blockquote>
+<p>也就是说，a的φ(n)次方被n除的余数为1。或者说，a的φ(n)次方减去1，可以被n整除。比如，3和7互质，而7的欧拉函数φ(7)等于6，所以3的6次方（729）减去1，可以被7整除（728/7=104）。</p>
+<p>欧拉定理的证明比较复杂，这里就省略了。我们只要记住它的结论就行了。</p>
+<p>欧拉定理可以大大简化某些运算。比如，7和10互质，根据欧拉定理，</p>
+<script type="math/tex; mode=display">
+7^{φ(10)}\equiv1 \pmod {10}</script><p>已知 φ(10) 等于4，所以马上得到7的4倍数次方的个位数肯定是1。</p>
+<script type="math/tex; mode=display">
+7^{4k}\equiv1 \pmod {10}</script><p>因此，7的任意次方的个位数（例如7的222次方），心算就可以算出来。</p>
+<p>欧拉定理有一个特殊情况。</p>
+<blockquote>
+<p>假设正整数a与质数p互质，因为质数p的φ(p)等于p-1，则欧拉定理可以写成</p>
+<script type="math/tex; mode=display">
+a^{p-1} \equiv 1 \pmod p</script></blockquote>
+<p>这就是著名的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/费马小定理">费马小定理</a>。它是欧拉定理的特例。</p>
+<p>欧拉定理是RSA算法的核心。理解了这个定理，就可以理解RSA。</p>
+<h2 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h2><p>还剩下最后一个概念：</p>
+<blockquote>
+<p>如果两个正整数a和n互质，那么一定可以找到整数b，使得 ab-1 被n整除，或者说ab被n除的余数是1。</p>
+<script type="math/tex; mode=display">
+ab \equiv 1 \pmod n</script><p>这时，b就叫做a的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/模反元素">“模反元素”</a>。</p>
+</blockquote>
+<p>比如，3和11互质，那么3的模反元素就是4，因为 (3 × 4)-1 可以被11整除。显然，模反元素不止一个， 4加减11的整数倍都是3的模反元素 {…,-18,-7,4,15,26,…}，即如果b是a的模反元素，则 b+kn 都是a的模反元素。</p>
+<p>欧拉定理可以用来证明模反元素必然存在。</p>
+<script type="math/tex; mode=display">
+a^{φ(n)}=a*a^{φ(n)-1} \equiv 1 \pmod n</script><p>可以看到，a的 φ(n)-1 次方，就是a的模反元素。</p>
+<h1 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h1><h2 id="密钥生成的步骤"><a href="#密钥生成的步骤" class="headerlink" title="密钥生成的步骤"></a>密钥生成的步骤</h2><p>我们通过一个例子，来理解RSA算法。假设爱丽丝要与鲍勃进行加密通信，她该怎么生成公钥和私钥呢？</p>
+<p><img src="bg2013070302.png" alt="img"></p>
+<p><strong>第一步，随机选择两个不相等的质数p和q。</strong></p>
+<p>爱丽丝选择了61和53。（实际应用中，这两个质数越大，就越难破解。）</p>
+<p><strong>第二步，计算p和q的乘积n。</strong></p>
+<p>爱丽丝就把61和53相乘。</p>
+<script type="math/tex; mode=display">
+n = 61*53 = 3233</script><p>n的二进制长度就是密钥长度。3233写成二进制是110010100001，一共有12位，所以这个密钥就是12位。</p>
+<p>实际应用中，RSA密钥一般是1024位，重要场合则为2048位。</p>
+<p><strong>第三步，计算n的欧拉函数φ(n)。</strong></p>
+<p>根据公式：</p>
+<script type="math/tex; mode=display">
+φ(n) = (p-1)(q-1)</script><p>$φ(3233)=φ(61<em>53)=φ(61)</em>φ（53）=60*52=3120$</p>
+<p><strong>第四步，随机选择一个整数e，条件是1&lt; e &lt; φ(n)，且e与φ(n) 互质。</strong></p>
+<p>爱丽丝就在1到3120之间，随机选择了17。（实际应用中，常常选择65537。）</p>
+<p><strong>第五步，计算e对于φ(n)的模反元素d。</strong></p>
+<p>所谓<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/模反元素">“模反元素”</a>就是指有一个整数d，可以使得ed被φ(n)除的余数为1。</p>
+<script type="math/tex; mode=display">
+ed \equiv 1 \pmod {φ(n)}</script><p>这个式子等价于</p>
+<script type="math/tex; mode=display">
+ed - 1 = k φ(n)</script><p>于是，找到模反元素d，实质上就是对下面这个二元一次方程求解。</p>
+<script type="math/tex; mode=display">
+ed - kφ(n) = 1</script><p>已知 e=17, φ(n)=3120，</p>
+<script type="math/tex; mode=display">
+17d-3120k=1</script><p>这个方程可以用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/扩展欧几里得算法">“扩展欧几里得算法”</a>求解，此处省略具体过程。总之，爱丽丝算出一组整数解为 (d, k)=(2753,-15)，即 d=2753。</p>
+<p>至此所有计算完成。</p>
+<p><strong>第六步，将n和e封装成公钥，n和d封装成私钥。</strong></p>
+<p>在爱丽丝的例子中，n=3233，e=17，d=2753，所以公钥就是(n, e) =  (3233,17)，私钥就是(n, d)=(3233, 2753)。</p>
+<h2 id="RSA算法的可靠性"><a href="#RSA算法的可靠性" class="headerlink" title="RSA算法的可靠性"></a>RSA算法的可靠性</h2><p>回顾上面的密钥生成步骤，一共出现六个数字：</p>
+<blockquote>
+<p>p<br>q<br>n<br>φ(n)<br>e<br>d</p>
+</blockquote>
+<p>这六个数字之中，公钥用到了两个（n和e），其余四个数字都是不公开的。其中最关键的是d，因为n和d组成了私钥，一旦d泄漏，就等于私钥泄漏。</p>
+<p><strong>那么，有无可能在已知n和e的情况下，推导出d？</strong></p>
+<blockquote>
+<ol>
+<li>ed≡1 (mod φ(n))。只有知道e和φ(n)，才能算出d。</li>
+<li>φ(n)=(p-1)(q-1)。只有知道p和q，才能算出φ(n)。</li>
+<li>n=pq。只有将n因数分解，才能算出p和q。</li>
+</ol>
+</blockquote>
+<p><strong>结论：如果n可以被因数分解，d就可以算出，也就意味着私钥被破解。</strong></p>
+<p>可是，大整数的因数分解，是一件非常困难的事情。目前，除了暴力破解，还没有发现别的有效方法。维基百科这样写道：</p>
+<blockquote>
+<p>“对极大整数做因数分解的难度决定了RSA算法的可靠性。换言之，对一极大整数做因数分解愈困难，RSA算法愈可靠。</p>
+<p>假如有人找到一种快速因数分解的算法，那么RSA的可靠性就会极度下降。但找到这样的算法的可能性是非常小的。今天只有短的RSA密钥才可能被暴力破解。到2008年为止，世界上还没有任何可靠的攻击RSA算法的方式。</p>
+<p>只要密钥长度足够长，用RSA加密的信息实际上是不能被解破的。”</p>
+</blockquote>
+<p>举例来说，你可以对3233进行因数分解（61×53），但是你没法对下面这个整数进行因数分解。</p>
+<blockquote>
+<p>12301866845301177551304949<br>58384962720772853569595334<br>79219732245215172640050726<br>36575187452021997864693899<br>56474942774063845925192557<br>32630345373154826850791702<br>61221429134616704292143116<br>02221240479274737794080665<br>351419597459856902143413</p>
+</blockquote>
+<p>它等于这样两个质数的乘积：</p>
+<blockquote>
+<p>33478071698956898786044169<br>84821269081770479498371376<br>85689124313889828837938780<br>02287614711652531743087737<br>814467999489<br>×<br>36746043666799590428244633<br>79962795263227915816434308<br>76426760322838157396665112<br>79233373417143396810270092<br>798736308917</p>
+</blockquote>
+<p>事实上，这大概是人类已经分解的最大整数（232个十进制位，768个二进制位）。比它更大的因数分解，还没有被报道过，因此目前被破解的最长RSA密钥就是768位。</p>
+<h2 id="加密和解密"><a href="#加密和解密" class="headerlink" title="加密和解密"></a>加密和解密</h2><p>有了公钥和密钥，就能进行加密和解密了。</p>
+<p><strong>加密要用公钥 (n,e)</strong></p>
+<p>假设鲍勃要向爱丽丝发送加密信息m，他就要用爱丽丝的公钥 (n,e) 对m进行加密。这里需要注意，m必须是整数（字符串可以取ascii值或unicode值），且m必须小于n。</p>
+<p>所谓”加密”，就是算出下式的c：</p>
+<script type="math/tex; mode=display">
+m^e \equiv c \pmod n</script><p>爱丽丝的公钥是 (3233, 17)，鲍勃的m假设是65，那么可以算出下面的等式：</p>
+<script type="math/tex; mode=display">
+65^{17} \equiv 2790 \pmod {3233}</script><p>于是，c等于2790，鲍勃就把2790发给了爱丽丝。</p>
+<p><strong>解密要用私钥(n,d)</strong></p>
+<p>爱丽丝拿到鲍勃发来的2790以后，就用自己的私钥(3233, 2753) 进行解密。可以证明，下面的等式一定成立：</p>
+<script type="math/tex; mode=display">
+c^d \equiv m \pmod n</script><p>也就是说，c的d次方除以n的余数为m。现在，c等于2790，私钥是(3233, 2753)，那么，爱丽丝算出</p>
+<script type="math/tex; mode=display">
+2790^{2753}\equiv65 \pmod {3233}</script><p>因此，爱丽丝知道了鲍勃加密前的原文就是65。</p>
+<p>至此，”加密—解密”的整个过程全部完成。</p>
+<p>我们可以看到，如果不知道d，就没有办法从c求出m。而前面已经说过，要知道d就必须分解n，这是极难做到的，所以RSA算法保证了通信安全。</p>
+<p>你可能会问，公钥(n,e) 只能加密小于n的整数m，那么如果要加密大于n的整数，该怎么办？有两种解决方法：一种是把长信息分割成若干段短消息，每段分别加密；另一种是先选择一种”对称性加密算法”（比如<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/资料加密标准">DES</a>），用这种算法的密钥加密信息，再用RSA公钥加密DES密钥。</p>
+<h2 id="私钥解密的证明"><a href="#私钥解密的证明" class="headerlink" title="私钥解密的证明"></a>私钥解密的证明</h2><p>最后，我们来证明，为什么用私钥解密，一定可以正确地得到m。也就是证明下面这个式子：</p>
+<script type="math/tex; mode=display">
+c^d\equiv m \pmod n</script><p>因为，根据加密规则</p>
+<script type="math/tex; mode=display">
+m^e\equiv c \pmod n</script><p>于是，c可以写成下面的形式：</p>
+<script type="math/tex; mode=display">
+c = m^e -kn</script><p>将c代入要我们要证明的那个解密规则：</p>
+<script type="math/tex; mode=display">
+(m^e-kn)^d=m \pmod n</script><p>左边二项式拆出来，除了第一项$m^e$，其他项都是n的倍数，所以它等同于求证</p>
+<script type="math/tex; mode=display">
+m^{ed} \equiv m \pmod n</script><p>由于</p>
+<script type="math/tex; mode=display">
+ed \equiv 1 \pmod {φ(n)}</script><p>所以</p>
+<script type="math/tex; mode=display">
+ed = h φ(n) + 1</script><p>将ed代入：</p>
+<script type="math/tex; mode=display">
+m^{hφ(n)+1}=m \pmod n</script><p>接下来，分成两种情况证明上面这个式子。</p>
+<p><strong>（1）m与n互质。</strong></p>
+<p>根据欧拉定理，此时</p>
+<script type="math/tex; mode=display">
+m^{φ(n)} \equiv 1 \pmod n</script><p>得到</p>
+<script type="math/tex; mode=display">
+(m^{φ(n)})^h*m \equiv m \pmod n</script><p>原式得到证明。</p>
+<p><strong>（2）m与n不是互质关系。</strong></p>
+<p>此时，由于n等于质数p和q的乘积，所以m必然等于kp或kq。</p>
+<p>以 m = kp为例，考虑到这时k与q必然互质，则根据欧拉定理，下面的式子成立：</p>
+<script type="math/tex; mode=display">
+(kp)^{q-1} \equiv 1 \pmod q</script><p>进一步得到</p>
+<script type="math/tex; mode=display">
+[(kp)^{q-1}]^{h(p-1)}*kp \equiv kp \pmod q</script><p>即</p>
+<script type="math/tex; mode=display">
+(kp)^{ed} \equiv kp \pmod q</script><p>将它改写成下面的等式</p>
+<script type="math/tex; mode=display">
+(kp)^{ed} = tq + kp</script><p>这时t必然能被p整除，即 t=t’p</p>
+<script type="math/tex; mode=display">
+(kp)^{ed}=t'pq+kp</script><p>因为 m=kp，n=pq，所以</p>
+<script type="math/tex; mode=display">
+m^{ed} \equiv m \pmod n</script><p>原式得到证明。</p>
+<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">RSA算法原理（一）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html">RSA算法原理（二）</a></li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Met Guo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://gmet233.gitee.io/2022/08/28/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">https://gmet233.gitee.io/2022/08/28/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://gmet233.gitee.io">Gmet's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">加密算法</a></div><nav id="pagination"><div class="next-post pull-right"><a href="/2022/08/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/"><span>深度学习中图像分类问题的总结</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2022 By Met Guo</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.8.2"></script><script src="/js/fancybox.js?version=1.8.2"></script><script src="/js/sidebar.js?version=1.8.2"></script><script src="/js/copy.js?version=1.8.2"></script><script src="/js/fireworks.js?version=1.8.2"></script><script src="/js/transition.js?version=1.8.2"></script><script src="/js/scroll.js?version=1.8.2"></script><script src="/js/head.js?version=1.8.2"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
