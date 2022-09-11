@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="【不经意传输】算法介绍"><meta name="keywords" content="密码学"><meta name="author" content="Met Guo"><meta name="copyright" content="Met Guo"><title>【不经意传输】算法介绍 | Gmet's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.8.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.8.2"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.4.2'
+} </script><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Gmet's Blog" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2"><span class="toc-number">3.</span> <span class="toc-text">历史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ERSA%E5%85%AC%E9%92%A5%E7%AE%97%E6%B3%95%E7%9A%842%E9%80%891%E4%B8%8D%E7%BB%8F%E6%84%8F%E4%BC%A0%E8%BE%93"><span class="toc-number">4.</span> <span class="toc-text">基于RSA公钥算法的2选1不经意传输</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">4.2.</span> <span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Refs"><span class="toc-number">5.</span> <span class="toc-text">Refs</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Met Guo</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">50</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">39</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">37</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Gmet's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/slides">Slides</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">【不经意传输】算法介绍</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-09-11</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">1.1k</span><span class="post-meta__separator">|</span><span>阅读时长: 3 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>“不经意传输”要解决这类问题：你需要给对方多条信息，但是你又必须确保对方只获得其中一条，但是对方又希望能够确保你不知道他看到哪一条信息。</p>
+<p>设计一个具体场景：你给你的哥们介绍相亲女朋友，你有两个可供介绍的单身女性，但是你不想同时将两人的情况和联系方式给对方。但你也无法抉择到底给哪个，所以你想让他随机抽签选择一个。但与此同时，你的哥们也不想让你知道，他最终抽到了谁。</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p><strong>不经意传输</strong>（Oblivious Transfer，简称OT）是一个密码学协议，在这个协议中，消息发送者从一些待发送的消息中发送一条给接收者，但事后对发送了哪一条消息仍然oblivious（不知道），这个协议也叫茫然传输协议。</p>
+<p>不经意传输是密码学中的一个基本而重要的问题，被认为是该领域的关键问题之一，对于<strong>安全多方计算</strong>来说是完整的实现。</p>
+<p>例如下图，Alice是消息发送者，Bob是消息接受者。Alice想要将消息$M_0$、$M_1$之一传给Bob，Bob只能得到自己想要的那个（$M_0$或$M_1$）不能获取另外一个消息，Alice也不能知道Bob选的是哪一条消息。</p>
+<p><img src="不经意传输1.png" alt="不经意传输1"></p>
+<h1 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h1><p>第一种形式的不经意传输，最初是在1981由Michael O.Rabin提出，在这种不经意传输中，发送者Alice发送一条消息给接收着Bob，而Bob以1/2的概率接收到信息，在结束后Alice并不知道Bob是否接收到了信息，而Bob能确信地知道自己是否收到了信息。</p>
+<p>另一种更实用的不经意传输协议，被称为2选一不经意传输（1 out 2 oblivious transfer）由 Shimon Even，Oded Goldreich和Abraham Lempel在1985年提出，在这种形式的不经意传输模型中，Alice每次发两条信息（m1、m2）给Bob，<strong>Bob提供一个输入</strong>，并根据输入获得输出信息，在协议结束后，Bob得到了自己想要的那条信息（m1或者m2），而Alice并不知道Bob最终得到的是哪条。</p>
+<blockquote>
+<p>这个输入，我的理解是通知发送者发哪些消息，发送消息的范围</p>
+</blockquote>
+<p>1986年，Brassard等人将2选1不经意传输拓展为n选1。</p>
+<p><img src="不经意传输2.png" alt="不经意传输2"></p>
+<p>不经意传输一种实现方式是<strong>基于RSA公钥算法</strong>，下面就2选1不经意传输的实现做简要介绍。</p>
+<h1 id="基于RSA公钥算法的2选1不经意传输"><a href="#基于RSA公钥算法的2选1不经意传输" class="headerlink" title="基于RSA公钥算法的2选1不经意传输"></a>基于RSA公钥算法的2选1不经意传输</h1><p>先把「基于RSA公钥算法的2选1不经意传输」的流程图列出来：</p>
+<p><img src="不经意传输流程.png" alt="不经意传输流程"></p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol>
+<li>发送者Alice生成两对RSA公私钥$(puk0, pri0)$，$(puk1, pri1)$，并将两个公钥$puk0$和$puk1$发送给Bob。</li>
+<li>Bob生成一个随机数$r$，并用收到的两个公钥之一加密随机数，$c=Encrypt(r)$。（用哪个秘钥取决于想获取哪条数据，例如如果想要得到消息$M_0$就用$puk0$加密随机数，如果想要得到$M_1$就用$puk1$加密随机数），并将密文结果发送给Alice。</li>
+<li>Alice用自己的两个私钥分别解密收到随机数密文，得到两个解密结果：$k_0=Decrypt(c, pri_0)$，$k_1=Decrypt(c, pri_1)$。（$k_0$，$k_1$其中一个就是随机数$r$）。并将两个结果分别与两条信息进行异或，生成掩码消息：$e_0=k_0\bigoplus m_0$，$e_1=k_1\bigoplus m_1$，并将两个结果$e_0$，$e_1$发给Bob。</li>
+<li>Bob用之前生成的随机数$r$与收到的$e_0$，$e_1$分别做异或操作，得到的两个结果中只有一条为真实数据，另外一条为随机数：$m^{‘}_0=e_0\bigoplus r$，$m^{‘}_1=e_1\bigoplus r$。</li>
+<li>Bob在步骤2中，如果使用$puk0$加密，得到的$m^{‘}_0=m_0$，反之是$m_1$。</li>
+</ol>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>在此过程中第3步最为关键，如果Alice无法从用两条私钥解密得到的结果$k_0$、$k_1$中区分出Bob的真实随机数，则能保证Alice无法得知Bob将要获取的是哪条数据。Bob没有私钥也就无法得出真实的私钥解密结果（如果$k_0$为真实随机数，Bob无法得知$k_1$的值），所以也就只能得到自己想要的那条数据而无法得到另外一条，保障协议能执行成功。</p>
+<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/2022">区块链中的数学 - 不经意传输</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/208295083">什么是不经意传输</a></li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Met Guo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://gmet233.gitee.io/2022/09/11/%E3%80%90%E4%B8%8D%E7%BB%8F%E6%84%8F%E4%BC%A0%E8%BE%93%E3%80%91%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/">https://gmet233.gitee.io/2022/09/11/%E3%80%90%E4%B8%8D%E7%BB%8F%E6%84%8F%E4%BC%A0%E8%BE%93%E3%80%91%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://gmet233.gitee.io">Gmet's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a></div><nav id="pagination"><div class="next-post pull-right"><a href="/2022/08/28/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"><span>RSA加密算法</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2022 By Met Guo</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.8.2"></script><script src="/js/fancybox.js?version=1.8.2"></script><script src="/js/sidebar.js?version=1.8.2"></script><script src="/js/copy.js?version=1.8.2"></script><script src="/js/fireworks.js?version=1.8.2"></script><script src="/js/transition.js?version=1.8.2"></script><script src="/js/scroll.js?version=1.8.2"></script><script src="/js/head.js?version=1.8.2"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
