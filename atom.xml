@@ -6,7 +6,7 @@
   <link href="https://gmet233.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://gmet233.gitee.io/"/>
-  <updated>2022-09-11T05:38:01.807Z</updated>
+  <updated>2022-09-11T06:14:43.767Z</updated>
   <id>https://gmet233.gitee.io/</id>
   
   <author>
@@ -15,6 +15,63 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用腾讯会议的屏幕共享功能时开启PPT演示者视图的方法</title>
+    <link href="https://gmet233.gitee.io/2022/09/11/%E4%BD%BF%E7%94%A8%E8%85%BE%E8%AE%AF%E4%BC%9A%E8%AE%AE%E7%9A%84%E5%B1%8F%E5%B9%95%E5%85%B1%E4%BA%AB%E5%8A%9F%E8%83%BD%E6%97%B6%E5%BC%80%E5%90%AFPPT%E6%BC%94%E7%A4%BA%E8%80%85%E8%A7%86%E5%9B%BE%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>https://gmet233.gitee.io/2022/09/11/%E4%BD%BF%E7%94%A8%E8%85%BE%E8%AE%AF%E4%BC%9A%E8%AE%AE%E7%9A%84%E5%B1%8F%E5%B9%95%E5%85%B1%E4%BA%AB%E5%8A%9F%E8%83%BD%E6%97%B6%E5%BC%80%E5%90%AFPPT%E6%BC%94%E7%A4%BA%E8%80%85%E8%A7%86%E5%9B%BE%E7%9A%84%E6%96%B9%E6%B3%95/</id>
+    <published>2022-09-11T06:13:47.000Z</published>
+    <updated>2022-09-11T06:14:43.767Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://meeting.tencent.com/support-doc-detail/79/index.html">https://meeting.tencent.com/support-doc-detail/79/index.html</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://meeting.tencent.com/support-doc-detail/79/index.html&quot;&gt;https://meeting.tencent.com/support-doc-detail/79/index.html&lt;/a&gt;&lt;/</summary>
+      
+    
+    
+    
+    <category term="工具箱" scheme="https://gmet233.gitee.io/categories/%E5%B7%A5%E5%85%B7%E7%AE%B1/"/>
+    
+    
+    <category term="腾讯会议" scheme="https://gmet233.gitee.io/tags/%E8%85%BE%E8%AE%AF%E4%BC%9A%E8%AE%AE/"/>
+    
+    <category term="ppt" scheme="https://gmet233.gitee.io/tags/ppt/"/>
+    
+    <category term="演示者视图" scheme="https://gmet233.gitee.io/tags/%E6%BC%94%E7%A4%BA%E8%80%85%E8%A7%86%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>markdown公式编辑语法</title>
+    <link href="https://gmet233.gitee.io/2022/09/11/markdown%E5%85%AC%E5%BC%8F%E7%BC%96%E8%BE%91%E8%AF%AD%E6%B3%95/"/>
+    <id>https://gmet233.gitee.io/2022/09/11/markdown%E5%85%AC%E5%BC%8F%E7%BC%96%E8%BE%91%E8%AF%AD%E6%B3%95/</id>
+    <published>2022-09-11T06:06:19.000Z</published>
+    <updated>2022-09-11T06:10:33.036Z</updated>
+    
+    <content type="html"><![CDATA[<p>下面两个连接给出的公式语法涵盖了大部分的内容，第一个是官方连接。</p><ol><li><a href="https://katex.org/docs/supported.html">Supported Functions</a></li><li><a href="https://blog.csdn.net/weixin_42782150/article/details/104878759">史上最全Markdown公式、符号总结！！！</a></li></ol><p>另外推荐一款公式生成软件</p><blockquote><p><strong>mathpix snipping tool</strong></p></blockquote><p>通过截图生成公式code，可以直接复制公式代码，也可以直接复制到word等。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;下面两个连接给出的公式语法涵盖了大部分的内容，第一个是官方连接。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://katex.org/docs/supported.html&quot;&gt;Supported Functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;h</summary>
+      
+    
+    
+    
+    <category term="工具箱" scheme="https://gmet233.gitee.io/categories/%E5%B7%A5%E5%85%B7%E7%AE%B1/"/>
+    
+    
+    <category term="markdown" scheme="https://gmet233.gitee.io/tags/markdown/"/>
+    
+    <category term="typora" scheme="https://gmet233.gitee.io/tags/typora/"/>
+    
+  </entry>
   
   <entry>
     <title>【不经意传输】算法介绍</title>
@@ -485,58 +542,6 @@
     <category term="算法" scheme="https://gmet233.gitee.io/tags/%E7%AE%97%E6%B3%95/"/>
     
     <category term="BFS" scheme="https://gmet233.gitee.io/tags/BFS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>什么是端到端（end-to-end）的学习模型</title>
-    <link href="https://gmet233.gitee.io/2022/03/07/%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%AF%E5%88%B0%E7%AB%AF%EF%BC%88end-to-end%EF%BC%89%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://gmet233.gitee.io/2022/03/07/%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%AF%E5%88%B0%E7%AB%AF%EF%BC%88end-to-end%EF%BC%89%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/</id>
-    <published>2022-03-07T12:25:03.000Z</published>
-    <updated>2022-03-07T12:25:29.762Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><strong>端到端的学习模型</strong>是指将原始数据不做任何的预处理直接将原始数据输入到模型当中，最后得到的输出结果与期望结果有误差，这误差在反向传播模型的各层中，将参数进行优化，一直到期望结果结束。<strong>非端到端</strong>是将原始数据进行标注，得到具有特征的处理后的数据，然后在作为输入，这样的弊端是如果提取数据特征时出现错误，将无法调整。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="https://www.its203.com/article/qq_42514225/108835224?2022-03-07">什么是端到端的学习模型</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;端到端的学习模型&lt;/strong&gt;是指将原始数据不做任何的预处理直接将原始数据输入到模型当中，最后得到的输出结果与期望结果有</summary>
-      
-    
-    
-    
-    <category term="机器学习" scheme="https://gmet233.gitee.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="机器学习" scheme="https://gmet233.gitee.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最大M对齐子集</title>
-    <link href="https://gmet233.gitee.io/2022/03/01/%E6%9C%80%E5%A4%A7M%E5%AF%B9%E9%BD%90%E5%AD%90%E9%9B%86/"/>
-    <id>https://gmet233.gitee.io/2022/03/01/%E6%9C%80%E5%A4%A7M%E5%AF%B9%E9%BD%90%E5%AD%90%E9%9B%86/</id>
-    <published>2022-03-01T13:52:37.000Z</published>
-    <updated>2022-03-01T13:53:34.808Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>有 N 个点位于一条线上，编号从 0 到 N-1 ，其坐标在数组 A 中给出。对于每个I (0 ≤ l &lt;N)，直线上点数 I 的坐标为 A[l] 。点的坐标可能相同。</p><p>对于给定的整数 M ，如果子集内任意两个点之间的距离可被M整除，则称这些点的子集为M<strong>对齐</strong>。您的任务是查找给定 N 个点集的最大 M 对齐子集的大小。</p><p>例如，考虑整数 M=3 和数组 A，如下所示：</p><blockquote><p>A[0] = -3  A[1] = -2  A[2] = 1  A[3] = 0  A[4] = 8  A[5] = 7  A[6] = 1</p></blockquote><p>包含编号为1、2、5和6的点的子集，坐标分别为-2、1、7和1，是3对齐子集的示例，因为：</p><ul><li>编号为1和2的点之间的距离为abs(A[1] - A[2]) = 3，</li><li>从5号点到编号1和2的点的距离分别为9和6，</li><li>从6号点到编号为1、2和5的点的距离分别为3、0和6，</li></ul><p>这些距离都可以被 M=3 整除。此子集的大小为4，并且没有更大的3对齐子集。</p><p>编写一个函数:</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">solution</span><span class="params">(<span class="type">int</span>[] A, <span class="type">int</span> M)</span>;</span><br></pre></td></tr></table></figure><p>给定一个由 N 个整数和一个整数 M 组成的数组 A，返回最大 M 对齐子集的大小。</p><p>例如，给定 M=3 且 A=[-3，-2，1，0，8，7，1]，函数应返回4，如上所述；</p><p>给定 M=8 且 A=[7，1，11，8,4，10]，函数应返回1。</p><h1 id="解"><a href="#解" class="headerlink" title="解"></a>解</h1><p>把所有按 M 的余数存成一组就可以，<strong>同组的刚好把余数消掉就是距离整除</strong>。返回最大即为所求。</p><p><strong>注意</strong>：余数为负的，需要转为最小正余数（+M）</p><h2 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">solution</span><span class="params">(<span class="type">int</span>[] A, <span class="type">int</span> M)</span>&#123;</span><br><span class="line">    <span class="comment">//remainders[i] = j, 表示余数为i的频次是j</span></span><br><span class="line">    <span class="type">int</span>[] remainders = <span class="keyword">new</span> <span class="title class_">int</span>[M];</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 记录最大的频次</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> A.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">remainder</span> <span class="operator">=</span> A[i] % M;</span><br><span class="line">        <span class="keyword">if</span>(remainder &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            remainder += M;</span><br><span class="line">        &#125;</span><br><span class="line">        remainders[remainder] ++;</span><br><span class="line">        ans = Math.max(ans, remainders[remainder]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;p&gt;有 N 个点位于一条线上，编号从 0 到 N-1 ，其坐标在数组 A 中给出。对于每个I (0 ≤ l &amp;lt;N)，直线上点数 I 的坐标</summary>
-      
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://gmet233.gitee.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数论" scheme="https://gmet233.gitee.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/"/>
-    
-    
-    <category term="算法" scheme="https://gmet233.gitee.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数论" scheme="https://gmet233.gitee.io/tags/%E6%95%B0%E8%AE%BA/"/>
     
   </entry>
   

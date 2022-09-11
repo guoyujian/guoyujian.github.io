@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gmet233.gitee.io/2022/09/11/%E4%BD%BF%E7%94%A8%E8%85%BE%E8%AE%AF%E4%BC%9A%E8%AE%AE%E7%9A%84%E5%B1%8F%E5%B9%95%E5%85%B1%E4%BA%AB%E5%8A%9F%E8%83%BD%E6%97%B6%E5%BC%80%E5%90%AFPPT%E6%BC%94%E7%A4%BA%E8%80%85%E8%A7%86%E5%9B%BE%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2022-09-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmet233.gitee.io/2022/09/11/markdown%E5%85%AC%E5%BC%8F%E7%BC%96%E8%BE%91%E8%AF%AD%E6%B3%95/</loc>
+    
+    <lastmod>2022-09-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://gmet233.gitee.io/2022/09/11/%E3%80%90%E4%B8%8D%E7%BB%8F%E6%84%8F%E4%BC%A0%E8%BE%93%E3%80%91%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/</loc>
     
     <lastmod>2022-09-11</lastmod>
@@ -778,6 +796,41 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://gmet233.gitee.io/tags/markdown/</loc>
+    <lastmod>2022-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmet233.gitee.io/tags/typora/</loc>
+    <lastmod>2022-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmet233.gitee.io/tags/%E8%85%BE%E8%AE%AF%E4%BC%9A%E8%AE%AE/</loc>
+    <lastmod>2022-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmet233.gitee.io/tags/ppt/</loc>
+    <lastmod>2022-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmet233.gitee.io/tags/%E6%BC%94%E7%A4%BA%E8%80%85%E8%A7%86%E5%9B%BE/</loc>
+    <lastmod>2022-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -1034,6 +1087,13 @@
   
   <url>
     <loc>https://gmet233.gitee.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
+    <lastmod>2022-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gmet233.gitee.io/categories/%E5%B7%A5%E5%85%B7%E7%AE%B1/</loc>
     <lastmod>2022-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
