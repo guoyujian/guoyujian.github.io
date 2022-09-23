@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="HTTP面试题"><meta name="keywords" content="计算机网络,HTTP协议"><meta name="author" content="Met Guo"><meta name="copyright" content="Met Guo"><title>HTTP面试题 | Gmet's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.8.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.8.2"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer></script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"LEZCUKXOU8","apiKey":"43c226e390cd280e256d1d7cc0e6cce4","indexName":"blogs","hits":{"per_page":10,"input_placeholder":"Search for Posts","hits_empty":"û���ҵ�����Ҫ�Ľ��: ${query}","hits_stats":"�ҵ�${hits}���������ʱ${time}���룩"},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容:${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.4.2'
+} </script><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Gmet's Blog" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8BHTTP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">说一下HTTP协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">HTTP通信过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8BHTTPS%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.</span> <span class="toc-text">说一下HTTPS协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E4%B8%8EHTTPS%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">4.</span> <span class="toc-text">HTTP与HTTPS的对比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E7%BC%93%E5%AD%98%E2%80%8B"><span class="toc-number">5.</span> <span class="toc-text">HTTP缓存​</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">6.</span> <span class="toc-text">HTTP状态码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%85%B8%E5%9E%8B%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E5%8C%85%E6%8B%AC%E5%93%AA%E4%BA%9B%E9%83%A8%E5%88%86%EF%BC%9F%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E5%91%A2%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">一个典型的HTTP请求报文包括哪些部分？响应报文呢？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP1-0%E3%80%81HTTP1-1%E3%80%81HTTP2-0%E5%8C%BA%E5%88%AB"><span class="toc-number">8.</span> <span class="toc-text">HTTP1.0、HTTP1.1、HTTP2.0区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP1-0%E5%92%8CHTTP1-1%E7%9A%84%E5%8C%BA%E5%88%AB-%E9%95%BF%E7%9F%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">8.1.</span> <span class="toc-text">HTTP1.0和HTTP1.1的区别&#x2F;长短连接的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP1%E5%92%8CHTTP2%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">8.2.</span> <span class="toc-text">HTTP1和HTTP2的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GET%E3%80%81POST%E5%8C%BA%E5%88%AB"><span class="toc-number">9.</span> <span class="toc-text">GET、POST区别</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Met Guo</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">55</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">44</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">38</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Gmet's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/slides">Slides</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">HTTP面试题</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-09-24</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%8D%8F%E8%AE%AE/">HTTP协议</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">2.2k</span><span class="post-meta__separator">|</span><span>阅读时长: 6 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><blockquote>
+<p>作为复习，也作为一个目录</p>
+</blockquote>
+<h1 id="说一下HTTP协议"><a href="#说一下HTTP协议" class="headerlink" title="说一下HTTP协议"></a>说一下HTTP协议</h1><p>HTTP全称是Hyper Text Transfer Protocol。即<strong>超文本传输协议</strong>，它是以<strong>TCP/IP</strong>为基础来传输HTML，文件，图片等。 它本身处于<strong>应用层</strong>，<strong>端口号80</strong>。</p>
+<ol>
+<li>HTTP是基于<strong>浏览器/服务器</strong>架构；</li>
+<li>HTTP是<strong>无状态</strong>协议：HTTP本身并不保存用户的任何信息，也不会对传输的数据，状态信息进行持久化；</li>
+<li>HTTP是<strong>无连接</strong>协议：每次连接只处理一个请求，服务器处理完用户请求，即断开连接，借此节约传输时间。</li>
+</ol>
+<h1 id="HTTP通信过程"><a href="#HTTP通信过程" class="headerlink" title="HTTP通信过程"></a>HTTP通信过程</h1><ol>
+<li>用户输入网址</li>
+<li>DNS服务器解析域名</li>
+<li>浏览器和服务器建立TCP连接</li>
+<li>浏览器向服务器发送请求行</li>
+<li>浏览器向服务器发送请求头，并以空行代表发送结束，如果请求类型为<code>post</code>，则继续发送请求体</li>
+<li>服务器应答协议版本号和应答状态码</li>
+<li>服务器发送响应头，并以空行代表发送结束</li>
+<li>服务器发送数据：以<code>Content-Type</code>给出的格式发送用户所请求的信息</li>
+<li>服务器关闭TCP连接：如果浏览器或者服务器的头信息中加入了这样一段代码：<code>connection：Keep-alive</code> 则TCP连接会保持打开状态</li>
+<li>客户端浏览器解析HTML内容</li>
+</ol>
+<p>下图整理了HTTP通信的关键步骤：</p>
+<p><img src="http通信过程.png" alt="计算机网络-http通信过程">​</p>
+<h1 id="说一下HTTPS协议"><a href="#说一下HTTPS协议" class="headerlink" title="说一下HTTPS协议"></a>说一下HTTPS协议</h1><p>可以看我的博客：《HTTPS协议》</p>
+<h1 id="HTTP与HTTPS的对比"><a href="#HTTP与HTTPS的对比" class="headerlink" title="HTTP与HTTPS的对比"></a>HTTP与HTTPS的对比</h1><ul>
+<li>两者工作的端口号不同：HTTP工作在80，HTTPS工作在443；</li>
+<li>HTTPS需要用到CA（数字证书认证机构）申请证书，一般需要一定费用；</li>
+<li>HTTP响应比HTTPS快，主要因为HTTPS除了TCP3次握手外还要加上<strong>SSL9次握手</strong>共12次握手；</li>
+<li>HTTPS是构建在SSL/TLS上的HTTP协议，因此需要占用服务器资源。</li>
+</ul>
+<h1 id="HTTP缓存​"><a href="#HTTP缓存​" class="headerlink" title="HTTP缓存​"></a>HTTP缓存​</h1><p>http缓存指的是: 当客户端向服务器请求资源时，会先抵达<strong>浏览器缓存</strong>，如果浏览器有“要请求资源”的副本，就可以<strong>直接从浏览器缓存中提取</strong>而不是从原始服务器中提取这个资源。</p>
+<p>常见的http缓存<strong>只能缓存get请求</strong>响应的资源，对于其他类型的响应则无能为力，所以后续说的请求缓存都是指GET请求。<br>http缓存都是从第二次请求开始的。第一次请求资源时，服务器返回资源，并在respone header头中回传资源的缓存参数；第二次请求时，浏览器判断这些请求参数，命中强缓存就直接200，否则就把请求参数加到request header头中传给服务器，看是否命中协商缓存，命中则返回304，否则服务器会返回新的资源。（可以画个图理解一下）</p>
+<p>HTTP 缓存又分为<strong>强缓存</strong>和 <strong>协商缓存</strong> ：</p>
+<p><strong>强制缓存</strong>：在缓存数据未失效的情况下（即Cache-Control的max-age没有过期或者Expires的缓存时间没有过期），那么就会直接使用浏览器的缓存数据，不会再向服务器发送任何请求。</p>
+<p><strong>协商缓存</strong>：当第一次请求时服务器返回的响应头中没有Cache-Control和Expires或者Cache-Control和Expires过期还或者它的属性设置为no-cache时(即不走强缓存)，那么浏览器第二次请求时就会与服务器进行 <strong>协商</strong>，与服务器端对比判断资源是否进行了修改更新。如果服务器端的资源没有修改，那么就会返回304状态码，告诉浏览器可以使用缓存中的数据，这样就减少了服务器的数据传输压力。如果数据有更新就会返回200状态码，服务器就会返回更新后的资源并且将缓存信息一起返回。</p>
+<h1 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h1><ul>
+<li>1xx：<strong>目前是协议的中间状态，还需要后续请求。</strong><ul>
+<li>101 切换请求协议，从 HTTP 切换到 WebSocket</li>
+</ul>
+</li>
+<li>2xx：<strong>表示请求成功。</strong><ul>
+<li>200 请求成功，有响应体</li>
+</ul>
+</li>
+<li><p>3xx：<strong>表示重定向状态，需要重新请求。</strong></p>
+<ul>
+<li>301 永久重定向：会缓存</li>
+<li>302 临时重定向：不会缓存</li>
+<li>304 协商缓存命中</li>
+</ul>
+</li>
+<li><p>4xx：<strong>请求报文错误。</strong></p>
+<ul>
+<li>403 服务器禁止访问</li>
+<li>404 资源未找到</li>
+<li>400 请求错误</li>
+</ul>
+</li>
+<li><p>5xx：<strong>服务器错误。</strong></p>
+<ul>
+<li>500 服务器端错误</li>
+<li>503 服务器繁忙</li>
+</ul>
+</li>
+</ul>
+<h1 id="一个典型的HTTP请求报文包括哪些部分？响应报文呢？"><a href="#一个典型的HTTP请求报文包括哪些部分？响应报文呢？" class="headerlink" title="一个典型的HTTP请求报文包括哪些部分？响应报文呢？"></a>一个典型的HTTP请求报文包括哪些部分？响应报文呢？</h1><p>一个HTTP请求报文包括：  <strong>请求头，请求行，空行，请求体</strong>。</p>
+<p>一个响应报文包括： <strong>响应行，响应头，空行，响应体</strong> 。</p>
+<p>具体参考我的博客《详解HTTP协议》</p>
+<h1 id="HTTP1-0、HTTP1-1、HTTP2-0区别"><a href="#HTTP1-0、HTTP1-1、HTTP2-0区别" class="headerlink" title="HTTP1.0、HTTP1.1、HTTP2.0区别"></a>HTTP1.0、HTTP1.1、HTTP2.0区别</h1><h2 id="HTTP1-0和HTTP1-1的区别-长短连接的区别"><a href="#HTTP1-0和HTTP1-1的区别-长短连接的区别" class="headerlink" title="HTTP1.0和HTTP1.1的区别/长短连接的区别"></a>HTTP1.0和HTTP1.1的区别/长短连接的区别</h2><p>这里主要回答长短连接的区别就行吧。。</p>
+<p>在HTTP/1.0中采用短连接。客户端和服务器每进行一次HTTP操作，就建立一次连接，任务中断连接；Connection: close</p>
+<p>在HTTP/1.1默认采用长连接和请求的流水线（Pipelining）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。Connection: keep-alive，就是保持连接。</p>
+<hr>
+<p>长连接适用的场景：长连接适用于操作频繁/点对点通讯等连接数不太多的情况，如：一些游戏/即时通讯场景应该使用长连接；</p>
+<p>短连接适用的场景： 短连接适用于大量连接的场景，如Web【wapWeb/H5等】的http服务，长连接对于服务端来说会耗费一定资源。</p>
+<blockquote>
+<p>补充其他区别：</p>
+<ul>
+<li>长短连接</li>
+<li><strong>缓存处理</strong>：在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略，可供选择的缓存头来控制缓存策略。</li>
+<li><strong>带宽优化及网络连接的使用</strong>：HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</li>
+<li><strong>错误通知的管理</strong>：在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</li>
+<li><strong>Host头处理</strong>：在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</li>
+</ul>
+</blockquote>
+<h2 id="HTTP1和HTTP2的区别"><a href="#HTTP1和HTTP2的区别" class="headerlink" title="HTTP1和HTTP2的区别"></a>HTTP1和HTTP2的区别</h2><p>HTTP2.0是第二代TCP协议。它与HTTP1.1的不同点在于：</p>
+<ul>
+<li>HTTP2采用<strong>二进制</strong>而非文本格式；此属性减轻了框架的复杂性，并简化了由于包含文本和可选空格的命令而导致混淆的命令的实现。</li>
+<li>HTTP2是 <strong>完全多路复用</strong> ，而线端阻塞的——只需一个连接可以实现并行；</li>
+<li>HTTP2使用<strong>标头（headers）压缩</strong> ，减小了开销；</li>
+<li>HTTP2让服务器可以将响应主动推送到客户端缓存中。</li>
+</ul>
+<p>名词解释：</p>
+<blockquote>
+<p>线端阻塞和多路复用</p>
+<p>HTTP/1.x 有个问题叫线端阻塞(head-of-line blocking), 它是指<strong>一个连接(connection)一次只提交一个请求的效率比较高, 多了就会变慢</strong>。 HTTP/1.1 试过用流水线(pipelining)来解决这个问题, 但是效果并不理想(数据量较大或者速度较慢的响应, 会阻碍排在他后面的请求)。</p>
+<p>多路传输(Multiplexing)能很好的解决这些问题, 因为它能同时处理多个消息的请求和响应; 甚至可以在传输过程中将一个消息跟另外一个掺杂在一起。所以<strong>客户端只需要一个连接</strong>就能加载一个页面。减少额外的往返时间。</p>
+<p><img src="http1和2建立连接.png" alt="http1和2建立连接"></p>
+<p>主动推送：通俗理解就是客户端请求了html，服务器觉得和其相关的css也会被关联到，于是主动同送其他资源到客户端。</p>
+</blockquote>
+<h1 id="GET、POST区别"><a href="#GET、POST区别" class="headerlink" title="GET、POST区别"></a>GET、POST区别</h1><p>具体看我的博客《详解HTTP协议》和《HTTP协议幂等性》</p>
+<p><img src="get和post区别.png" alt="get和post区别"></p>
+<p>‍</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Met Guo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://guoyujian.github.io/2022/09/24/HTTP%E9%9D%A2%E8%AF%95%E9%A2%98/">https://guoyujian.github.io/2022/09/24/HTTP%E9%9D%A2%E8%AF%95%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://guoyujian.github.io">Gmet's Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><a class="post-meta__tags" href="/tags/HTTP%E5%8D%8F%E8%AE%AE/">HTTP协议</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/09/24/HTTPS%E5%8D%8F%E8%AE%AE/"><i class="fa fa-chevron-left">  </i><span>HTTPS协议</span></a></div><div class="next-post pull-right"><a href="/2022/09/11/%E4%BD%BF%E7%94%A8%E8%85%BE%E8%AE%AF%E4%BC%9A%E8%AE%AE%E7%9A%84%E5%B1%8F%E5%B9%95%E5%85%B1%E4%BA%AB%E5%8A%9F%E8%83%BD%E6%97%B6%E5%BC%80%E5%90%AFPPT%E6%BC%94%E7%A4%BA%E8%80%85%E8%A7%86%E5%9B%BE%E7%9A%84%E6%96%B9%E6%B3%95/"><span>使用腾讯会议的屏幕共享功能时开启PPT演示者视图的方法</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://images7.alphacoders.com/550/thumb-1920-550739.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2022 By Met Guo</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.8.2"></script><script src="/js/fancybox.js?version=1.8.2"></script><script src="/js/sidebar.js?version=1.8.2"></script><script src="/js/copy.js?version=1.8.2"></script><script src="/js/fireworks.js?version=1.8.2"></script><script src="/js/transition.js?version=1.8.2"></script><script src="/js/scroll.js?version=1.8.2"></script><script src="/js/head.js?version=1.8.2"></script><script src="/js/search/algolia.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="algolia-search"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
