@@ -6,7 +6,7 @@
   <link href="https://guoyujian.github.io/atom.xml" rel="self"/>
   
   <link href="https://guoyujian.github.io/"/>
-  <updated>2022-11-03T16:13:55.018Z</updated>
+  <updated>2022-11-07T14:33:39.446Z</updated>
   <id>https://guoyujian.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SSH三步解决免密登录</title>
+    <link href="https://guoyujian.github.io/2022/11/07/SSH%E4%B8%89%E6%AD%A5%E8%A7%A3%E5%86%B3%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/"/>
+    <id>https://guoyujian.github.io/2022/11/07/SSH%E4%B8%89%E6%AD%A5%E8%A7%A3%E5%86%B3%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/</id>
+    <published>2022-11-07T14:29:07.000Z</published>
+    <updated>2022-11-07T14:33:39.446Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ol><li><a href="https://blog.csdn.net/jeikerxiao/article/details/84105529">SSH 三步解决免密登录</a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Refs&quot;&gt;&lt;a href=&quot;#Refs&quot; class=&quot;headerlink&quot; title=&quot;Refs&quot;&gt;&lt;/a&gt;Refs&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/jeikerxiao/article/detail</summary>
+      
+    
+    
+    
+    <category term="Linux" scheme="https://guoyujian.github.io/categories/Linux/"/>
+    
+    <category term="开发工具" scheme="https://guoyujian.github.io/categories/Linux/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="开发工具" scheme="https://guoyujian.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>FATE使用遇到的问题汇总</title>
@@ -230,19 +257,16 @@
     <link href="https://guoyujian.github.io/2022/11/03/FATE%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6%EF%BC%88%E5%85%B1%E5%85%AB%E7%AF%87%EF%BC%89/"/>
     <id>https://guoyujian.github.io/2022/11/03/FATE%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6%EF%BC%88%E5%85%B1%E5%85%AB%E7%AF%87%EF%BC%89/</id>
     <published>2022-11-03T15:55:20.000Z</published>
-    <updated>2022-11-03T15:56:51.345Z</updated>
+    <updated>2022-11-07T13:48:50.085Z</updated>
     
-    <content type="html"><![CDATA[<p>目录</p><ol><li>FATE联邦学习框架简介：联邦学习+fate介绍+单机版docker安装+toy test</li><li>FATE横向联邦学习：信用数据案例</li><li>FATE DSL配置文件详细解释</li><li>FATE横向联邦学习：手写数字识别（开发组件：自定义的模型、使用gpu、模型评估？）</li><li>FATE横向联邦学习：肠癌图像分类任务（上）——baseline</li><li>FATE横向联邦学习：肠癌图像分类任务（下）——联邦化</li><li>FATE横向联邦学习：肺炎的多模态任务的联邦学习</li><li>FATE使用遇到的问题汇总</li></ol><p>‍</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ol><li>FATE联邦学习框架简介：联邦学习+fate介绍+单机版docker安装+toy test</li><li>FATE横向联邦学习：信用数据案例</li><li>FATE DSL配置文件详细解释</li><li>FATE横向联邦学习：手写数字识别（开发组件：自定义的模型、使用gpu、模型评估？）</li><li>FATE横向联邦学习：肠癌图像分类任务（上）——baseline</li><li>FATE横向联邦学习：肠癌图像分类任务（下）——联邦化</li><li>FATE横向联邦学习：肺炎的多模态任务的联邦学习</li><li>FATE使用遇到的问题汇总</li></ol><h1 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h1><p><a href="https://github.com/guoyujian/FATE">https://github.com/guoyujian/FATE</a></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;目录&lt;/p&gt;
-&lt;ol&gt;
+    <summary type="html">&lt;h1 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;FATE联邦学习框架简介：联邦学习+fate介绍+单机版docker安装+toy test&lt;/li&gt;
-&lt;li&gt;FATE横向联邦学习：信用数据案例&lt;/li&gt;
-&lt;li&gt;FATE DSL配置文件详细解释&lt;/li&gt;
-&lt;li&gt;FATE横向联邦学习：手写</summary>
+&lt;li&gt;FATE横向联邦学</summary>
       
     
     
@@ -527,19 +551,6 @@
     
     
     <category term="数据库" scheme="https://guoyujian.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【读书笔记】生而贫穷</title>
-    <link href="https://guoyujian.github.io/2022/06/02/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E7%94%9F%E8%80%8C%E8%B4%AB%E7%A9%B7/"/>
-    <id>https://guoyujian.github.io/2022/06/02/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91%E7%94%9F%E8%80%8C%E8%B4%AB%E7%A9%B7/</id>
-    <published>2022-06-02T02:04:03.000Z</published>
-    <updated>2022-06-02T02:04:03.611Z</updated>
-    
-    
-    
-    
     
   </entry>
   
