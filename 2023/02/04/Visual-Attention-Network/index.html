@@ -20,11 +20,11 @@
 <p><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/100902">什么是自注意力机制？</a></p>
 <h2 id="空间相关性和通道相关性1"><a href="#空间相关性和通道相关性1" class="headerlink" title="空间相关性和通道相关性1"></a>空间相关性和通道相关性<sup><a href="#fn_1" id="reffn_1">1</a></sup></h2><p>从维度的角度看，卷积核可以看成是一个空间维(宽和高)和通道维的组合，而<strong>卷积操作则可以视为空间相关性和通道相关性的联合映射</strong>。从inception的1x1卷积来看，<strong>卷积中的空间相关性和通道相关性是可以解耦的，将它们分开进行映射，可能会达到更好的效果。</strong></p>
 <p>深度可分离卷积是在1x1卷积基础上的一种创新。主要包括两个部分：深度卷积和1x1卷积。深度卷积的目的在于对输入的每一个通道都单独使用一个卷积核对其进行卷积，也就是通道分离后再组合。1x1卷积的目的则在于加强深度。下面以一个例子来看一下深度可分离卷积。</p>
-<p>假设我们用128个$3<em>3</em>3$的滤波器对一个 $7<em>7</em>3$的输入进行卷积，可得到$5<em>5</em>128$的输出,其计算量为$5<em>5</em>128<em>3</em>3*3=86400$。如下图所示：</p>
+<p>假设我们用128个$3 \times3 \times3$的滤波器对一个 $7 \times7 \times3$的输入进行卷积，可得到$5 \times5 \times128$的输出,其计算量为$5 \times5 \times128 \times3 \times3 \times3=86400$。如下图所示：</p>
 <p><img src="image-20230204110644-zz7yeyj.png" alt="image">​</p>
-<p>现在看如何使用深度可分离卷积来实现同样的结果。深度可分离卷积的第一步是深度卷积。这里的深度卷积，就是分别用3个$3<em>3</em>1$的滤波器对输入的3个通道分别做卷积，也就是说要做3次卷积，每次卷积都有一个$5<em>5</em>1$的输出，组合在一起便是$5<em>5</em>3$的输出。现在为了拓展深度达到128，我们需要执行深度可分离卷积的第二步：1x1卷积。现在我们用128个$1<em>1</em>3$的滤波器对$5<em>5</em>3$进行卷积，就可以得到$5<em>5</em>128$的输出。完整过程如下图所示：</p>
+<p>现在看如何使用深度可分离卷积来实现同样的结果。深度可分离卷积的第一步是深度卷积。这里的深度卷积，就是分别用3个$3 \times3 \times1$的滤波器对输入的3个通道分别做卷积，也就是说要做3次卷积，每次卷积都有一个$5 \times5 \times1$的输出，组合在一起便是$5 \times5 \times3$的输出。现在为了拓展深度达到128，我们需要执行深度可分离卷积的第二步：1x1卷积。现在我们用128个$1 \times1 \times3$的滤波器对$5 \times5 \times3$进行卷积，就可以得到$5 \times5 \times128$的输出。完整过程如下图所示：</p>
 <p><img src="image-20230204111234-3ia5cu3.png" alt="image">​</p>
-<p>那么我们来看一下深度可分离卷积的计算量如何。第一步深度卷积的计算量：$5<em>5</em>1<em>3</em>3<em>1</em>3=675$。第二步1x1卷积的计算量：$5<em>5</em>128<em>1</em>1*3=9600$，合计计算量为10275次。可见，相同的卷积计算输出，深度可分离卷积要比常规卷积节省12倍的计算成本。</p>
+<p>那么我们来看一下深度可分离卷积的计算量如何。第一步深度卷积的计算量：$5 \times5 \times1 \times3 \times3 \times1 \times3=675$。第二步1x1卷积的计算量：$5 \times5 \times128 \times1 \times1 \times3=9600$，合计计算量为10275次。可见，相同的卷积计算输出，深度可分离卷积要比常规卷积节省12倍的计算成本。</p>
 <blockquote>
 <p>典型的应用深度可分离卷积的网络模型包括xception和mobilenet等。本质上而言，xception就是应用了深度可分离卷积的inception网络。</p>
 </blockquote>
@@ -67,7 +67,7 @@
 <p>结果显示，VAN-Base可以清晰地聚焦于目标对象。因此，可视化直观地证明了VAN的有效性。</p>
 <p>‍</p>
 <h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><blockquote id="fn_1">
-<sup>1</sup>. <a target="_blank" rel="noopener" href="https://baidinghub.github.io/2020/04/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97(%E4%BA%8C">深度学习知识系列(二) 各种卷积形式</a>%20%E5%90%84%E7%A7%8D%E5%8D%B7%E7%A7%AF%E5%BD%A2%E5%BC%8F/)<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+<sup>1</sup>. <a target="_blank" rel="noopener" href="https://baidinghub.github.io/2020/04/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%28%E4%BA%8C%29%20%E5%90%84%E7%A7%8D%E5%8D%B7%E7%A7%AF%E5%BD%A2%E5%BC%8F/">深度学习知识系列(二) 各种卷积形式</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
 </blockquote>
 <blockquote id="fn_2 ">
 <sup>2 </sup>. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/474526444">【ARXIV2202】Visual Attention Network</a><a href="#reffn_2 " title="Jump back to footnote [2 ] in the text."> &#8617;</a>
