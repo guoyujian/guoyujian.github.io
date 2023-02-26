@@ -6,7 +6,7 @@
   <link href="https://guoyujian.github.io/atom.xml" rel="self"/>
   
   <link href="https://guoyujian.github.io/"/>
-  <updated>2023-02-25T06:44:32.469Z</updated>
+  <updated>2023-02-26T09:49:50.496Z</updated>
   <id>https://guoyujian.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>思源笔记基本使用</title>
+    <link href="https://guoyujian.github.io/2023/02/26/%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>https://guoyujian.github.io/2023/02/26/%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</id>
+    <published>2023-02-26T09:49:50.000Z</published>
+    <updated>2023-02-26T09:49:50.496Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>思源笔记是一款很好的管理知识库的软件。支持本地（免费）和云端（付费）两种模式。</p><p>不仅支持markdown语法，还有更多实用功能。这里进行基本的使用介绍。</p><h1 id="支持markdown语法"><a href="#支持markdown语法" class="headerlink" title="支持markdown语法"></a>支持markdown语法</h1><p>略</p><h1 id="支持新建多级文档"><a href="#支持新建多级文档" class="headerlink" title="支持新建多级文档"></a>支持新建多级文档</h1><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226161146934.png" alt="image-20230226161146934"></p><h1 id="设置标签、笔记图标和题头图"><a href="#设置标签、笔记图标和题头图" class="headerlink" title="设置标签、笔记图标和题头图"></a>设置标签、笔记图标和题头图</h1><p>将鼠标放置到笔记开头，出现的三个icon分别对应，添加标签，设置图标和设置题头图。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226161241016.png" alt="image-20230226161241016"></p><p>设置之后的效果为：</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226161340368.png" alt="image-20230226161340368"></p><h1 id="内容块合并"><a href="#内容块合并" class="headerlink" title="内容块合并"></a>内容块合并</h1><p>内容块是思源的基础。块和块之间可以进行合并等操作。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\1.gif" alt="动画"></p><h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>思源笔记可以制作模板，导出导入模板。让笔记标准化。</p><h1 id="挂件"><a href="#挂件" class="headerlink" title="挂件"></a>挂件</h1><p>在【设置】-【集市】-【挂件】中进行下载。</p><p>目前看到比较好用的挂件有</p><ul><li>superdraw： 可以让实现随意涂写的挂件</li><li>drawio：实现画流程图的挂件</li><li>思维导图：可以插入思维导图的挂件</li></ul><p>其他的自行研究。这里以drawio为例。他的效果是这样的。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226163445070.png" alt="image-20230226163445070"></p><h1 id="导入pdf并进行阅览"><a href="#导入pdf并进行阅览" class="headerlink" title="导入pdf并进行阅览"></a>导入pdf并进行阅览</h1><p>通过拖拽导入pdf，点击进行阅览</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226163828335.png" alt="image-20230226163828335"></p><p>不仅如此，在pdf中可以进行选中和标注。将标注作为“引用链接”复制回笔记。点击“引用链接”可以直接打开pdf，并跳转到标注的位置。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226164254104.png" alt="image-20230226164254104"></p><h1 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h1><p>直接复制粘贴导出的是markdown格式的内容</p><p>也可以直接选择导出模式，导出不同平台的格式。目前支持知乎、微信公众号等。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\2.gif" alt="动画"></p><h1 id="剪藏"><a href="#剪藏" class="headerlink" title="剪藏"></a>剪藏</h1><p>通过chrome插件进行web页面的笔记剪藏</p><p>类似有道云笔记的功能。</p><p>这里需要对token进行配置。token在【设置】【关于】中查看</p><h1 id="网络图片转到本地"><a href="#网络图片转到本地" class="headerlink" title="网络图片转到本地"></a>网络图片转到本地</h1><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226164816361.png" alt="image-20230226164816361"></p><h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>当前块可以引用其他笔记的内容，输入两个左括号触发。</p><p>继续输入关键词，选中引用的内容即可。</p><p>鼠标悬浮在引用链接上，可以对引用的内容进行预览。</p><p>具体效果如下。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\3.gif" alt="动画"></p><p>链接分为正向链接和反向连接。</p><p>正向链接就是查看链接引用了哪些内容块</p><p>反向链接就是查看哪些内容块被引用了。</p><p>点击右下角的【反向链接】图标查看</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226165621640.png" alt="image-20230226165621640"></p><p>在连接中你可以右键输入锚文本修改引用链接的文本</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226165718183.png" alt="image-20230226165718183"></p><h1 id="闪卡"><a href="#闪卡" class="headerlink" title="闪卡"></a>闪卡</h1><h2 id="制作闪卡"><a href="#制作闪卡" class="headerlink" title="制作闪卡"></a>制作闪卡</h2><p>闪卡用于背诵某些内容。制作闪卡的流程如下。</p><p>标记需要背诵的内容，选择块【添加到卡包】，创建卡包并添加。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226170647766.png" alt="image-20230226170647766"></p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226170750105.png" alt="image-20230226170750105"></p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226170852763.png" alt="image-20230226170852763"></p><h2 id="复习闪卡"><a href="#复习闪卡" class="headerlink" title="复习闪卡"></a>复习闪卡</h2><p>选择【闪卡】</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226170933812.png" alt="image-20230226170933812"></p><p>选择卡包就可以看到待复习的闪卡了。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226171010071.png" alt="image-20230226171010071"></p><h1 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h1><p>输入<code>/</code>，选择插入Chart</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226171217053.png" alt="image-20230226171217053"></p><p>这里输入代码即可插入chart，其格式为echarts的json格式代码。</p><p>这里有两种方式</p><ol><li>使用JS编写图表</li><li>使用<a href="https://tushuo.baidu.com/">百度图说</a>，可视化制作图表，然后复制图表代码。</li></ol><p>这里使用第二种方式。</p><p>进入百度图说，创建图表，修改数据，点击【显示代码】</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226171700714.png" alt="image-20230226171700714"></p><p>复制代码后粘贴到思源的图标代码中，就可以看到图表啦</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226171753886.png" alt="image-20230226171753886"></p><h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p>输入<code>/</code>，选择插入flowchart</p><p>这里支持两种语法格式：</p><ol><li>flowchart.js</li><li>plantUML</li></ol><h1 id="Graphviz"><a href="#Graphviz" class="headerlink" title="Graphviz"></a>Graphviz</h1><p>输入<code>/</code>，选择插入Graphviz</p><p>支持的语法格式为dot语法。具体可以参考<a href="">网站</a>进行绘制。在软件工程、数据库和机器学习方面用的多，效果如下。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226172409698.png" alt="image-20230226172409698"></p><h1 id="Mermaid"><a href="#Mermaid" class="headerlink" title="Mermaid"></a>Mermaid</h1><p>输入<code>/</code>，选择插入Mermaid</p><p>Mermaid和Graphviz 类似。Mermaid可以绘制流程图等数十种图。</p><p>打开<a href="https://mermaid.js.org/">官网</a>，选择右上角的【live editor】进行实时编辑。</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226172909167.png" alt="image-20230226172909167"></p><p>复制代码即可在思源笔记中看到效果</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226172955029.png" alt="image-20230226172955029"></p><h1 id="MindMap"><a href="#MindMap" class="headerlink" title="MindMap"></a>MindMap</h1><p>mindmap是脑图。</p><p>输入<code>/</code>，选择插入MindMap</p><p>之后进行编辑</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226173129422.png" alt="image-20230226173129422"></p><h1 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h1><p>思源支持多媒体数据的插入，包括视频、链接、iframe</p><p>这里插入一个视频为例：</p><p>输入<code>/</code>，选择插入iframe链接，复制视频url链接。效果如下</p><p><img src="F:\work_spaces\blogs\blog-articles\source\_drafts\思源笔记基本使用\image-20230226173429042.png" alt="image-20230226173429042"></p><h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ol><li><a href="https://www.bilibili.com/video/BV1bv4y1r7tA/?spm_id_from=333.788&amp;vd_source=53d8e50bea64fe70bc50c86af86d28e1">https://www.bilibili.com/video/BV1bv4y1r7tA/?spm_id_from=333.788&amp;vd_source=53d8e50bea64fe70bc50c86af86d28e1</a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;思源笔记是一款很好的管理知识库的软件。支持本地（免费）和云端（付费）两种模式。&lt;/p&gt;
+&lt;p&gt;不仅支持markdown语法，还有更多实用功能</summary>
+      
+    
+    
+    
+    <category term="工具箱" scheme="https://guoyujian.github.io/categories/%E5%B7%A5%E5%85%B7%E7%AE%B1/"/>
+    
+    
+    <category term="siyuan" scheme="https://guoyujian.github.io/tags/siyuan/"/>
+    
+    <category term="思源" scheme="https://guoyujian.github.io/tags/%E6%80%9D%E6%BA%90/"/>
+    
+    <category term="教程" scheme="https://guoyujian.github.io/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="知识库工具" scheme="https://guoyujian.github.io/tags/%E7%9F%A5%E8%AF%86%E5%BA%93%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>软件行业就业方向调研</title>
@@ -536,30 +567,6 @@
     <category term="markdown" scheme="https://guoyujian.github.io/tags/markdown/"/>
     
     <category term="typora" scheme="https://guoyujian.github.io/tags/typora/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【不经意传输】算法介绍</title>
-    <link href="https://guoyujian.github.io/2022/09/11/%E3%80%90%E4%B8%8D%E7%BB%8F%E6%84%8F%E4%BC%A0%E8%BE%93%E3%80%91%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/"/>
-    <id>https://guoyujian.github.io/2022/09/11/%E3%80%90%E4%B8%8D%E7%BB%8F%E6%84%8F%E4%BC%A0%E8%BE%93%E3%80%91%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D/</id>
-    <published>2022-09-11T05:32:22.000Z</published>
-    <updated>2022-09-11T05:38:01.807Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>“不经意传输”要解决这类问题：你需要给对方多条信息，但是你又必须确保对方只获得其中一条，但是对方又希望能够确保你不知道他看到哪一条信息。</p><p>设计一个具体场景：你给你的哥们介绍相亲女朋友，你有两个可供介绍的单身女性，但是你不想同时将两人的情况和联系方式给对方。但你也无法抉择到底给哪个，所以你想让他随机抽签选择一个。但与此同时，你的哥们也不想让你知道，他最终抽到了谁。</p><h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p><strong>不经意传输</strong>（Oblivious Transfer，简称OT）是一个密码学协议，在这个协议中，消息发送者从一些待发送的消息中发送一条给接收者，但事后对发送了哪一条消息仍然oblivious（不知道），这个协议也叫茫然传输协议。</p><p>不经意传输是密码学中的一个基本而重要的问题，被认为是该领域的关键问题之一，对于<strong>安全多方计算</strong>来说是完整的实现。</p><p>例如下图，Alice是消息发送者，Bob是消息接受者。Alice想要将消息$M_0$、$M_1$之一传给Bob，Bob只能得到自己想要的那个（$M_0$或$M_1$）不能获取另外一个消息，Alice也不能知道Bob选的是哪一条消息。</p><p><img src="不经意传输1.png" alt="不经意传输1"></p><h1 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h1><p>第一种形式的不经意传输，最初是在1981由Michael O.Rabin提出，在这种不经意传输中，发送者Alice发送一条消息给接收着Bob，而Bob以1/2的概率接收到信息，在结束后Alice并不知道Bob是否接收到了信息，而Bob能确信地知道自己是否收到了信息。</p><p>另一种更实用的不经意传输协议，被称为2选一不经意传输（1 out 2 oblivious transfer）由 Shimon Even，Oded Goldreich和Abraham Lempel在1985年提出，在这种形式的不经意传输模型中，Alice每次发两条信息（m1、m2）给Bob，<strong>Bob提供一个输入</strong>，并根据输入获得输出信息，在协议结束后，Bob得到了自己想要的那条信息（m1或者m2），而Alice并不知道Bob最终得到的是哪条。</p><blockquote><p>这个输入，我的理解是通知发送者发哪些消息，发送消息的范围</p></blockquote><p>1986年，Brassard等人将2选1不经意传输拓展为n选1。</p><p><img src="不经意传输2.png" alt="不经意传输2"></p><p>不经意传输一种实现方式是<strong>基于RSA公钥算法</strong>，下面就2选1不经意传输的实现做简要介绍。</p><h1 id="基于RSA公钥算法的2选1不经意传输"><a href="#基于RSA公钥算法的2选1不经意传输" class="headerlink" title="基于RSA公钥算法的2选1不经意传输"></a>基于RSA公钥算法的2选1不经意传输</h1><p>先把「基于RSA公钥算法的2选1不经意传输」的流程图列出来：</p><p><img src="不经意传输流程.png" alt="不经意传输流程"></p><h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol><li>发送者Alice生成两对RSA公私钥$(puk0, pri0)$，$(puk1, pri1)$，并将两个公钥$puk0$和$puk1$发送给Bob。</li><li>Bob生成一个随机数$r$，并用收到的两个公钥之一加密随机数，$c=Encrypt(r)$。（用哪个秘钥取决于想获取哪条数据，例如如果想要得到消息$M_0$就用$puk0$加密随机数，如果想要得到$M_1$就用$puk1$加密随机数），并将密文结果发送给Alice。</li><li>Alice用自己的两个私钥分别解密收到随机数密文，得到两个解密结果：$k_0=Decrypt(c, pri_0)$，$k_1=Decrypt(c, pri_1)$。（$k_0$，$k_1$其中一个就是随机数$r$）。并将两个结果分别与两条信息进行异或，生成掩码消息：$e_0=k_0\bigoplus m_0$，$e_1=k_1\bigoplus m_1$，并将两个结果$e_0$，$e_1$发给Bob。</li><li>Bob用之前生成的随机数$r$与收到的$e_0$，$e_1$分别做异或操作，得到的两个结果中只有一条为真实数据，另外一条为随机数：$m^{‘}_0=e_0\bigoplus r$，$m^{‘}_1=e_1\bigoplus r$。</li><li>Bob在步骤2中，如果使用$puk0$加密，得到的$m^{‘}_0=m_0$，反之是$m_1$。</li></ol><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>在此过程中第3步最为关键，如果Alice无法从用两条私钥解密得到的结果$k_0$、$k_1$中区分出Bob的真实随机数，则能保证Alice无法得知Bob将要获取的是哪条数据。Bob没有私钥也就无法得出真实的私钥解密结果（如果$k_0$为真实随机数，Bob无法得知$k_1$的值），所以也就只能得到自己想要的那条数据而无法得到另外一条，保障协议能执行成功。</p><h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ol><li><a href="https://learnblockchain.cn/article/2022">区块链中的数学 - 不经意传输</a></li><li><a href="https://zhuanlan.zhihu.com/p/208295083">什么是不经意传输</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;“不经意传输”要解决这类问题：你需要给对方多条信息，但是你又必须确保对方只获得其中一条，但是对方又希望能够确保你不知道他看到哪一条信息。&lt;/</summary>
-      
-    
-    
-    
-    <category term="密码学" scheme="https://guoyujian.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
-    
-    
-    <category term="密码学" scheme="https://guoyujian.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
     
   </entry>
   
