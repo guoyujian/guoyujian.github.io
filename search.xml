@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>你的项目中有什么亮点？如何回答才能得到面试官的好感</title>
+      <link href="/2023/09/04/%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%89%E4%BB%80%E4%B9%88%E4%BA%AE%E7%82%B9%EF%BC%9F%E5%A6%82%E4%BD%95%E5%9B%9E%E7%AD%94%E6%89%8D%E8%83%BD%E5%BE%97%E5%88%B0%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E5%A5%BD%E6%84%9F/"/>
+      <url>/2023/09/04/%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%89%E4%BB%80%E4%B9%88%E4%BA%AE%E7%82%B9%EF%BC%9F%E5%A6%82%E4%BD%95%E5%9B%9E%E7%AD%94%E6%89%8D%E8%83%BD%E5%BE%97%E5%88%B0%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E5%A5%BD%E6%84%9F/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>针对本<a href="https://www.bilibili.com/video/BV1DM4y1L7cL/?buvid=9aa5bffff7ad0aee7573c7ed265b7b41&amp;is_story_h5=false&amp;mid=KneIq6dZPkIx5y%2FvWilBwA%3D%3D&amp;p=1&amp;plat_id=116&amp;share_from=ugc&amp;share_medium=iphone&amp;share_plat=ios&amp;share_session_id=B0B2A8E9-DA79-44E5-ADF6-4ECC9B19D812&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1693623913&amp;unique_k=A5vAgCl&amp;up_id=1031543543&amp;vd_source=53d8e50bea64fe70bc50c86af86d28e1">视频</a>做的笔记</p></blockquote><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>请你说一下你项目中的亮点。几乎每个准备去面试的同学都会被这个问题困扰，我羡慕。</p><p>很简单，就是 CRUD 没有亮点怎么办？没有做过分布式的项目，哪有什么亮点，我之前做的都是单体项目，实在想不出有什么亮点，大家对于这个问题的<strong>误解</strong>在于，一定要项目足够好才有亮点。其实面试官在问这个问题的时候是想了解你在项目中的成果和能力，我们可以从几个维度去准备。</p><ol><li>解决复杂问题的能力。你可以描述你在项目中解决过哪一些特别复杂或者有挑战性的问题，可以是技术问题，也可以是业务问题。比如说通过引入 Kafka 这个消息队列，优化了程序的效率，使得我们能够在高峰期处理百万级的消息。</li><li>做了一些提高效率的工作，比如说重构代码，优化数据库查询效率。引入异步线程，优化了代码的效率。开发了一个公共组件，提升了团队的开发效率。比如优化了一个复杂的 MySQL 语句，提高了数据库的查询效率，使得查询效率整体提升了 10 倍。</li><li>突出团队协作和沟通方面的能力。比如说在项目中承担的核心开发或者团队小组长的角色，通过一系列的管理手段，按时完成了项目交付和提高了质量保障等等。比如我带领我的团队完成了这个项目，我负责分配任务，协调团队的成员工作以及解决团队中出现的问题。在我的管理下，我们成功的按时完成了项目，得到了客户的高度评价。</li><li>最后，我们还可以突出学习能力，比如项目里面要用到一个新的技术，这个技术之前没有用过，但是项目交付的时间比较紧，所以我大概花了 3 天时间在网上找了各种资料学习，在实际落地的时候还遇到了一些自己解决不了的问题，后面在 GitHub 的 issue 上找到解决方案，最后按期完成了项目的交付。</li></ol><p>因此，对于项目中的亮点，你们可以从对业务设计的深度思考，问题解决的能力，或者对某个特定技术的深度理解，团队协作沟通等方面去准备，从而让面试官看到你在项目中的思考和总结，而不是一个只会 CRUD的工具人。以上就是我的理解。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 面试技巧 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python asyncio异步编程入门</title>
       <link href="/2023/09/03/Python-asyncio%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/"/>
       <url>/2023/09/03/Python-asyncio%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/</url>

@@ -6,7 +6,7 @@
   <link href="https://guoyujian.github.io/atom.xml" rel="self"/>
   
   <link href="https://guoyujian.github.io/"/>
-  <updated>2023-09-03T09:40:56.212Z</updated>
+  <updated>2023-09-04T15:22:09.604Z</updated>
   <id>https://guoyujian.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>你的项目中有什么亮点？如何回答才能得到面试官的好感</title>
+    <link href="https://guoyujian.github.io/2023/09/04/%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%89%E4%BB%80%E4%B9%88%E4%BA%AE%E7%82%B9%EF%BC%9F%E5%A6%82%E4%BD%95%E5%9B%9E%E7%AD%94%E6%89%8D%E8%83%BD%E5%BE%97%E5%88%B0%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E5%A5%BD%E6%84%9F/"/>
+    <id>https://guoyujian.github.io/2023/09/04/%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%89%E4%BB%80%E4%B9%88%E4%BA%AE%E7%82%B9%EF%BC%9F%E5%A6%82%E4%BD%95%E5%9B%9E%E7%AD%94%E6%89%8D%E8%83%BD%E5%BE%97%E5%88%B0%E9%9D%A2%E8%AF%95%E5%AE%98%E7%9A%84%E5%A5%BD%E6%84%9F/</id>
+    <published>2023-09-04T15:17:53.000Z</published>
+    <updated>2023-09-04T15:22:09.604Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>针对本<a href="https://www.bilibili.com/video/BV1DM4y1L7cL/?buvid=9aa5bffff7ad0aee7573c7ed265b7b41&amp;is_story_h5=false&amp;mid=KneIq6dZPkIx5y%2FvWilBwA%3D%3D&amp;p=1&amp;plat_id=116&amp;share_from=ugc&amp;share_medium=iphone&amp;share_plat=ios&amp;share_session_id=B0B2A8E9-DA79-44E5-ADF6-4ECC9B19D812&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1693623913&amp;unique_k=A5vAgCl&amp;up_id=1031543543&amp;vd_source=53d8e50bea64fe70bc50c86af86d28e1">视频</a>做的笔记</p></blockquote><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>请你说一下你项目中的亮点。几乎每个准备去面试的同学都会被这个问题困扰，我羡慕。</p><p>很简单，就是 CRUD 没有亮点怎么办？没有做过分布式的项目，哪有什么亮点，我之前做的都是单体项目，实在想不出有什么亮点，大家对于这个问题的<strong>误解</strong>在于，一定要项目足够好才有亮点。其实面试官在问这个问题的时候是想了解你在项目中的成果和能力，我们可以从几个维度去准备。</p><ol><li>解决复杂问题的能力。你可以描述你在项目中解决过哪一些特别复杂或者有挑战性的问题，可以是技术问题，也可以是业务问题。比如说通过引入 Kafka 这个消息队列，优化了程序的效率，使得我们能够在高峰期处理百万级的消息。</li><li>做了一些提高效率的工作，比如说重构代码，优化数据库查询效率。引入异步线程，优化了代码的效率。开发了一个公共组件，提升了团队的开发效率。比如优化了一个复杂的 MySQL 语句，提高了数据库的查询效率，使得查询效率整体提升了 10 倍。</li><li>突出团队协作和沟通方面的能力。比如说在项目中承担的核心开发或者团队小组长的角色，通过一系列的管理手段，按时完成了项目交付和提高了质量保障等等。比如我带领我的团队完成了这个项目，我负责分配任务，协调团队的成员工作以及解决团队中出现的问题。在我的管理下，我们成功的按时完成了项目，得到了客户的高度评价。</li><li>最后，我们还可以突出学习能力，比如项目里面要用到一个新的技术，这个技术之前没有用过，但是项目交付的时间比较紧，所以我大概花了 3 天时间在网上找了各种资料学习，在实际落地的时候还遇到了一些自己解决不了的问题，后面在 GitHub 的 issue 上找到解决方案，最后按期完成了项目的交付。</li></ol><p>因此，对于项目中的亮点，你们可以从对业务设计的深度思考，问题解决的能力，或者对某个特定技术的深度理解，团队协作沟通等方面去准备，从而让面试官看到你在项目中的思考和总结，而不是一个只会 CRUD的工具人。以上就是我的理解。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;针对本&lt;a href=&quot;https://www.bilibili.com/video/BV1DM4y1L7cL/?buvid=9aa5bffff7ad0aee7573c7ed265b7b41&amp;amp;is_story_h5=false&amp;amp;mi</summary>
+      
+    
+    
+    
+    
+    <category term="面试技巧" scheme="https://guoyujian.github.io/tags/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>Python asyncio异步编程入门</title>
@@ -524,37 +547,6 @@
     <summary type="html">&lt;h1 id=&quot;前置知识&quot;&gt;&lt;a href=&quot;#前置知识&quot; class=&quot;headerlink&quot; title=&quot;前置知识&quot;&gt;&lt;/a&gt;前置知识&lt;/h1&gt;&lt;p&gt;加密分为对称加密和非对称加密，HTTPS兼顾两者。&lt;/p&gt;
 &lt;p&gt;关于非对称加密，可以查阅相关资料。这里只提一点：&lt;/p&gt;
 </summary>
-      
-    
-    
-    
-    <category term="计算机网络" scheme="https://guoyujian.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="HTTP协议" scheme="https://guoyujian.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%8D%8F%E8%AE%AE/"/>
-    
-    
-    <category term="计算机网络" scheme="https://guoyujian.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="HTTP协议" scheme="https://guoyujian.github.io/tags/HTTP%E5%8D%8F%E8%AE%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP面试题</title>
-    <link href="https://guoyujian.github.io/2022/09/24/HTTP%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    <id>https://guoyujian.github.io/2022/09/24/HTTP%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
-    <published>2022-09-23T16:07:45.000Z</published>
-    <updated>2022-09-23T16:21:17.281Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>作为复习，也作为一个目录</p></blockquote><h1 id="说一下HTTP协议"><a href="#说一下HTTP协议" class="headerlink" title="说一下HTTP协议"></a>说一下HTTP协议</h1><p>HTTP全称是Hyper Text Transfer Protocol。即<strong>超文本传输协议</strong>，它是以<strong>TCP/IP</strong>为基础来传输HTML，文件，图片等。 它本身处于<strong>应用层</strong>，<strong>端口号80</strong>。</p><ol><li>HTTP是基于<strong>浏览器/服务器</strong>架构；</li><li>HTTP是<strong>无状态</strong>协议：HTTP本身并不保存用户的任何信息，也不会对传输的数据，状态信息进行持久化；</li><li>HTTP是<strong>无连接</strong>协议：每次连接只处理一个请求，服务器处理完用户请求，即断开连接，借此节约传输时间。</li></ol><h1 id="HTTP通信过程"><a href="#HTTP通信过程" class="headerlink" title="HTTP通信过程"></a>HTTP通信过程</h1><ol><li>用户输入网址</li><li>DNS服务器解析域名</li><li>浏览器和服务器建立TCP连接</li><li>浏览器向服务器发送请求行</li><li>浏览器向服务器发送请求头，并以空行代表发送结束，如果请求类型为<code>post</code>，则继续发送请求体</li><li>服务器应答协议版本号和应答状态码</li><li>服务器发送响应头，并以空行代表发送结束</li><li>服务器发送数据：以<code>Content-Type</code>给出的格式发送用户所请求的信息</li><li>服务器关闭TCP连接：如果浏览器或者服务器的头信息中加入了这样一段代码：<code>connection：Keep-alive</code> 则TCP连接会保持打开状态</li><li>客户端浏览器解析HTML内容</li></ol><p>下图整理了HTTP通信的关键步骤：</p><p><img src="http通信过程.png" alt="计算机网络-http通信过程">​</p><h1 id="说一下HTTPS协议"><a href="#说一下HTTPS协议" class="headerlink" title="说一下HTTPS协议"></a>说一下HTTPS协议</h1><p>可以看我的博客：《HTTPS协议》</p><h1 id="HTTP与HTTPS的对比"><a href="#HTTP与HTTPS的对比" class="headerlink" title="HTTP与HTTPS的对比"></a>HTTP与HTTPS的对比</h1><ul><li>两者工作的端口号不同：HTTP工作在80，HTTPS工作在443；</li><li>HTTPS需要用到CA（数字证书认证机构）申请证书，一般需要一定费用；</li><li>HTTP响应比HTTPS快，主要因为HTTPS除了TCP3次握手外还要加上<strong>SSL9次握手</strong>共12次握手；</li><li>HTTPS是构建在SSL/TLS上的HTTP协议，因此需要占用服务器资源。</li></ul><h1 id="HTTP缓存​"><a href="#HTTP缓存​" class="headerlink" title="HTTP缓存​"></a>HTTP缓存​</h1><p>http缓存指的是: 当客户端向服务器请求资源时，会先抵达<strong>浏览器缓存</strong>，如果浏览器有“要请求资源”的副本，就可以<strong>直接从浏览器缓存中提取</strong>而不是从原始服务器中提取这个资源。</p><p>常见的http缓存<strong>只能缓存get请求</strong>响应的资源，对于其他类型的响应则无能为力，所以后续说的请求缓存都是指GET请求。<br>http缓存都是从第二次请求开始的。第一次请求资源时，服务器返回资源，并在respone header头中回传资源的缓存参数；第二次请求时，浏览器判断这些请求参数，命中强缓存就直接200，否则就把请求参数加到request header头中传给服务器，看是否命中协商缓存，命中则返回304，否则服务器会返回新的资源。（可以画个图理解一下）</p><p>HTTP 缓存又分为<strong>强缓存</strong>和 <strong>协商缓存</strong> ：</p><p><strong>强制缓存</strong>：在缓存数据未失效的情况下（即Cache-Control的max-age没有过期或者Expires的缓存时间没有过期），那么就会直接使用浏览器的缓存数据，不会再向服务器发送任何请求。</p><p><strong>协商缓存</strong>：当第一次请求时服务器返回的响应头中没有Cache-Control和Expires或者Cache-Control和Expires过期还或者它的属性设置为no-cache时(即不走强缓存)，那么浏览器第二次请求时就会与服务器进行 <strong>协商</strong>，与服务器端对比判断资源是否进行了修改更新。如果服务器端的资源没有修改，那么就会返回304状态码，告诉浏览器可以使用缓存中的数据，这样就减少了服务器的数据传输压力。如果数据有更新就会返回200状态码，服务器就会返回更新后的资源并且将缓存信息一起返回。</p><h1 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h1><ul><li>1xx：<strong>目前是协议的中间状态，还需要后续请求。</strong><ul><li>101 切换请求协议，从 HTTP 切换到 WebSocket</li></ul></li><li>2xx：<strong>表示请求成功。</strong><ul><li>200 请求成功，有响应体</li></ul></li><li><p>3xx：<strong>表示重定向状态，需要重新请求。</strong></p><ul><li>301 永久重定向：会缓存</li><li>302 临时重定向：不会缓存</li><li>304 协商缓存命中</li></ul></li><li><p>4xx：<strong>请求报文错误。</strong></p><ul><li>403 服务器禁止访问</li><li>404 资源未找到</li><li>400 请求错误</li></ul></li><li><p>5xx：<strong>服务器错误。</strong></p><ul><li>500 服务器端错误</li><li>503 服务器繁忙</li></ul></li></ul><h1 id="一个典型的HTTP请求报文包括哪些部分？响应报文呢？"><a href="#一个典型的HTTP请求报文包括哪些部分？响应报文呢？" class="headerlink" title="一个典型的HTTP请求报文包括哪些部分？响应报文呢？"></a>一个典型的HTTP请求报文包括哪些部分？响应报文呢？</h1><p>一个HTTP请求报文包括：  <strong>请求头，请求行，空行，请求体</strong>。</p><p>一个响应报文包括： <strong>响应行，响应头，空行，响应体</strong> 。</p><p>具体参考我的博客《详解HTTP协议》</p><h1 id="HTTP1-0、HTTP1-1、HTTP2-0区别"><a href="#HTTP1-0、HTTP1-1、HTTP2-0区别" class="headerlink" title="HTTP1.0、HTTP1.1、HTTP2.0区别"></a>HTTP1.0、HTTP1.1、HTTP2.0区别</h1><h2 id="HTTP1-0和HTTP1-1的区别-长短连接的区别"><a href="#HTTP1-0和HTTP1-1的区别-长短连接的区别" class="headerlink" title="HTTP1.0和HTTP1.1的区别/长短连接的区别"></a>HTTP1.0和HTTP1.1的区别/长短连接的区别</h2><p>这里主要回答长短连接的区别就行吧。。</p><p>在HTTP/1.0中采用短连接。客户端和服务器每进行一次HTTP操作，就建立一次连接，任务中断连接；Connection: close</p><p>在HTTP/1.1默认采用长连接和请求的流水线（Pipelining）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。Connection: keep-alive，就是保持连接。</p><hr><p>长连接适用的场景：长连接适用于操作频繁/点对点通讯等连接数不太多的情况，如：一些游戏/即时通讯场景应该使用长连接；</p><p>短连接适用的场景： 短连接适用于大量连接的场景，如Web【wapWeb/H5等】的http服务，长连接对于服务端来说会耗费一定资源。</p><blockquote><p>补充其他区别：</p><ul><li>长短连接</li><li><strong>缓存处理</strong>：在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略，可供选择的缓存头来控制缓存策略。</li><li><strong>带宽优化及网络连接的使用</strong>：HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</li><li><strong>错误通知的管理</strong>：在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</li><li><strong>Host头处理</strong>：在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</li></ul></blockquote><h2 id="HTTP1和HTTP2的区别"><a href="#HTTP1和HTTP2的区别" class="headerlink" title="HTTP1和HTTP2的区别"></a>HTTP1和HTTP2的区别</h2><p>HTTP2.0是第二代TCP协议。它与HTTP1.1的不同点在于：</p><ul><li>HTTP2采用<strong>二进制</strong>而非文本格式；此属性减轻了框架的复杂性，并简化了由于包含文本和可选空格的命令而导致混淆的命令的实现。</li><li>HTTP2是 <strong>完全多路复用</strong> ，而线端阻塞的——只需一个连接可以实现并行；</li><li>HTTP2使用<strong>标头（headers）压缩</strong> ，减小了开销；</li><li>HTTP2让服务器可以将响应主动推送到客户端缓存中。</li></ul><p>名词解释：</p><blockquote><p>线端阻塞和多路复用</p><p>HTTP/1.x 有个问题叫线端阻塞(head-of-line blocking), 它是指<strong>一个连接(connection)一次只提交一个请求的效率比较高, 多了就会变慢</strong>。 HTTP/1.1 试过用流水线(pipelining)来解决这个问题, 但是效果并不理想(数据量较大或者速度较慢的响应, 会阻碍排在他后面的请求)。</p><p>多路传输(Multiplexing)能很好的解决这些问题, 因为它能同时处理多个消息的请求和响应; 甚至可以在传输过程中将一个消息跟另外一个掺杂在一起。所以<strong>客户端只需要一个连接</strong>就能加载一个页面。减少额外的往返时间。</p><p><img src="http1和2建立连接.png" alt="http1和2建立连接"></p><p>主动推送：通俗理解就是客户端请求了html，服务器觉得和其相关的css也会被关联到，于是主动同送其他资源到客户端。</p></blockquote><h1 id="GET、POST区别"><a href="#GET、POST区别" class="headerlink" title="GET、POST区别"></a>GET、POST区别</h1><p>具体看我的博客《详解HTTP协议》和《HTTP协议幂等性》</p><p><img src="get和post区别.png" alt="get和post区别"></p><p>‍</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;作为复习，也作为一个目录&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;说一下HTTP协议&quot;&gt;&lt;a href=&quot;#说一下HTTP协议&quot; class=&quot;headerlink&quot; title=&quot;说一下HTTP协议&quot;&gt;&lt;/a&gt;说一下HTTP协议&lt;/h</summary>
       
     
     
