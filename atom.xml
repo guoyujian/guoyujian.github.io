@@ -6,7 +6,7 @@
   <link href="https://guoyujian.github.io/atom.xml" rel="self"/>
   
   <link href="https://guoyujian.github.io/"/>
-  <updated>2023-09-04T15:22:09.604Z</updated>
+  <updated>2023-09-16T14:28:04.353Z</updated>
   <id>https://guoyujian.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python open3d点云相关操作（持续更新）</title>
+    <link href="https://guoyujian.github.io/2023/09/16/Python-open3d%E7%82%B9%E4%BA%91%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
+    <id>https://guoyujian.github.io/2023/09/16/Python-open3d%E7%82%B9%E4%BA%91%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</id>
+    <published>2023-09-16T14:26:37.000Z</published>
+    <updated>2023-09-16T14:28:04.353Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">!pip install open3d</span><br><span class="line">!pip install scipy</span><br><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"><span class="keyword">from</span> scipy.spatial.transform <span class="keyword">import</span> Rotation <span class="keyword">as</span> R</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure><h2 id="读和写点云文件"><a href="#读和写点云文件" class="headerlink" title="读和写点云文件"></a>读和写点云文件</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud = o3d.io.read_point_cloud(file_path) <span class="comment"># 支持的格式pcd、pts等</span></span><br><span class="line"><span class="comment"># type(point_cloud) == open3d.cpu.pybind.geometry.PointCloud</span></span><br><span class="line"></span><br><span class="line">o3d.io.write_point_cloud(point_cloud, file_path) </span><br></pre></td></tr></table></figure><h2 id="读取点云对象中点的坐标"><a href="#读取点云对象中点的坐标" class="headerlink" title="读取点云对象中点的坐标"></a>读取点云对象中点的坐标</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.asarray(point_cloud.points)</span><br></pre></td></tr></table></figure><h2 id="将点坐标赋值到点云对象"><a href="#将点坐标赋值到点云对象" class="headerlink" title="将点坐标赋值到点云对象"></a>将点坐标赋值到点云对象</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># points = np.array([[...]])</span></span><br><span class="line"></span><br><span class="line">point_cloud.points = o3d.utility.Vector3dVector(points)</span><br></pre></td></tr></table></figure><h2 id="创建点云对象"><a href="#创建点云对象" class="headerlink" title="创建点云对象"></a>创建点云对象</h2><p>创建一个空的点云对象</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pc = o3d.geometry.PointCloud()</span><br></pre></td></tr></table></figure><h2 id="合并点云对象"><a href="#合并点云对象" class="headerlink" title="合并点云对象"></a>合并点云对象</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 直接+</span></span><br><span class="line">pc += point_cloud</span><br></pre></td></tr></table></figure><h2 id="点云平移"><a href="#点云平移" class="headerlink" title="点云平移"></a>点云平移</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud.translate(translation)  <span class="comment"># 应用平移,translation 是平移向量</span></span><br></pre></td></tr></table></figure><h2 id="点云旋转"><a href="#点云旋转" class="headerlink" title="点云旋转"></a>点云旋转</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud.rotate(rotation_matrix, center = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))  <span class="comment"># 应用旋转, rotation_matrix是旋转矩阵</span></span><br></pre></td></tr></table></figure><p>这里需要注意第二个参数center是指定旋转中心，如果不传，默认旋转中心是点云的质心。</p><p>而一般来说，旋转中心为原点</p><h2 id="点云上色"><a href="#点云上色" class="headerlink" title="点云上色"></a>点云上色</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud.paint_uniform_color([<span class="number">0</span>, <span class="number">0</span>, <span class="number">1.0</span>]) <span class="comment"># 传入的三个值分别是rgb</span></span><br></pre></td></tr></table></figure><h2 id="点云展示"><a href="#点云展示" class="headerlink" title="点云展示"></a>点云展示</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">o3d.visualization.draw_geometries([point_cloud])</span><br></pre></td></tr></table></figure><h2 id="四元数转旋转矩阵"><a href="#四元数转旋转矩阵" class="headerlink" title="四元数转旋转矩阵"></a>四元数转旋转矩阵</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">quaternion = np.array([ori_x, ori_y, ori_z, ori_w])  <span class="comment"># 定义四元数</span></span><br><span class="line">rotation_matrix = R.from_quat(quaternion).as_matrix()</span><br></pre></td></tr></table></figure><p>注意四元数顺序是xyzw，在有些地方顺序是wxyz</p><h2 id="点云下采样"><a href="#点云下采样" class="headerlink" title="点云下采样"></a>点云下采样</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud = point_cloud.voxel_down_sample()</span><br></pre></td></tr></table></figure><p>这里需要注意</p><ol><li>需要接收返回值</li><li>下采样是指只保留某一大小立方体内的一个点。voxel_down_sample方法有个默认值参数，为0.05。这个参数就表示立方体的大小，因此这个数越大，下采样的强度越强，保留的点就越少。</li></ol><h2 id="统计滤波"><a href="#统计滤波" class="headerlink" title="统计滤波"></a>统计滤波</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud.remove_statistical_outlier(nb_neighbors=<span class="number">20</span>, std_ratio=<span class="number">2.0</span>)</span><br></pre></td></tr></table></figure><p>该方法可以去掉距离点云密集处很远的点。该方法有两个参数</p><ol><li>nb_neighbors允许指定要考虑多少个邻居，以便计算给定点的平均距离。</li><li>std_ratio允许基于跨点云的平均距离的标准偏差来设置阈值级别。此数字越低，过滤器将越具有攻击性。</li></ol><h2 id="筛选点云中的点"><a href="#筛选点云中的点" class="headerlink" title="筛选点云中的点"></a>筛选点云中的点</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># indices_to_keep =[0,1,2...] 点的索引</span></span><br><span class="line">point_cloud = point_cloud.select_by_index(indices_to_keep)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Prerequisite&quot;&gt;&lt;a href=&quot;#Prerequisite&quot; class=&quot;headerlink&quot; title=&quot;Prerequisite&quot;&gt;&lt;/a&gt;Prerequisite&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python numpy对三维点的操作汇总（持续更新）</title>
+    <link href="https://guoyujian.github.io/2023/09/16/Python-numpy%E5%AF%B9%E4%B8%89%E7%BB%B4%E7%82%B9%E7%9A%84%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
+    <id>https://guoyujian.github.io/2023/09/16/Python-numpy%E5%AF%B9%E4%B8%89%E7%BB%B4%E7%82%B9%E7%9A%84%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</id>
+    <published>2023-09-16T14:04:30.000Z</published>
+    <updated>2023-09-16T14:05:50.824Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure><h2 id="将一个列表中的点或者其他对象转换成一个numpy-ndarray对象"><a href="#将一个列表中的点或者其他对象转换成一个numpy-ndarray对象" class="headerlink" title="将一个列表中的点或者其他对象转换成一个numpy.ndarray对象"></a>将一个列表中的点或者其他对象转换成一个numpy.ndarray对象</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">points = np.asarray([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]])</span><br></pre></td></tr></table></figure><h2 id="查看numpy-ndarray的形状"><a href="#查看numpy-ndarray的形状" class="headerlink" title="查看numpy.ndarray的形状"></a>查看numpy.ndarray的形状</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">##  n : numpy.ndarray </span></span><br><span class="line">n.shape </span><br></pre></td></tr></table></figure><h2 id="计算点到原点的欧几里得距离"><a href="#计算点到原点的欧几里得距离" class="headerlink" title="计算点到原点的欧几里得距离"></a>计算点到原点的欧几里得距离</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># points like array([[x1,y1,z1],[x2,y2,z2],[x3,y3,z3]])</span></span><br><span class="line">distances = np.linalg.norm(points, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure><p><code>np.linalg.norm(x, ord=None, axis=None, keepdims=False)</code>​求范数</p><p>x：是输入的矩阵or向量</p><p>ord：计算的范数类型。ord=2计算L2范数，即欧几里得距离，ord=1计算L1范数。</p><p>axis：轴，axis=0按列计算，axis=1按行计算</p><h2 id="选择欧几里得距离符合一定范围内的点"><a href="#选择欧几里得距离符合一定范围内的点" class="headerlink" title="选择欧几里得距离符合一定范围内的点"></a>选择欧几里得距离符合一定范围内的点</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获得点距离原点的欧几里得距离大于0.1小于70的点索引</span></span><br><span class="line">np.where((distances &gt;= <span class="number">0.01</span>) &amp; (distances &lt;= <span class="number">70</span>))[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#筛选这些点</span></span><br><span class="line">points[np.where((distances &gt;= <span class="number">0.01</span>) &amp; (distances &lt;= <span class="number">70</span>))]</span><br></pre></td></tr></table></figure><p><a href="https://www.delftstack.com/zh/howto/numpy/python-numpy.where-multiple-conditions/#%e5%9c%a8-python-%e4%b8%ad%e4%bd%bf%e7%94%a8-numpylogical_or-%e5%87%bd%e6%95%b0%e5%ae%9e%e7%8e%b0-numpywhere-%e5%a4%9a%e4%b8%aa%e6%9d%a1%e4%bb%b6">https://www.delftstack.com/zh/howto/numpy/python-numpy.where-multiple-conditions/#%e5%9c%a8-python-%e4%b8%ad%e4%bd%bf%e7%94%a8-numpylogical_or-%e5%87%bd%e6%95%b0%e5%ae%9e%e7%8e%b0-numpywhere-%e5%a4%9a%e4%b8%aa%e6%9d%a1%e4%bb%b6</a></p><h2 id="对点进行旋转"><a href="#对点进行旋转" class="headerlink" title="对点进行旋转"></a>对点进行旋转</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 给定一个3*3的旋转矩阵 rotation_matrix， 对点points进行旋转，获得旋转后的点坐标。</span></span><br><span class="line">np.dot(points, rotation_matrix.T)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>注意这里需要对旋转矩阵做了转置，<strong><em>推导一下</em></strong>​<strong>。</strong></p><p>np.dot矩阵乘法，他的用法是？和np.<code>matmul</code>​的区别？</p><h2 id="对点进行平移"><a href="#对点进行平移" class="headerlink" title="对点进行平移"></a>对点进行平移</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 给定一个平移向量translation_vector， 对点points进行平移，获得旋转后的点坐标。</span></span><br><span class="line">points + translation_vector</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Prerequisite&quot;&gt;&lt;a href=&quot;#Prerequisite&quot; class=&quot;headerlink&quot; title=&quot;Prerequisite&quot;&gt;&lt;/a&gt;Prerequisite&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;</summary>
+      
+    
+    
+    
+    <category term="Python" scheme="https://guoyujian.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://guoyujian.github.io/tags/Python/"/>
+    
+    <category term="numpy" scheme="https://guoyujian.github.io/tags/numpy/"/>
+    
+  </entry>
   
   <entry>
     <title>你的项目中有什么亮点？如何回答才能得到面试官的好感</title>
@@ -500,65 +546,6 @@
     
     
     <category term="联邦学习" scheme="https://guoyujian.github.io/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP缓存</title>
-    <link href="https://guoyujian.github.io/2022/09/24/HTTP%E7%BC%93%E5%AD%98/"/>
-    <id>https://guoyujian.github.io/2022/09/24/HTTP%E7%BC%93%E5%AD%98/</id>
-    <published>2022-09-23T16:26:34.000Z</published>
-    <updated>2022-09-23T16:32:47.718Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前端缓存知识点"><a href="#前端缓存知识点" class="headerlink" title="前端缓存知识点"></a>前端缓存知识点</h1><p><img src="前端缓存一览.png" alt="前端缓存一览">​</p><h1 id="什么是HTTP缓存"><a href="#什么是HTTP缓存" class="headerlink" title="什么是HTTP缓存"></a>什么是HTTP缓存</h1><p>http缓存指的是: 当客户端向服务器请求资源时，会先抵达浏览器缓存，如果浏览器有“要请求资源”的副本，就可以直接从浏览器缓存中提取而不是从原始服务器中提取这个资源。</p><p>常见的http缓存只能缓存get请求响应的资源，对于其他类型的响应则无能为力，所以后续说的请求缓存都是指GET请求。</p><p>http缓存都是从第二次请求开始的。第一次请求资源时，服务器返回资源，并在respone header头中回传资源的缓存参数；第二次请求时，浏览器判断这些请求参数，命中强缓存就直接200，否则就把请求参数加到request header头中传给服务器，看是否命中协商缓存，命中则返回304，否则服务器会返回新的资源。</p><h1 id="为什么要使用HTTP缓存-？"><a href="#为什么要使用HTTP缓存-？" class="headerlink" title="为什么要使用HTTP缓存 ？"></a>为什么要使用HTTP缓存 ？</h1><ol><li>减少了冗余的数据传输，节省了网费。</li><li>缓解了服务器的压力， 大大提高了网站的性能</li><li>加快了客户端加载网页的速度</li></ol><h1 id="如何使用HTTP缓存-？"><a href="#如何使用HTTP缓存-？" class="headerlink" title="如何使用HTTP缓存 ？"></a>如何使用HTTP缓存 ？</h1><p>一般需要缓存的资源有html页面和其他静态资源：</p><blockquote><p>1、 <strong>html页面缓存的设置主要是在<code>&lt;head&gt;</code>标签中嵌入<code>&lt;meta&gt;</code>标签，这种方式只对页面有效，对页面上的资源无效</strong></p></blockquote><p>1.1 html页面禁用缓存的设置如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;cache-control&quot; content=&quot;no-cache&quot; \&gt;</span><br></pre></td></tr></table></figure><p>1.2 html设置缓存如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;max-age=7200&quot; /&gt;</span><br></pre></td></tr></table></figure><blockquote><p>2、 <strong>静态资源的缓存一般是在web服务器上配置的，常用的web服务器有：nginx、apache。具体的配置这里不做详细介绍，大家自行查阅。</strong></p><p><strong>3、不想使用缓存的几种方式</strong></p></blockquote><ul><li>Ctrl + F5强制刷新，都会直接向服务器提取数据。</li><li>按F5刷新或浏览器的刷新按钮，默认加上Cache-Control：max-age=0，即会走协商缓存。</li><li>还有就是上面1、2中禁用缓存的做法</li></ul><h1 id="HTTP缓存的几个注意点"><a href="#HTTP缓存的几个注意点" class="headerlink" title="HTTP缓存的几个注意点"></a>HTTP缓存的几个注意点</h1><p>1、强缓存情况下，只要缓存还没过期，就会直接从缓存中取数据，就算服务器端有数据变化，也不会从服务器端获取了，这样就无法获取到修改后的数据。解决的办法有：在修改后的资源加上随机数，确保不会从缓存中取。</p><p>例如：<code>http://www.kimshare.club/kim/common.css?v=22324432</code></p><p>2、尽量减少304的请求，因为我们知道，协商缓存每次都会与后台服务器进行交互，所以性能上不是很好。从性能上来看尽量多使用强缓存。</p><p>3、与缓存相关的几个header属性有：Vary、Date/Age。</p><h1 id="HTTP缓存的分类"><a href="#HTTP缓存的分类" class="headerlink" title="HTTP缓存的分类"></a><strong>HTTP缓存的分类</strong></h1><ul><li>根据是否需要重新向服务器发起请求来分类，可分为强制缓存，协商缓存</li><li>根据是否可以被单个或者多个用户使用来分类，可分为私有缓存，共享缓存（不care）</li></ul><p>强制缓存如果生效，不需要再和服务器发生交互，而协商缓存不管是否生效，都需要与服务端发生交互。下面是强制缓存和协商缓存的一些对比：</p><p><img src="HTTP缓存分类.png" alt="HTTP缓存分类"></p><h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><p>强制缓存在缓存数据未失效的情况下（即Cache-Control的max-age没有过期或者Expires的缓存时间没有过期），那么就会直接使用浏览器的缓存数据，不会再向服务器发送任何请求。</p><p>强制缓存生效时，http状态码为200。这种方式页面的加载速度是最快的，性能也是很好的，但是在这期间，如果服务器端的资源修改了，页面上是拿不到的，因为它不会再向服务器发请求了。</p><p>这种情况就是我们在开发种经常遇到的，比如你修改了页面上的某个样式，在页面上刷新了但没有生效，因为走的是强缓存，所以Ctrl + F5一顿操作之后就好了。 </p><p>跟强制缓存相关的header头属性有（Pragma/Cache-Control/Expires）</p><h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>当第一次请求时服务器返回的响应头中没有Cache-Control和Expires或者Cache-Control和Expires过期还或者它的属性设置为no-cache时(即不走强缓存)，那么浏览器第二次请求时就会与服务器进行协商，与服务器端对比判断资源是否进行了修改更新。</p><p>如果服务器端的资源没有修改，那么就会返回304状态码，告诉浏览器可以使用缓存中的数据，这样就减少了服务器的数据传输压力。</p><p>如果数据有更新就会返回200状态码，服务器就会返回更新后的资源并且将缓存信息一起返回。</p><p>跟协商缓存相关的header头属性有（ETag/If-Not-Match 、Last-Modified/If-Modified-Since）请求头和响应头需要成对出现。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>下图是浏览器首次和再次发送http请求的执行流程图：</strong></p><p><img src="首次HTTP请求.png" alt="首次HTTP请求"></p><p><img src="再次HTTP请求.png" alt="再次HTTP请求"></p><h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ol><li><a href="https://www.jianshu.com/p/227cee9c8d15">https://www.jianshu.com/p/227cee9c8d15</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;前端缓存知识点&quot;&gt;&lt;a href=&quot;#前端缓存知识点&quot; class=&quot;headerlink&quot; title=&quot;前端缓存知识点&quot;&gt;&lt;/a&gt;前端缓存知识点&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;前端缓存一览.png&quot; alt=&quot;前端缓存一览&quot;&gt;​&lt;/p&gt;
-&lt;h1 id=&quot;什</summary>
-      
-    
-    
-    
-    <category term="计算机网络" scheme="https://guoyujian.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="HTTP协议" scheme="https://guoyujian.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%8D%8F%E8%AE%AE/"/>
-    
-    
-    <category term="计算机网络" scheme="https://guoyujian.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="HTTP协议" scheme="https://guoyujian.github.io/tags/HTTP%E5%8D%8F%E8%AE%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTPS协议</title>
-    <link href="https://guoyujian.github.io/2022/09/24/HTTPS%E5%8D%8F%E8%AE%AE/"/>
-    <id>https://guoyujian.github.io/2022/09/24/HTTPS%E5%8D%8F%E8%AE%AE/</id>
-    <published>2022-09-23T16:22:25.000Z</published>
-    <updated>2022-09-23T16:25:50.622Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><p>加密分为对称加密和非对称加密，HTTPS兼顾两者。</p><p>关于非对称加密，可以查阅相关资料。这里只提一点：</p><blockquote><p><strong>公钥加密，私钥解密！</strong></p></blockquote><h1 id="为什么需要HTTPS"><a href="#为什么需要HTTPS" class="headerlink" title="为什么需要HTTPS"></a>为什么需要HTTPS</h1><p>HTTP 主要有这些不足：</p><ul><li>通信使用明文（不加密），内容可能会被窃听；</li><li>不验证通信方的身份，因此有可能遭遇伪装；</li><li>无法证明报文的完整性，所以有可能已遭篡改；</li></ul><p>为了解决这些问题，HTTPS顺应而生。</p><h1 id="HTTPS介绍"><a href="#HTTPS介绍" class="headerlink" title="HTTPS介绍"></a>HTTPS介绍</h1><p><strong>HTTP+ 加密 + 认证 + 完整性保护=HTTPS</strong>。</p><p>可以这么理解，HTTPS是安全版的HTTP，它不是一个新的协议，而是HTTP 加上加密处理（解决HTTP通信使用明文的问题）和认证（解决HTTP不验证通信方的身份问题）以及完整性保护（解决HTTP无法证明报文完整性的问题）后的东西。</p><p><strong>端口：443</strong></p><p><img src="HTTP和HTTPS对比.png" alt="HTTP和HTTPS对比"></p><p>注：上图并不代表顺序。也就是说<strong>HTTPS是先建立TCP连接，再进行TLS/SSL握手。</strong></p><h1 id="HTTPS通信"><a href="#HTTPS通信" class="headerlink" title="HTTPS通信"></a>HTTPS通信</h1><p>直接上图</p><p><img src="HTTPS通信.png" alt="HTTPS通信">​</p><p>上图基本把HTTPS的通信流程说的非常清晰了，补充两点：</p><ol><li>这里对比HASH是为了防止握手消息被篡改。浏览器与网站互相发送加密的握手消息并验证，目的是为了保证双方都获得了一致的密码，并且可以正常的加密解密数据，为后续真正数据的传输做一次测试。</li><li>因为对称加密要比非对称加密的计算快很多，所以HTTPS没有全程使用非对称加密，而是先使用非对称加密交换对称密钥，再使用对称加密手段通信。</li><li>证书确保了双方身份。</li></ol><p>另外，HTTPS一般使用的加密与HASH算法如下：</p><ul><li>非对称加密算法：RSA，DSA/DSS</li><li>对称加密算法：AES，RC4，3DES</li><li>HASH算法：MD5，SHA1，SHA256</li></ul><h1 id="HTTPS-的优缺点"><a href="#HTTPS-的优缺点" class="headerlink" title="HTTPS 的优缺点?"></a>HTTPS 的优缺点?</h1><p>优点</p><ul><li><p>安全性：</p><ul><li>使用HTTPS协议可认证用户和服务器，确保数据发送到正确的客户机和服务器；</li><li>HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性。</li><li>HTTPS是现行架构下最安全的解决方案，虽然不是绝对安全，但它大幅增加了中间人攻击的成本。</li></ul></li><li>SEO方面：谷歌曾在2014年8月份调整搜索引擎算法，并称“比起同等HTTP网站，采用HTTPS加密的网站在搜索结果中的排名将会更高”。</li></ul><p>缺点</p><ul><li>在相同网络环境中，HTTPS 相比 HTTP 无论是响应时间还是耗电量都有大幅度上升。</li><li>HTTPS 的安全是有范围的，在黑客攻击、服务器劫持等情况下几乎起不到作用。</li><li>在现有的证书机制下，中间人攻击依然有可能发生。</li><li>HTTPS 需要更多的服务器资源，也会导致成本的升高。</li></ul><h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ol><li><a href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">SSL/TLS协议运行机制的概述</a></li><li><a href="https://www.cnblogs.com/zery/p/5164795.html">HTTPS 原理解析</a></li><li><a href="https://cloud.tencent.com/developer/article/1007810?from=article.detail.1017988">HTTPS 建立连接的详细过程</a></li><li><a href="https://juejin.cn/post/6906126429381984264">HTTPS连接过程</a></li><li><a href="https://zhuanlan.zhihu.com/p/45390160">HTTPS详细介绍</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;前置知识&quot;&gt;&lt;a href=&quot;#前置知识&quot; class=&quot;headerlink&quot; title=&quot;前置知识&quot;&gt;&lt;/a&gt;前置知识&lt;/h1&gt;&lt;p&gt;加密分为对称加密和非对称加密，HTTPS兼顾两者。&lt;/p&gt;
-&lt;p&gt;关于非对称加密，可以查阅相关资料。这里只提一点：&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    <category term="计算机网络" scheme="https://guoyujian.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="HTTP协议" scheme="https://guoyujian.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP%E5%8D%8F%E8%AE%AE/"/>
-    
-    
-    <category term="计算机网络" scheme="https://guoyujian.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="HTTP协议" scheme="https://guoyujian.github.io/tags/HTTP%E5%8D%8F%E8%AE%AE/"/>
     
   </entry>
   
