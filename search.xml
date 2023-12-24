@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>Union-Find并查集算法（Python实现）</title>
+      <link href="/2023/12/24/Union-Find%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%AE%97%E6%B3%95%EF%BC%88Python%E5%AE%9E%E7%8E%B0%EF%BC%89/"/>
+      <url>/2023/12/24/Union-Find%E5%B9%B6%E6%9F%A5%E9%9B%86%E7%AE%97%E6%B3%95%EF%BC%88Python%E5%AE%9E%E7%8E%B0%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<p>这是并查集算法的Python实现：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UF</span>:</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    并查集算法</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, n</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        初始化数据结构</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># 初始化连通分量数量</span></span><br><span class="line">        self._count = n</span><br><span class="line">        <span class="comment"># 初始化双亲节点</span></span><br><span class="line">        self._parent = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="comment"># self.size[x]表示以x为根节点的节点数量</span></span><br><span class="line">        self._size = [<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">find</span>(<span class="params">self, x : <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        find root of x</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> self._parent[x] != x:</span><br><span class="line">            <span class="comment"># 路经压缩，将当前节点的双亲节点设为其双亲节点的双亲节点</span></span><br><span class="line">            self._parent[x] = self._parent[self._parent[x]]</span><br><span class="line">            x = self._parent[x]</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">union</span>(<span class="params">self, p: <span class="built_in">int</span>, q: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        union p and q</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># 找到p和q的根节点</span></span><br><span class="line">        rootP = self.find(p)</span><br><span class="line">        rootQ = self.find(q)</span><br><span class="line">        <span class="keyword">if</span> rootP == rootQ:</span><br><span class="line">            <span class="comment"># 如果根节点相等，则pq本就联通</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="comment"># 将小集合合并到大集合中，平衡性优化</span></span><br><span class="line">        <span class="keyword">if</span> self._size[rootP] &gt; self._size[rootQ]:</span><br><span class="line"></span><br><span class="line">            self._parent[rootQ] = rootP</span><br><span class="line">            self._size[rootP] += self._size[rootQ]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self._parent[rootP] = rootQ</span><br><span class="line">            self._size[rootQ] += self._size[rootP]</span><br><span class="line">        self._count -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">count</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        返回联通数</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> self._count</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">connected</span>(<span class="params">self, p, q</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        判断pq是否联通</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> self.find(q) == self.find(p)</span><br><span class="line">    </span><br></pre></td></tr></table></figure><p>参考：<a href="https://zhuanlan.zhihu.com/p/98406740">https://zhuanlan.zhihu.com/p/98406740</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构与算法 </category>
+          
+          <category> 并查集算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 并查集 </tag>
+            
+            <tag> UnionFind </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>subprocess执行java命令残留进程解决</title>
       <link href="/2023/12/07/subprocess%E6%89%A7%E8%A1%8Cjava%E5%91%BD%E4%BB%A4%E6%AE%8B%E7%95%99%E8%BF%9B%E7%A8%8B%E8%A7%A3%E5%86%B3/"/>
       <url>/2023/12/07/subprocess%E6%89%A7%E8%A1%8Cjava%E5%91%BD%E4%BB%A4%E6%AE%8B%E7%95%99%E8%BF%9B%E7%A8%8B%E8%A7%A3%E5%86%B3/</url>
