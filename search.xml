@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>平面方程的四种表达方式总结</title>
+      <link href="/2025/03/27/%E5%B9%B3%E9%9D%A2%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/"/>
+      <url>/2025/03/27/%E5%B9%B3%E9%9D%A2%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<p>平面方程有四种表达方式分别是：截距式，点法式，一般式，法线式。</p><h3 id="点法式"><a href="#点法式" class="headerlink" title="点法式"></a>点法式</h3><script type="math/tex; mode=display">A(x-x_0)+B(y-y_0)+C(z-z_0)=0</script><p>假设$\vec{n}=(A,B,C)$为平面的法向量，$M=(x,y,z)$为平面上任意一点，$M’=(x_0,y_0,z_0)$，则有$\vec{n}·\vec{MM’}=0$，则有</p><script type="math/tex; mode=display">A(x-x_0)+B(y-y_0)+C(z-z_0)=0</script><h3 id="一般式"><a href="#一般式" class="headerlink" title="一般式"></a>一般式</h3><script type="math/tex; mode=display">Ax+By+Cz+D=0</script><p>由点法式推出</p><script type="math/tex; mode=display">Ax + By + Cz - Ax_0 - By_0 - Cz_0 = 0</script><p>令</p><script type="math/tex; mode=display">D =  - Ax_0 - By_0 - Cz_0</script><p>即推导出一般式</p><h3 id="截距式"><a href="#截距式" class="headerlink" title="截距式"></a>截距式</h3><p>设平面方程为</p><script type="math/tex; mode=display">Ax+By+Cz+D=0</script><p>若$D\ne0$，取$a=-\frac{D}{A}$,$b=-\frac{D}{B}$,$c=-\frac{D}{C}$，则得平面的截距式方程</p><script type="math/tex; mode=display">\frac{x}{a} + \frac{y}{b} + \frac{c}{z} = 1</script><p>平面与三个轴的坐标分别为$P(a,0,0)$,$Q(0,b,0)$,$R(0,0,c)$，其中a,b,c依次称为该平面在x,y,z轴上的截距。</p><p>推导过程很简单平面与x轴的交点就是令$y=0$,$z=0$,所以$a=-\frac{D}{A}$，以此类推。</p><h3 id="法线式"><a href="#法线式" class="headerlink" title="法线式"></a>法线式</h3><script type="math/tex; mode=display">x\cos\alpha + y\cos\beta + z\cos\gamma = d</script><p>其中$\cos\alpha$、$\cos\beta$、$\cos\gamma$是平面法向量的方向余弦，$d$为原点到平面的距离。</p><p>其中</p><script type="math/tex; mode=display">\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1</script><p>假设原点到平面的法线为$\vec{on}$，平面上任意一点$p(x,y,z)$，平面上一点$p_0,(x_0,y_0,z_0)$，则有</p><script type="math/tex; mode=display">\vec{on}·\vec{pp_0} = 0</script><p>又$\vec{pp_0} = \vec{op} - \vec{op_0}$，则</p><script type="math/tex; mode=display">\vec{on}·\vec{op}-\vec{on}·\vec{op_0}  = 0</script><p>设$\vec{on_0}$为单位法向量</p><script type="math/tex; mode=display">\vec{on_0}=(\cos\alpha, \cos\beta, \cos\gamma)</script><p>且</p><script type="math/tex; mode=display">\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1</script><p>则</p><script type="math/tex; mode=display">\vec{on}·\vec{op}-\vec{on}·\vec{op_0}  = \vec{on_0}·\vec{op}-\vec{on_0}·\vec{op_0}</script><p>其中</p><script type="math/tex; mode=display">\vec{on_0}·\vec{op_0}=d</script><p>（$\vec{on_0}·\vec{op_0}$相当于$\vec{op_0}$在法线方向上的余弦，即原点到平面距离$d$）</p><p>并且</p><script type="math/tex; mode=display">\vec{on_0}·\vec{op} = x\cos\alpha + y\cos\beta + z\cos\gamma</script><p>所以</p><script type="math/tex; mode=display">x\cos\alpha + y\cos\beta + z\cos\gamma = d</script><p>‍</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python 元类基础</title>
       <link href="/2025/03/26/Python-%E5%85%83%E7%B1%BB%E5%9F%BA%E7%A1%80/"/>
       <url>/2025/03/26/Python-%E5%85%83%E7%B1%BB%E5%9F%BA%E7%A1%80/</url>
