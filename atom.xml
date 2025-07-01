@@ -6,7 +6,7 @@
   <link href="https://guoyujian.github.io/atom.xml" rel="self"/>
   
   <link href="https://guoyujian.github.io/"/>
-  <updated>2025-06-10T11:42:18.411Z</updated>
+  <updated>2025-07-01T03:00:07.322Z</updated>
   <id>https://guoyujian.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>傅里叶分析</title>
+    <link href="https://guoyujian.github.io/2025/07/01/%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90/"/>
+    <id>https://guoyujian.github.io/2025/07/01/%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90/</id>
+    <published>2025-07-01T02:42:09.000Z</published>
+    <updated>2025-07-01T03:00:07.322Z</updated>
+    
+    <content type="html"><![CDATA[<object data="/pdfs/Fourier_transform.pdf" type="application/pdf" width="100%" height="800px"><p>‍</p><p>‍</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;object data=&quot;/pdfs/Fourier_transform.pdf&quot; type=&quot;application/pdf&quot; width=&quot;100%&quot; height=&quot;800px&quot;&gt;
+
+
+&lt;p&gt;‍&lt;/p&gt;
+&lt;p&gt;‍&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="数学" scheme="https://guoyujian.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="微积分" scheme="https://guoyujian.github.io/categories/%E6%95%B0%E5%AD%A6/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
+    
+    
+    <category term="数学" scheme="https://guoyujian.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>复数的工学应用</title>
@@ -563,26 +594,6 @@
     <category term="Python" scheme="https://guoyujian.github.io/tags/Python/"/>
     
     <category term="面试" scheme="https://guoyujian.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python open3d点云相关操作（持续更新）</title>
-    <link href="https://guoyujian.github.io/2023/09/16/Python-open3d%E7%82%B9%E4%BA%91%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
-    <id>https://guoyujian.github.io/2023/09/16/Python-open3d%E7%82%B9%E4%BA%91%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</id>
-    <published>2023-09-16T14:26:37.000Z</published>
-    <updated>2023-09-16T14:28:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">!pip install open3d</span><br><span class="line">!pip install scipy</span><br><span class="line"><span class="keyword">import</span> open3d <span class="keyword">as</span> o3d</span><br><span class="line"><span class="keyword">from</span> scipy.spatial.transform <span class="keyword">import</span> Rotation <span class="keyword">as</span> R</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure><h2 id="读和写点云文件"><a href="#读和写点云文件" class="headerlink" title="读和写点云文件"></a>读和写点云文件</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud = o3d.io.read_point_cloud(file_path) <span class="comment"># 支持的格式pcd、pts等</span></span><br><span class="line"><span class="comment"># type(point_cloud) == open3d.cpu.pybind.geometry.PointCloud</span></span><br><span class="line"></span><br><span class="line">o3d.io.write_point_cloud(point_cloud, file_path) </span><br></pre></td></tr></table></figure><h2 id="读取点云对象中点的坐标"><a href="#读取点云对象中点的坐标" class="headerlink" title="读取点云对象中点的坐标"></a>读取点云对象中点的坐标</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.asarray(point_cloud.points)</span><br></pre></td></tr></table></figure><h2 id="将点坐标赋值到点云对象"><a href="#将点坐标赋值到点云对象" class="headerlink" title="将点坐标赋值到点云对象"></a>将点坐标赋值到点云对象</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># points = np.array([[...]])</span></span><br><span class="line"></span><br><span class="line">point_cloud.points = o3d.utility.Vector3dVector(points)</span><br></pre></td></tr></table></figure><h2 id="创建点云对象"><a href="#创建点云对象" class="headerlink" title="创建点云对象"></a>创建点云对象</h2><p>创建一个空的点云对象</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pc = o3d.geometry.PointCloud()</span><br></pre></td></tr></table></figure><h2 id="合并点云对象"><a href="#合并点云对象" class="headerlink" title="合并点云对象"></a>合并点云对象</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 直接+</span></span><br><span class="line">pc += point_cloud</span><br></pre></td></tr></table></figure><h2 id="点云平移"><a href="#点云平移" class="headerlink" title="点云平移"></a>点云平移</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud.translate(translation)  <span class="comment"># 应用平移,translation 是平移向量</span></span><br></pre></td></tr></table></figure><h2 id="点云旋转"><a href="#点云旋转" class="headerlink" title="点云旋转"></a>点云旋转</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud.rotate(rotation_matrix, center = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))  <span class="comment"># 应用旋转, rotation_matrix是旋转矩阵</span></span><br></pre></td></tr></table></figure><p>这里需要注意第二个参数center是指定旋转中心，如果不传，默认旋转中心是点云的质心。</p><p>而一般来说，旋转中心为原点</p><h2 id="点云上色"><a href="#点云上色" class="headerlink" title="点云上色"></a>点云上色</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud.paint_uniform_color([<span class="number">0</span>, <span class="number">0</span>, <span class="number">1.0</span>]) <span class="comment"># 传入的三个值分别是rgb</span></span><br></pre></td></tr></table></figure><h2 id="点云展示"><a href="#点云展示" class="headerlink" title="点云展示"></a>点云展示</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">o3d.visualization.draw_geometries([point_cloud])</span><br></pre></td></tr></table></figure><h2 id="四元数转旋转矩阵"><a href="#四元数转旋转矩阵" class="headerlink" title="四元数转旋转矩阵"></a>四元数转旋转矩阵</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">quaternion = np.array([ori_x, ori_y, ori_z, ori_w])  <span class="comment"># 定义四元数</span></span><br><span class="line">rotation_matrix = R.from_quat(quaternion).as_matrix()</span><br></pre></td></tr></table></figure><p>注意四元数顺序是xyzw，在有些地方顺序是wxyz</p><h2 id="点云下采样"><a href="#点云下采样" class="headerlink" title="点云下采样"></a>点云下采样</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud = point_cloud.voxel_down_sample()</span><br></pre></td></tr></table></figure><p>这里需要注意</p><ol><li>需要接收返回值</li><li>下采样是指只保留某一大小立方体内的一个点。voxel_down_sample方法有个默认值参数，为0.05。这个参数就表示立方体的大小，因此这个数越大，下采样的强度越强，保留的点就越少。</li></ol><h2 id="统计滤波"><a href="#统计滤波" class="headerlink" title="统计滤波"></a>统计滤波</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">point_cloud.remove_statistical_outlier(nb_neighbors=<span class="number">20</span>, std_ratio=<span class="number">2.0</span>)</span><br></pre></td></tr></table></figure><p>该方法可以去掉距离点云密集处很远的点。该方法有两个参数</p><ol><li>nb_neighbors允许指定要考虑多少个邻居，以便计算给定点的平均距离。</li><li>std_ratio允许基于跨点云的平均距离的标准偏差来设置阈值级别。此数字越低，过滤器将越具有攻击性。</li></ol><h2 id="筛选点云中的点"><a href="#筛选点云中的点" class="headerlink" title="筛选点云中的点"></a>筛选点云中的点</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># indices_to_keep =[0,1,2...] 点的索引</span></span><br><span class="line">point_cloud = point_cloud.select_by_index(indices_to_keep)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Prerequisite&quot;&gt;&lt;a href=&quot;#Prerequisite&quot; class=&quot;headerlink&quot; title=&quot;Prerequisite&quot;&gt;&lt;/a&gt;Prerequisite&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;</summary>
-      
-    
-    
-    
     
   </entry>
   
