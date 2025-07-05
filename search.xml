@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>曲率的简单理解和推导</title>
+      <link href="/2025/07/05/%E6%9B%B2%E7%8E%87%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3%E5%92%8C%E6%8E%A8%E5%AF%BC/"/>
+      <url>/2025/07/05/%E6%9B%B2%E7%8E%87%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3%E5%92%8C%E6%8E%A8%E5%AF%BC/</url>
+      
+        <content type="html"><![CDATA[<p>曲率：曲线的弯曲程度。</p><p>一个圆半径$r$越小，弯曲程度越大，于是定义曲率$k$。</p><script type="math/tex; mode=display">k=\frac{1}{r}</script><p>对于一段圆弧$s$，对应半径$r$和角度$\alpha$，则有</p><script type="math/tex; mode=display">s=\alpha r \rightarrow r = \frac{s}{\alpha}\rightarrow \\k = \frac{1}{r}=\frac{\alpha}{s}</script><p>对于一般曲线在某一点上的曲率，可以取其微分</p><script type="math/tex; mode=display">\begin{equation}k=\left| \frac{d\alpha}{ds} \right|\end{equation}</script><p>设函数$f(x)$二阶导数存在。有</p><script type="math/tex; mode=display">\frac{dy}{dx}=\tan \alpha \text{，导数定义为切线斜率}</script><script type="math/tex; mode=display">\begin{align*}y''     & = \frac{d}{dx}\left(\frac{dy}{dx}\right)     = \frac{d}{d\alpha} \frac{d\alpha}{dx} \cdot \tan\alpha      = \frac{d\alpha}{dx} \cdot \sec^{2}\alpha \\\Rightarrow \frac{d\alpha}{dx}     & = \frac{y''}{\sec^{2}\alpha}     = \frac{y''}{1 + \tan^{2}\alpha}     = \frac{y''}{1 + y'^{2}} \\\Rightarrow d\alpha     & = \frac{y''}{1 + y'^{2}} \, dx \end{align*}</script><p>弧微分为</p><script type="math/tex; mode=display">ds  = \sqrt{1 + y'^{2}}  \, dx \quad % 修正原图笔误（添加 y' 的导数符号）</script><p>代入到曲率定义，</p><script type="math/tex; mode=display">\begin{equation}k = \left| \frac{d \alpha}{ds} \right| = \frac{|y''|}{(1 + y'^2)^\frac{3}{2}} \text{  (2)}\end{equation}</script><hr><p>如果在参数方程下呢？</p><p>对于曲线参数方程</p><script type="math/tex; mode=display">\begin{cases}   x = \varphi(t) \\   y = \psi(t) \quad % 修正：原图 \gamma 应为 \psi 保持一致性\end{cases}</script><p>一阶导数</p><script type="math/tex; mode=display">y' = \frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{\psi'(t)}{\varphi'(t)} \\[0.8em]</script><p>二阶导数</p><script type="math/tex; mode=display">y'' = \frac{d}{dx}\left( \frac{dy}{dx} \right)     = \frac{d}{dt}\left( \frac{\psi'(t)}{\varphi'(t)} \right) \cdot \frac{dt}{dx} \\    = \left[ \frac{\psi''(t)\varphi'(t) - \psi'(t)\varphi''(t)}{[\varphi'(t)]^2} \right] \cdot \frac{1}{\varphi'(t)} \quad % 修正分母指数    = \frac{\psi''(t)\varphi'(t) - \psi'(t)\varphi''(t)}{[\varphi'(t)]^3}</script><p>代入到(2)，</p><script type="math/tex; mode=display">k = \left| \frac{y''}{(1 + y'^2)^{3/2}} \right|     = \frac{ |\psi''(t)\varphi'(t) - \psi'(t)\varphi''(t)| / |\varphi'(t)|^3 }{ \left( 1 + \left[ \frac{\psi'(t)}{\varphi'(t)} \right]^2 \right)^{3/2} } \\    = \frac{ |\psi''(t)\varphi'(t) - \psi'(t)\varphi''(t)| }{ \left( [\varphi'(t)]^2 + [\psi'(t)]^2 \right)^\frac{3}{2} }</script><p>‍</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数学 </category>
+          
+          <category> 微积分 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+            <tag> 微积分 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>傅里叶分析</title>
       <link href="/2025/07/01/%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90/"/>
       <url>/2025/07/01/%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90/</url>

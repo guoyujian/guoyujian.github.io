@@ -6,7 +6,7 @@
   <link href="https://guoyujian.github.io/atom.xml" rel="self"/>
   
   <link href="https://guoyujian.github.io/"/>
-  <updated>2025-07-01T03:00:07.322Z</updated>
+  <updated>2025-07-05T08:22:40.532Z</updated>
   <id>https://guoyujian.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>曲率的简单理解和推导</title>
+    <link href="https://guoyujian.github.io/2025/07/05/%E6%9B%B2%E7%8E%87%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3%E5%92%8C%E6%8E%A8%E5%AF%BC/"/>
+    <id>https://guoyujian.github.io/2025/07/05/%E6%9B%B2%E7%8E%87%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3%E5%92%8C%E6%8E%A8%E5%AF%BC/</id>
+    <published>2025-07-05T08:18:13.000Z</published>
+    <updated>2025-07-05T08:22:40.532Z</updated>
+    
+    <content type="html"><![CDATA[<p>曲率：曲线的弯曲程度。</p><p>一个圆半径$r$越小，弯曲程度越大，于是定义曲率$k$。</p><script type="math/tex; mode=display">k=\frac{1}{r}</script><p>对于一段圆弧$s$，对应半径$r$和角度$\alpha$，则有</p><script type="math/tex; mode=display">s=\alpha r \rightarrow r = \frac{s}{\alpha}\rightarrow \\k = \frac{1}{r}=\frac{\alpha}{s}</script><p>对于一般曲线在某一点上的曲率，可以取其微分</p><script type="math/tex; mode=display">\begin{equation}k=\left| \frac{d\alpha}{ds} \right|\end{equation}</script><p>设函数$f(x)$二阶导数存在。有</p><script type="math/tex; mode=display">\frac{dy}{dx}=\tan \alpha \text{，导数定义为切线斜率}</script><script type="math/tex; mode=display">\begin{align*}y''     & = \frac{d}{dx}\left(\frac{dy}{dx}\right)     = \frac{d}{d\alpha} \frac{d\alpha}{dx} \cdot \tan\alpha      = \frac{d\alpha}{dx} \cdot \sec^{2}\alpha \\\Rightarrow \frac{d\alpha}{dx}     & = \frac{y''}{\sec^{2}\alpha}     = \frac{y''}{1 + \tan^{2}\alpha}     = \frac{y''}{1 + y'^{2}} \\\Rightarrow d\alpha     & = \frac{y''}{1 + y'^{2}} \, dx \end{align*}</script><p>弧微分为</p><script type="math/tex; mode=display">ds  = \sqrt{1 + y'^{2}}  \, dx \quad % 修正原图笔误（添加 y' 的导数符号）</script><p>代入到曲率定义，</p><script type="math/tex; mode=display">\begin{equation}k = \left| \frac{d \alpha}{ds} \right| = \frac{|y''|}{(1 + y'^2)^\frac{3}{2}} \text{  (2)}\end{equation}</script><hr><p>如果在参数方程下呢？</p><p>对于曲线参数方程</p><script type="math/tex; mode=display">\begin{cases}   x = \varphi(t) \\   y = \psi(t) \quad % 修正：原图 \gamma 应为 \psi 保持一致性\end{cases}</script><p>一阶导数</p><script type="math/tex; mode=display">y' = \frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{\psi'(t)}{\varphi'(t)} \\[0.8em]</script><p>二阶导数</p><script type="math/tex; mode=display">y'' = \frac{d}{dx}\left( \frac{dy}{dx} \right)     = \frac{d}{dt}\left( \frac{\psi'(t)}{\varphi'(t)} \right) \cdot \frac{dt}{dx} \\    = \left[ \frac{\psi''(t)\varphi'(t) - \psi'(t)\varphi''(t)}{[\varphi'(t)]^2} \right] \cdot \frac{1}{\varphi'(t)} \quad % 修正分母指数    = \frac{\psi''(t)\varphi'(t) - \psi'(t)\varphi''(t)}{[\varphi'(t)]^3}</script><p>代入到(2)，</p><script type="math/tex; mode=display">k = \left| \frac{y''}{(1 + y'^2)^{3/2}} \right|     = \frac{ |\psi''(t)\varphi'(t) - \psi'(t)\varphi''(t)| / |\varphi'(t)|^3 }{ \left( 1 + \left[ \frac{\psi'(t)}{\varphi'(t)} \right]^2 \right)^{3/2} } \\    = \frac{ |\psi''(t)\varphi'(t) - \psi'(t)\varphi''(t)| }{ \left( [\varphi'(t)]^2 + [\psi'(t)]^2 \right)^\frac{3}{2} }</script><p>‍</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;曲率：曲线的弯曲程度。&lt;/p&gt;
+&lt;p&gt;一个圆半径$r$越小，弯曲程度越大，于是定义曲率$k$。&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+k=\frac{1}{r}&lt;/script&gt;&lt;p&gt;对于一段圆弧$s$，对应半径$r$和角度$</summary>
+      
+    
+    
+    
+    <category term="数学" scheme="https://guoyujian.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="微积分" scheme="https://guoyujian.github.io/categories/%E6%95%B0%E5%AD%A6/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
+    
+    
+    <category term="数学" scheme="https://guoyujian.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="微积分" scheme="https://guoyujian.github.io/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/"/>
+    
+  </entry>
   
   <entry>
     <title>傅里叶分析</title>
@@ -563,37 +594,6 @@
     <category term="websocket" scheme="https://guoyujian.github.io/tags/websocket/"/>
     
     <category term="asyncio" scheme="https://guoyujian.github.io/tags/asyncio/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 面试题</title>
-    <link href="https://guoyujian.github.io/2023/10/07/Python-%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    <id>https://guoyujian.github.io/2023/10/07/Python-%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
-    <published>2023-10-07T14:48:30.000Z</published>
-    <updated>2023-10-07T14:50:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>记一次Python面试被问到的题</p></blockquote><h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=&#123;<span class="number">1</span>:<span class="number">2</span>,<span class="number">2</span>:<span class="number">3</span>&#125;</span><br><span class="line">b=a</span><br><span class="line">b.pop(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure><p>问：a的输出是什么？</p><p>答：<code>&#123;2:3&#125;</code>​</p><h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">b=[[]]*<span class="number">2</span>; b[<span class="number">0</span>].append(<span class="number">1</span>); <span class="built_in">print</span>(b)</span><br><span class="line">a=[]; b=[a]*<span class="number">2</span>; b[<span class="number">0</span>].append(<span class="number">1</span>); <span class="built_in">print</span>(b)</span><br><span class="line">a=[]; b=[a, a]; b[<span class="number">0</span>].append(<span class="number">1</span>); <span class="built_in">print</span>(b)</span><br><span class="line">b=[[], []]; b[<span class="number">0</span>].append(<span class="number">1</span>); <span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure><p>问：这四个<code>b</code>​的输出是什么？</p><p>答：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[[1], [1]]</span><br><span class="line">[[1], [1]]</span><br><span class="line">[[1], [1]]</span><br><span class="line">[[1], []]</span><br></pre></td></tr></table></figure><h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a=&quot;123&quot;; b=a; b=b[:-1]; </span><br><span class="line">print(a, b)</span><br></pre></td></tr></table></figure><p>问：输出？</p><p>答：<code>123 12</code>​</p><h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><p>比较以下两段代码的执行效率和内存开销</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">res = 1</span><br><span class="line">for num in [1,2,3,4]+[6,7,8,9]:</span><br><span class="line">    res *= num</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import itertools</span><br><span class="line">res = 1</span><br><span class="line">for num in itertools.chain([1,2,3,4], [6,7,8,9]):</span><br><span class="line">    res *= num</span><br></pre></td></tr></table></figure><p><a href="https://docs.python.org/3/library/itertools.html">https://docs.python.org/3/library/itertools.html</a></p><p>答：首先第一个代码需要将两个列表和并为一个列表，而第二段代码是直接遍历两个列表，其次itertools.chain返回的是一个生成器，所以第二个代码的执行效率高，内存开销小。</p><h1 id="5"><a href="#5" class="headerlink" title="5"></a>5</h1><p>What is the difference between tuple() and list[]？loop over tuple and list，which one is more effective？</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if var in [&quot;xxx&quot;, &quot;yyy&quot;]:</span><br><span class="line">if var in (&quot;xxx&quot;, &quot;yyy&quot;):</span><br><span class="line">if var in &#123;&quot;xxx&quot;, &quot;yyy&quot;&#125;:</span><br></pre></td></tr></table></figure><p>Which one above is more efficitive? Note: The value after ‘in’ is a constant.</p><p>时间复杂度：tuple O(?) list O(?) set O(?)</p><p>答：tuple是不可变对象，list是可变对象。由于tuple不可变，所以申请内存为连续定长内存，而list类似于一个链表。</p><p>所以在loop中，tuple is more effective.</p><p><code>if var in &#123;&quot;xxx&quot;, &quot;yyy&quot;&#125;</code>​ is more effective. 因为集合查询时间复杂度为O(1)，tuple和list为O(N)</p><h1 id="6"><a href="#6" class="headerlink" title="6"></a>6</h1><p>Python class中变量名和函数名前缀单下划线和双下划线(后缀没有下划线)分别是什么？For example,</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class A:</span><br><span class="line">   def _method1(): pass   // What&#x27;s the meaning of _</span><br><span class="line">   def __method2(): pass  // What&#x27;s the meaning of __</span><br></pre></td></tr></table></figure><p> What’s the difference among the concepts protected, public, and private?</p><p>答：变量前没有下划线的为public<br>变量前有单下划线为protected，这种变量只能在本类或者其子类中调用（如果你想在其他地方调用也可以，但是会有警告）<br>变量前有双下划线为private，这种变量只能在本类中调用（在其他地方调用会报错）</p><h1 id="7"><a href="#7" class="headerlink" title="7"></a>7</h1><p>在用mongo等非关系型数据库的时候，我们不希望把脏数据、空数据存进数据库，造成后面的混乱。写一个函数(Python3)，删除json dict里面的空数据，包括空dict，空list，空string，None。假设输入的Python dict从合法json读取, 即key必为string, value可以是number/string/list/dict。例如：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&quot;a&quot;: [1,0,&quot;c&quot;, &#123;&quot;x&quot;:1&#125;]&#125; -&gt; &#123;&quot;a&quot;: [1,0,&quot;c&quot;, &#123;&quot;x&quot;:1&#125;]&#125;</span><br><span class="line">&#123;&quot;a&quot;:[1,None]&#125; -&gt; &#123;&quot;a&quot;: [1]&#125;</span><br><span class="line">&#123;&quot;a&quot;: &#123;&quot;a&quot;:[None, &quot;&quot;, &#123;&#125;,&#123;&quot;x&quot;:None&#125;]&#125;&#125; -&gt; None</span><br></pre></td></tr></table></figure><p>答：</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">clean_json</span>(<span class="params">data: (<span class="params"><span class="built_in">dict</span>,<span class="built_in">list</span>,<span class="built_in">int</span>,<span class="built_in">float</span>,<span class="built_in">str</span>,<span class="literal">None</span></span>)</span>):</span><br><span class="line">    <span class="comment"># put your code here</span></span><br><span class="line">    <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> data == <span class="string">&#x27;&#x27;</span> <span class="keyword">or</span> data == <span class="built_in">dict</span>() <span class="keyword">or</span> data == []:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(data) == <span class="built_in">list</span>:</span><br><span class="line">        data1 = [item <span class="keyword">for</span> item <span class="keyword">in</span> data <span class="keyword">if</span> clean_json(item) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>] <span class="comment"># 复制一份出来</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data1:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> data1</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(data) == <span class="built_in">dict</span>:</span><br><span class="line">        data1 = &#123;k: clean_json(v) <span class="keyword">for</span> k, v <span class="keyword">in</span> data.items() <span class="keyword">if</span> clean_json(v) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>&#125; <span class="comment"># 复制一份出来</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data1:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> data1</span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure><p>注意：不能直接对原数组or字典作删除操作，会报错！</p><p>例如</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> l:</span><br><span class="line">    <span class="keyword">if</span> l[i] == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">del</span> l[i] <span class="comment"># do not do this</span></span><br></pre></td></tr></table></figure><p>‍</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;记一次Python面试被问到的题&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;1&quot;&gt;&lt;a href=&quot;#1&quot; class=&quot;headerlink&quot; title=&quot;1&quot;&gt;&lt;/a&gt;1&lt;/h1&gt;&lt;figure class=&quot;highlight p</summary>
-      
-    
-    
-    
-    <category term="Python" scheme="https://guoyujian.github.io/categories/Python/"/>
-    
-    <category term="基础" scheme="https://guoyujian.github.io/categories/Python/%E5%9F%BA%E7%A1%80/"/>
-    
-    
-    <category term="Python" scheme="https://guoyujian.github.io/tags/Python/"/>
-    
-    <category term="面试" scheme="https://guoyujian.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
